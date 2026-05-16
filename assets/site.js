@@ -275,7 +275,8 @@ function applyLanguage(lang) {
 }
 
 async function loadSnapshot() {
-  const resp = await fetch('/data/public_snapshot.json', { cache:'no-store' });
+  const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
+  const resp = await fetch(base + 'data/public_snapshot.json', { cache:'no-store' });
   if (!resp.ok) throw new Error('snapshot ' + resp.status);
   return resp.json();
 }
