@@ -1,5 +1,1 @@
-# Large media assets (keep local)
-assets/hero-demo.mp4
-
-# Local package installs
 node_modules/
