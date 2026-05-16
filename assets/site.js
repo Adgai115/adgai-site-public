@@ -501,9 +501,10 @@ initLoader();
 initBackground();
 initScrollReveal();
 
-// Unmute hero video on first user interaction
+// Hero video: autoplay muted immediately, unmute on first interaction
 var heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
+  heroVideo.play().catch(function(){});
   var unmuteOnce = function() {
     heroVideo.muted = false;
     heroVideo.play().catch(function(){});
