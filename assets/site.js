@@ -48,11 +48,37 @@ const COPY = {
       eyebrow:'关于', title:'关于 Adgai', connect:'// 连接', rss:'RSS 订阅',
       text:'<p>Adgai 是一个 <strong>本地优先的 AI 系统构建者</strong>，专注于 AI 资源编排、个人知识自动化和智能工作流。</p><p>所有运行数据保留在本地，公开站只展示经过脱敏处理的项目成果和文章。这是一个将 <strong>私有工作转化为公开成果</strong> 的实践项目。</p>',
     },
+    projectPages: {
+      resource: {
+        eyebrow:'项目', title:'OpenClaw 资源后台',
+        lead:'面向 AI 模型、工具、计划任务和知识产出的本地优先运行工作台。公开版本只描述方法，不暴露私有资源状态。',
+        principlesTitle:'原则', principlesText:'运行数据保留在本地，只导出审核后的摘要，并显式展示采集的新鲜度。',
+        boundaryTitle:'公开边界', boundaryText:'这个项目页不会展示实时进程数、私有路径、日志或原始自动化输出。',
+      },
+      intelhub: {
+        eyebrow:'项目', title:'IntelHub',
+        lead:'面向周期性采集、审阅和综合分析的结构化情报工作流。',
+        focusTitle:'重点', focusText:'强调来源纪律、可重复简报，以及把私人研究循环转化为可发布结论。',
+      },
+      knowledge: {
+        eyebrow:'项目', title:'知识自动化',
+        lead:'通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。',
+        disciplineTitle:'发布纪律', disciplineText:'私人笔记需要可见性标签、审核标记、白名单导出和扫描，才能成为公开成果。',
+      },
+    },
     footer: {
       note:'公开站由脱敏数据生成。', tagline:'把私人工作沉淀成公开成果的个人 AI 基础设施。',
       nav:'导航', resources:'资源', connect:'连接', rss:'RSS', sitemap:'站点地图', resourceConsole:'资源后台', knowledgeAuto:'知识自动化',
     },
     status: { 'private alpha':'私有 Alpha', active:'活跃', building:'建设中' },
+    metricLabels: {
+      '主题':'主题', '节点':'节点', '流程':'流程',
+      '订阅源':'订阅源', '简报':'简报', '状态':'状态', '运行中':'运行中',
+      '文章':'文章', '更新':'更新', '每周':'每周',
+    },
+    tags: {
+      'OpenClaw':'OpenClaw', '教程':'教程', 'AI':'AI', '测评':'测评', '知识管理':'知识管理', '设计':'设计',
+    },
     projectCopy: {
       'openclaw-resource-console':{name:'OpenClaw 资源后台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。'},
       intelhub:{name:'IntelHub',summary:'面向固定来源和简报的结构化情报采集工作流。'},
@@ -98,11 +124,37 @@ const COPY = {
       eyebrow:'About', title:'About Adgai', connect:'// Connect', rss:'RSS Feed',
       text:'<p>Adgai is a <strong>local-first AI systems builder</strong>, focused on AI resource orchestration, personal knowledge automation, and intelligent workflows.</p><p>All operational data stays local. This public site showcases only sanitized project outputs and articles — a practice of turning <strong>private work into public artifacts</strong>.</p>',
     },
+    projectPages: {
+      resource: {
+        eyebrow:'Project', title:'OpenClaw Resource Console',
+        lead:'A local-first operations surface for AI models, tools, scheduled tasks, and knowledge output. The public version describes the methodology without exposing private resource state.',
+        principlesTitle:'Principles', principlesText:'Operational data stays local. Only reviewed summaries are exported, with collection freshness displayed explicitly.',
+        boundaryTitle:'Public Boundary', boundaryText:'This project page does not display live process counts, private paths, logs, or raw automation output.',
+      },
+      intelhub: {
+        eyebrow:'Project', title:'IntelHub',
+        lead:'A structured intelligence collection workflow for recurring collection, review, and cross-source analysis.',
+        focusTitle:'Focus', focusText:'Emphasizing source discipline, repeatable briefings, and turning private research cycles into publishable conclusions.',
+      },
+      knowledge: {
+        eyebrow:'Project', title:'Knowledge Automation',
+        lead:'A publishing pipeline that promotes reviewed private notes into public pages through explicit publishing gates.',
+        disciplineTitle:'Publishing Discipline', disciplineText:'Private notes require visibility tags, review flags, allowlist export, and scanning before becoming public artifacts.',
+      },
+    },
     footer: {
       note:'Public site generated from sanitized data.', tagline:'Personal AI infrastructure that turns private work into public artifacts.',
       nav:'Navigation', resources:'Resources', connect:'Connect', rss:'RSS', sitemap:'Sitemap', resourceConsole:'Resource Console', knowledgeAuto:'Knowledge Automation',
     },
     status: { 'private alpha':'private alpha', active:'active', building:'building' },
+    metricLabels: {
+      '主题':'Topics', '节点':'Nodes', '流程':'Flows',
+      '订阅源':'Sources', '简报':'Briefing', '状态':'Status', '运行中':'Running',
+      '文章':'Articles', '更新':'Updated', '每周':'Weekly',
+    },
+    tags: {
+      'OpenClaw':'OpenClaw', '教程':'Tutorial', 'AI':'AI', '测评':'Review', '知识管理':'Knowledge Mgmt', '设计':'Design',
+    },
     projectCopy: {
       'openclaw-resource-console':{name:'OpenClaw Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.'},
       intelhub:{name:'IntelHub',summary:'A structured intelligence collection workflow for recurring sources and briefings.'},
@@ -169,6 +221,14 @@ function localizeConsole(v, lang) {
   return String(v).toLowerCase() === 'local-only' ? COPY[lang].metrics.localOnly : (v || COPY[lang].metrics.localOnly);
 }
 
+function localizeMetricLabel(key, lang) {
+  return COPY[lang].metricLabels[key] || key;
+}
+
+function localizeTag(tag, lang) {
+  return COPY[lang].tags[tag] || tag;
+}
+
 // ── Snapshot Rendering ────────────────────
 
 function renderMetrics(snap, lang) {
@@ -201,18 +261,13 @@ function renderProjects(projects, lang) {
     if (s.includes('active') || s.includes('活跃') || s.includes('online')) return 'badge-green';
     return 'badge-gray';
   }
-  const metricSets = [
-    [{k:'主题',v:'8'},{k:'节点',v:'1,280'},{k:'流程',v:'18'}],
-    [{k:'订阅源',v:'12'},{k:'简报',v:'每周'},{k:'状态',v:'运行中'}],
-    [{k:'文章',v:'28'},{k:'节点',v:'934'},{k:'更新',v:'每周'}],
-  ];
 
   target.innerHTML = projects.map((proj, i) => {
     const copy = COPY[lang].projectCopy[proj.slug] || {};
     const name = copy.name || proj.name || '';
     const desc = copy.summary || proj.summary || '';
     const href = safeUrl(proj.public_url);
-    const metrics = metricSets[i] || metricSets[0];
+    const metrics = Array.isArray(proj.metrics) ? proj.metrics : [];
     return '<article class="project-card fade-up">' +
       '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
       '<div class="card-head">' +
@@ -221,7 +276,7 @@ function renderProjects(projects, lang) {
       '</div>' +
       '<p class="card-desc">' + esc(desc) + '</p>' +
       '<div class="card-metrics">' +
-        metrics.map(m => '<div class="met"><strong>' + esc(m.v) + '</strong><span>' + esc(m.k) + '</span></div>').join('') +
+        metrics.map(m => '<div class="met"><strong>' + esc(localizeMetricLabel(m.v, lang)) + '</strong><span>' + esc(localizeMetricLabel(m.k, lang)) + '</span></div>').join('') +
       '</div>' +
     '</article>';
   }).join('');
@@ -244,7 +299,7 @@ function renderNotes(notes, lang) {
     '<div class="note-row fade-up" style="transition-delay:' + (i * 60) + 'ms">' +
       '<span class="note-date">' + esc(n.date || '') + '</span>' +
       '<div class="note-body"><strong>' + esc(n.title || '') + '</strong><p>' + esc(n.summary || '') + '</p></div>' +
-      '<span class="note-tag">' + esc((n.tags || [])[0] || '') + '</span>' +
+      '<span class="note-tag">' + esc(localizeTag((n.tags || [])[0] || '', lang)) + '</span>' +
     '</div>'
   ).join('');
 }
@@ -287,6 +342,12 @@ function initLoader() {
   const loader = document.getElementById('siteLoader');
   if (!loader) return;
 
+  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    loader.remove();
+    document.body.classList.add('is-ready');
+    return;
+  }
+
   const hasSeen = sessionStorage.getItem('hasSeenLoader');
   if (hasSeen) {
     loader.remove();
@@ -316,6 +377,7 @@ function initBackground() {
   let rainDrops = [];
   let lightStreaks = [];
   const pointer = { x:0, y:0, active:false };
+  let lastFrameTime = 0;
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -327,7 +389,8 @@ function initBackground() {
     canvas.style.height = height + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = Math.min(100, Math.floor((width * height) / 18000));
+    const mobile = window.innerWidth < 768;
+    const count = mobile ? 30 : Math.min(100, Math.floor((width * height) / 18000));
     particles = Array.from({length:count}, function(_, i) { return {
       x: Math.random() * width,
       y: Math.random() * height,
@@ -339,7 +402,7 @@ function initBackground() {
     };});
 
     // Data rain: falling 0/1 flowing from hero downward
-    var rainCount = Math.min(80, Math.floor(width / 14));
+    var rainCount = mobile ? 25 : Math.min(80, Math.floor(width / 14));
     rainDrops = Array.from({length:rainCount}, function() { return {
       x: Math.random() * width,
       y: Math.random() * height,
@@ -351,7 +414,7 @@ function initBackground() {
     };});
 
     // Light streaks: fast vertical lines
-    var streakCount = Math.min(50, Math.floor(width / 22));
+    var streakCount = mobile ? 15 : Math.min(50, Math.floor(width / 22));
     lightStreaks = Array.from({length:streakCount}, function() { return {
       x: Math.random() * width,
       y: Math.random() * height,
@@ -379,6 +442,8 @@ function initBackground() {
   }
 
   function draw(t) {
+    if (window.innerWidth < 768 && t - lastFrameTime < 50) { raf = requestAnimationFrame(draw); return; }
+    lastFrameTime = t;
     ctx.clearRect(0, 0, width, height);
     drawGrid(t);
 

@@ -3,21 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
+  <meta name="description" content="知识自动化 — 通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。">
   <title>知识自动化 - Adgai</title>
+  <link rel="canonical" href="https://adgai.github.io/projects/knowledge-automation.html">
+  <meta property="og:title" content="知识自动化 - Adgai">
+  <meta property="og:description" content="通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。">
+  <meta property="og:url" content="https://adgai.github.io/projects/knowledge-automation.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://adgai.github.io/assets/resource-workbench.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/styles.css">
   <script src="../assets/site.js" defer></script>
 </head>
 <body data-page="project-knowledge-automation">
   <header class="site-header">
+    <div class="header-inner">
     <a class="brand" href="../">Adgai</a>
-    <div class="header-actions">
-      <nav aria-label="Primary"><a href="../" data-i18n="nav.home">首页</a></nav>
-      <div class="language-toggle" aria-label="Language">
-        <button type="button" data-lang-option="zh-CN">中</button>
-        <button type="button" data-lang-option="en">EN</button>
-      </div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+    <label for="menu-toggle" class="menu-toggle-label" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav aria-label="Primary"><a href="../" data-i18n="nav.home">首页</a></nav>
+    <div class="language-toggle" aria-label="Language">
+      <button type="button" data-lang-option="zh-CN">中</button>
+      <button type="button" data-lang-option="en">EN</button>
+    </div>
     </div>
   </header>
   <main class="article">
@@ -29,5 +40,36 @@
       <p data-i18n="projectPages.knowledge.disciplineText">私人笔记需要可见性标签、审核标记、白名单导出和扫描，才能成为公开成果。</p>
     </section>
   </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../">Adgai</a>
+        <p data-i18n="footer.tagline">把私人工作沉淀成公开成果的个人 AI 基础设施。</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.nav">导航</h4>
+        <a href="../#projects" data-i18n="nav.projects">项目</a>
+        <a href="../#notes" data-i18n="nav.notes">文章</a>
+        <a href="../#now" data-i18n="nav.now">近况</a>
+        <a href="../#about" data-i18n="nav.about">关于</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.resources">资源</h4>
+        <a href="https://github.com/Adgai115" target="_blank" rel="noopener">GitHub</a>
+        <a href="resource-console.html" data-i18n="footer.resourceConsole">资源后台</a>
+        <a href="intelhub.html">IntelHub</a>
+        <a href="knowledge-automation.html" data-i18n="footer.knowledgeAuto">知识自动化</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.connect">连接</h4>
+        <a href="mailto:adgai0918@gmail.com">Email</a>
+        <a href="../#about" data-i18n="footer.sitemap">站点地图</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Adgai</span>
+      <span data-i18n="footer.note">公开站由脱敏数据生成。</span>
+    </div>
+  </footer>
 </body>
 </html>

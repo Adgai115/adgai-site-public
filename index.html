@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
   <title>Adgai - AI 系统与知识自动化</title>
+  <link rel="canonical" href="https://adgai.github.io/">
+  <meta property="og:title" content="Adgai - AI 系统与知识自动化">
+  <meta property="og:description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
+  <meta property="og:url" content="https://adgai.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://adgai.github.io/assets/resource-workbench.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -35,6 +42,10 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="./">Adgai</a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+        <label for="menu-toggle" class="menu-toggle-label" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </label>
         <nav aria-label="Primary">
           <a href="#projects" data-i18n="nav.projects">项目</a>
           <a href="#notes" data-i18n="nav.notes">文章</a>
@@ -53,9 +64,16 @@
       <!-- Hero -->
       <section class="hero" id="top">
         <div class="hero-bg">
-          <video autoplay loop muted playsinline id="heroVideo">
+          <video autoplay loop muted playsinline id="heroVideo"
+            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Crect fill='%23020A0C' width='1280' height='720'/%3E%3C/svg%3E">
             <source src="assets/hero-demo.mp4" type="video/mp4">
           </video>
+          <noscript>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:var(--bg);color:var(--text);">
+              <strong style="font-size:24px;">Adgai</strong>
+              <span style="color:var(--muted);font-size:14px;">本地优先的 AI 系统</span>
+            </div>
+          </noscript>
           <div class="hero-overlay"></div>
         </div>
         <div class="hero-copy">
@@ -182,9 +200,7 @@
               <a class="contact-link" href="mailto:adgai0918@gmail.com" aria-label="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
               </a>
-              <a class="contact-link" href="#" aria-label="RSS" data-i18n-title="about.rss">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="18" r="2"/><path d="M4 4c8.8 0 16 7.2 16 16"/><path d="M4 11c5 0 9 4 9 9"/></svg>
-              </a>
+
             </div>
           </div>
         </div>
@@ -216,8 +232,7 @@
         <div class="footer-col">
           <h4 data-i18n="footer.connect">连接</h4>
           <a href="mailto:adgai0918@gmail.com">Email</a>
-          <a href="#" data-i18n="footer.rss">RSS</a>
-          <a href="#" data-i18n="footer.sitemap">站点地图</a>
+          <a href="#about" data-i18n="footer.sitemap">站点地图</a>
         </div>
       </div>
       <div class="footer-bottom">
