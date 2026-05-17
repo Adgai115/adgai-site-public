@@ -7,13 +7,13 @@
       "local-first personal knowledge systems",
       "automation that turns private work into public artifacts"
     ],
-    "public_build_time": "2026-05-16T05:43:06.267Z"
+    "public_build_time": "2026-05-17T14:42:09.899Z"
   },
   "public_metrics": {
     "project_count": 3,
-    "public_note_count": 3,
+    "public_note_count": 0,
     "resource_console_status": "local-only",
-    "last_public_update": "2026-05-16"
+    "last_public_update": "2026-05-17"
   },
   "featured_projects": [
     {
@@ -21,56 +21,22 @@
       "name": "OpenClaw Resource Console",
       "summary": "A local-first operations surface for AI models, tools, tasks, and knowledge output.",
       "status": "private alpha",
-      "public_url": "projects/resource-console.html",
-      "metrics": [
-        {"k": "主题", "v": "8"},
-        {"k": "节点", "v": "1,280"},
-        {"k": "流程", "v": "18"}
-      ]
+      "public_url": "/projects/resource-console.html"
     },
     {
       "slug": "intelhub",
       "name": "IntelHub",
       "summary": "A structured intelligence collection workflow for recurring sources and briefings.",
       "status": "active",
-      "public_url": "projects/intelhub.html",
-      "metrics": [
-        {"k": "订阅源", "v": "12"},
-        {"k": "简报", "v": "每周"},
-        {"k": "状态", "v": "运行中"}
-      ]
+      "public_url": "/projects/intelhub.html"
     },
     {
       "slug": "knowledge-automation",
       "name": "Knowledge Automation",
       "summary": "A publishing pipeline that promotes reviewed private notes into public artifacts.",
       "status": "building",
-      "public_url": "projects/knowledge-automation.html",
-      "metrics": [
-        {"k": "文章", "v": "28"},
-        {"k": "节点", "v": "934"},
-        {"k": "更新", "v": "每周"}
-      ]
+      "public_url": "/projects/knowledge-automation.html"
     }
   ],
-  "public_notes": [
-    {
-      "title": "OpenClaw 入门指南",
-      "date": "2026-05-15",
-      "summary": "从零搭建本地优先的 AI 工作台",
-      "tags": ["OpenClaw", "教程"]
-    },
-    {
-      "title": "GPT-Image-2 测评",
-      "date": "2026-04-29",
-      "summary": "GPT-Image-2 与 HappyHorse 的全链路图像生成对比",
-      "tags": ["AI", "测评"]
-    },
-    {
-      "title": "个人知识系统设计",
-      "date": "2026-04-20",
-      "summary": "本地优先的个人知识管理与自动化发布",
-      "tags": ["知识管理", "设计"]
-    }
-  ]
+  "public_notes": []
 }
