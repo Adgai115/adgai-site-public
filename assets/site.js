@@ -167,7 +167,7 @@ let snapshotData = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
 function esc(v) { return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
-function safeUrl(v) { return typeof v==='string' && v.startsWith('/') ? v : ''; }
+function safeUrl(v) { return typeof v==='string' && (v.startsWith('/') || v.startsWith('projects/')) ? v : ''; }
 
 function getLanguage() {
   const p = new URLSearchParams(location.search);
