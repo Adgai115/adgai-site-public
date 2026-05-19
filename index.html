@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
   <title>Adgai - AI 系统与知识自动化</title>
-  <link rel="canonical" href="https://adgai.github.io/">
+  <link rel="canonical" href="https://adgai115.github.io/adgai-site-public/">
+  <meta name="theme-color" content="#020A0C">
   <meta property="og:title" content="Adgai - AI 系统与知识自动化">
   <meta property="og:description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
-  <meta property="og:url" content="https://adgai.github.io/">
+  <meta property="og:url" content="https://adgai115.github.io/adgai-site-public/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://adgai.github.io/assets/resource-workbench.png">
+  <meta property="og:image" content="https://adgai115.github.io/adgai-site-public/assets/resource-workbench.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adgai - AI 系统与知识自动化">
+  <meta name="twitter:description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
+  <meta name="twitter:image" content="https://adgai115.github.io/adgai-site-public/assets/resource-workbench.png">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -42,11 +46,11 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="./">Adgai</a>
-        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
-        <label for="menu-toggle" class="menu-toggle-label" aria-label="Menu">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" aria-controls="primaryNav" aria-expanded="false">
+        <label for="menu-toggle" class="menu-toggle-label" aria-label="菜单">
           <span></span><span></span><span></span>
         </label>
-        <nav aria-label="Primary">
+        <nav id="primaryNav" aria-label="Primary">
           <a href="#projects" data-i18n="nav.projects">项目</a>
           <a href="#notes" data-i18n="nav.notes">文章</a>
           <a href="#now" data-i18n="nav.now">近况</a>
@@ -64,7 +68,7 @@
       <!-- Hero -->
       <section class="hero" id="top">
         <div class="hero-bg">
-          <video autoplay loop muted playsinline id="heroVideo"
+          <video autoplay loop muted playsinline preload="metadata" id="heroVideo"
             poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Crect fill='%23020A0C' width='1280' height='720'/%3E%3C/svg%3E">
             <source src="assets/hero-demo.mp4" type="video/mp4">
           </video>

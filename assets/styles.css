@@ -242,6 +242,11 @@ nav a { transition:color .2s; }
   color:var(--bg);
 }
 
+.language-toggle button.active {
+  background:var(--accent);
+  color:var(--bg);
+}
+
 /* ── Project Sub-pages ──────────────────── */
 
 .article {
@@ -277,6 +282,11 @@ nav a { transition:color .2s; }
   color:var(--muted);
   font-size:18px;
   line-height:1.8;
+}
+
+.article h1 {
+  font-size:52px;
+  line-height:1.05;
 }
 
 /* ── Main container ─────────────────────── */
@@ -348,9 +358,9 @@ main {
 
 h1 {
   margin:0;
-  font-size:clamp(44px, 7vw, 92px);
+  font-size:76px;
   line-height:.98;
-  letter-spacing:-.06em;
+  letter-spacing:0;
 }
 
 h1 .gradient {
@@ -467,7 +477,7 @@ h1 .gradient {
 h2 {
   margin:0;
   font-size:36px;
-  letter-spacing:-.04em;
+  letter-spacing:0;
 }
 
 /* ── Project Cards ──────────────────────── */
@@ -870,6 +880,8 @@ h2 {
 
   .hero { min-height:auto; gap:36px; }
 
+  h1 { font-size:60px; }
+
   .project-grid,
   .security-grid {
     grid-template-columns:repeat(2, minmax(0,1fr));
@@ -924,6 +936,7 @@ h2 {
   main { padding:0 20px; }
 
   h1 { font-size:40px; }
+  .article h1 { font-size:34px; }
   h2 { font-size:28px; }
 
   .project-grid,
@@ -984,6 +997,32 @@ h2 {
   font-size:18px;
 }
 
+@media (max-width:680px) {
+  .pipeline-flow {
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+    overflow-x:visible;
+  }
+
+  .pipeline-step-visual {
+    flex:none;
+    width:100%;
+  }
+
+  .pipeline-text strong,
+  .pipeline-text span {
+    display:block;
+    white-space:normal;
+  }
+
+  .pipeline-arrow {
+    align-self:center;
+    padding:0;
+    transform:rotate(90deg);
+  }
+}
+
 /* ── Hamburger Menu ──────────────────────── */
 
 .menu-toggle-checkbox { display: none; }
@@ -996,6 +1035,10 @@ h2 {
   background: var(--muted);
   border-radius: 2px;
   transition: transform .2s, opacity .2s;
+}
+
+@media (max-width:680px) {
+  .menu-toggle-label { display:flex; }
 }
 
 /* ── Print ───────────────────────────────── */

@@ -10,7 +10,12 @@ const DEFAULT_LANGUAGE = 'zh-CN';
 
 const COPY = {
   'zh-CN': {
-    pageTitles: { home: 'Adgai - AI 系统与知识自动化' },
+    pageTitles: {
+      home: 'Adgai - AI 系统与知识自动化',
+      'project-resource-console': 'OpenClaw 资源后台 - Adgai',
+      'project-intelhub': 'IntelHub - Adgai',
+      'project-knowledge-automation': '知识自动化 - Adgai',
+    },
     description: 'Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。',
     nav: { projects:'项目', notes:'文章', now:'近况', about:'关于', home:'首页' },
     home: {
@@ -86,7 +91,12 @@ const COPY = {
     },
   },
   en: {
-    pageTitles: { home: 'Adgai - AI Systems & Knowledge Automation' },
+    pageTitles: {
+      home: 'Adgai - AI Systems & Knowledge Automation',
+      'project-resource-console': 'OpenClaw Resource Console - Adgai',
+      'project-intelhub': 'IntelHub - Adgai',
+      'project-knowledge-automation': 'Knowledge Automation - Adgai',
+    },
     description: 'Adgai builds local-first AI systems, resource orchestration tools, and knowledge automation workflows.',
     nav: { projects:'Projects', notes:'Notes', now:'Now', about:'About', home:'Home' },
     home: {
@@ -164,10 +174,27 @@ const COPY = {
 };
 
 let snapshotData = null;
+let revealObserver = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
 function esc(v) { return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
-function safeUrl(v) { return typeof v==='string' && (v.startsWith('/') || v.startsWith('projects/')) ? v : ''; }
+function safeUrl(v) {
+  if (typeof v !== 'string') return '';
+  if (v.startsWith('/projects/')) return v.slice(1);
+  return v.startsWith('projects/') ? v : '';
+}
+
+function pageDescription(c, page) {
+  if (page === 'project-resource-console') return c.projectPages.resource.lead;
+  if (page === 'project-intelhub') return c.projectPages.intelhub.lead;
+  if (page === 'project-knowledge-automation') return c.projectPages.knowledge.lead;
+  return c.description;
+}
+
+function setMeta(selector, value) {
+  const el = document.querySelector(selector);
+  if (el && value) el.setAttribute('content', value);
+}
 
 function getLanguage() {
   const p = new URLSearchParams(location.search);
@@ -184,11 +211,17 @@ function setLanguage(lang) {
 
 function applyStaticTranslations(lang) {
   const c = COPY[lang];
+  const page = document.body.dataset.page || 'home';
+  const pageTitle = c.pageTitles[page] || c.pageTitles.home;
+  const description = pageDescription(c, page);
   document.documentElement.lang = lang;
-  document.title = c.pageTitles.home;
+  document.title = pageTitle;
 
-  const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute('content', c.description);
+  setMeta('meta[name="description"]', description);
+  setMeta('meta[property="og:title"]', pageTitle);
+  setMeta('meta[property="og:description"]', description);
+  setMeta('meta[name="twitter:title"]', pageTitle);
+  setMeta('meta[name="twitter:description"]', description);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const v = getNested(c, el.dataset.i18n);
@@ -268,7 +301,7 @@ function renderProjects(projects, lang) {
     const desc = copy.summary || proj.summary || '';
     const href = safeUrl(proj.public_url);
     const metrics = Array.isArray(proj.metrics) ? proj.metrics : [];
-    return '<article class="project-card fade-up">' +
+    return '<article class="project-card fade-up is-visible">' +
       '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
       '<div class="card-head">' +
         '<h3>' + (href ? '<a href="' + esc(href) + '">' + esc(name) + '</a>' : esc(name)) + '</h3>' +
@@ -280,6 +313,7 @@ function renderProjects(projects, lang) {
       '</div>' +
     '</article>';
   }).join('');
+  revealElements(target);
 }
 
 function renderNotes(notes, lang) {
@@ -296,12 +330,13 @@ function renderNotes(notes, lang) {
   }
 
   target.innerHTML = notes.map((n, i) =>
-    '<div class="note-row fade-up" style="transition-delay:' + (i * 60) + 'ms">' +
+    '<div class="note-row fade-up is-visible" style="transition-delay:' + (i * 60) + 'ms">' +
       '<span class="note-date">' + esc(n.date || '') + '</span>' +
       '<div class="note-body"><strong>' + esc(n.title || '') + '</strong><p>' + esc(n.summary || '') + '</p></div>' +
       '<span class="note-tag">' + esc(localizeTag((n.tags || [])[0] || '', lang)) + '</span>' +
     '</div>'
   ).join('');
+  revealElements(target);
 }
 
 function renderFocus(lang) {
@@ -361,7 +396,7 @@ function initLoader() {
       document.body.classList.add('is-ready');
       loader.classList.add('is-hidden');
       setTimeout(function() { loader.remove(); }, 800);
-    }, 2700);
+    }, 900);
   });
 }
 
@@ -535,22 +570,33 @@ function initBackground() {
 
 // ── Scroll-triggered animations ────────────
 
+function revealElements(root) {
+  const scope = root || document;
+  scope.querySelectorAll('.fade-up:not(.is-visible)').forEach(function(el) {
+    if (revealObserver) {
+      revealObserver.observe(el);
+    } else {
+      el.classList.add('is-visible');
+    }
+  });
+}
+
 function initScrollReveal() {
   if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
     document.querySelectorAll('.fade-up').forEach(function(el) { el.classList.add('is-visible'); });
     return;
   }
 
-  var observer = new IntersectionObserver(function(entries) {
+  revealObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+  revealElements(document);
 }
 
 // ── Init ───────────────────────────────────
@@ -559,6 +605,24 @@ document.querySelectorAll('[data-lang-option]').forEach(function(btn) {
   btn.addEventListener('click', function() { setLanguage(btn.dataset.langOption); });
 });
 
+var menuToggle = document.getElementById('menu-toggle');
+var primaryNav = document.getElementById('primaryNav');
+if (menuToggle) {
+  var syncMenuState = function() {
+    menuToggle.setAttribute('aria-expanded', menuToggle.checked ? 'true' : 'false');
+  };
+  menuToggle.addEventListener('change', syncMenuState);
+  if (primaryNav) {
+    primaryNav.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.checked = false;
+        syncMenuState();
+      });
+    });
+  }
+  syncMenuState();
+}
+
 var lang = getLanguage();
 applyLanguage(lang);
 
@@ -566,20 +630,10 @@ initLoader();
 initBackground();
 initScrollReveal();
 
-// Hero video: autoplay muted immediately, unmute on first interaction
+// Hero video stays muted; unexpected audio on a personal site is a poor default.
 var heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
   heroVideo.play().catch(function(){});
-  var unmuteOnce = function() {
-    heroVideo.muted = false;
-    heroVideo.play().catch(function(){});
-    document.removeEventListener('click', unmuteOnce);
-    document.removeEventListener('keydown', unmuteOnce);
-    document.removeEventListener('touchstart', unmuteOnce);
-  };
-  document.addEventListener('click', unmuteOnce);
-  document.addEventListener('keydown', unmuteOnce);
-  document.addEventListener('touchstart', unmuteOnce);
 }
 
 loadSnapshot().then(function(snap) {

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adgai115.github.io/adgai-site-public/sitemap.xml
