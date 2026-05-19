@@ -65,13 +65,3 @@ scripts/
 server.mjs              本地开发服务器
 ```
 
-## 数据流
-
-```
-E:\.openclaw\  ──→  private_snapshot.json  ──→  白名单导出  ──→  public_snapshot.json  ──→  本站
-(私有，不公开)      (adgai-site 私有控制台)       (adgai-site exporter)    (本仓库 data/)     (GitHub Pages)
-```
-
-## 相关仓库
-
-- [adgai-site](https://github.com/Adgai115/adgai-site) — 私有控制台（仅限本地）
