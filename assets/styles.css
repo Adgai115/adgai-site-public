@@ -485,69 +485,115 @@ h2 {
 .project-grid {
   position:relative;
   display:block;
-  min-height:620px;
+  min-height:760px;
   perspective:1400px;
 }
 
 .project-orbit-stage {
   position:relative;
-  min-height:620px;
+  min-height:760px;
   overflow:hidden;
   isolation:isolate;
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
+  border:1px solid rgba(135,224,255,.14);
+  border-radius:28px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(65,163,167,.16), transparent 24%),
-    linear-gradient(135deg, rgba(3,33,36,.72), rgba(2,10,12,.58));
+    linear-gradient(180deg, rgba(10,30,40,.70), rgba(2,11,15,.58)),
+    radial-gradient(circle at 50% 43%, rgba(27,194,221,.14), transparent 35%);
+  box-shadow:
+    0 0 80px rgba(0,211,255,.05),
+    inset 0 0 80px rgba(46,244,255,.03);
 }
 
 .project-orbit-stage::before {
   content:"";
   position:absolute;
   inset:0;
-  z-index:-1;
-  opacity:.22;
+  z-index:0;
+  opacity:.45;
   background:
-    linear-gradient(90deg, rgba(108,203,207,.13) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(108,203,207,.10) 1px, transparent 1px);
-  background-size:42px 42px;
-  mask-image:radial-gradient(circle at center, #000 0 58%, transparent 76%);
+    linear-gradient(90deg, transparent 0 19%, rgba(61,231,255,.08) 20%, transparent 21% 49%, rgba(61,231,255,.08) 50%, transparent 51% 79%, rgba(61,231,255,.08) 80%, transparent 81%),
+    linear-gradient(180deg, transparent 0 24%, rgba(61,231,255,.06) 25%, transparent 26% 74%, rgba(61,231,255,.05) 75%, transparent 76%);
+  pointer-events:none;
+}
+
+.project-orbit-stage::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.24;
+  background-image:
+    linear-gradient(rgba(61,231,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,231,255,.035) 1px, transparent 1px);
+  background-size:46px 46px;
+  mask-image:linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+
+.project-stage-matrix {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.42;
+}
+
+.project-stage-matrix span {
+  position:absolute;
+  top:-80px;
+  color:rgba(46,244,255,.45);
+  font-family:Consolas,monospace;
+  font-size:13px;
+  text-shadow:0 0 12px rgba(46,244,255,.5);
+  animation:projectMatrixFall linear infinite;
 }
 
 .project-orbit-ring {
   position:absolute;
   left:50%;
-  top:50%;
-  width:min(72vw, 780px);
+  top:43%;
+  z-index:2;
+  width:390px;
   aspect-ratio:1;
-  border:1px solid rgba(108,203,207,.28);
+  border:1px solid rgba(46,244,255,.22);
   border-radius:50%;
-  transform:translate(-50%, -50%) rotateX(64deg);
-  box-shadow:
-    inset 0 0 38px rgba(65,163,167,.12),
-    0 0 48px rgba(65,163,167,.10);
+  transform:translate(-50%, -50%) rotateX(66deg);
+  box-shadow:0 0 26px rgba(46,244,255,.08);
   pointer-events:none;
+  animation:rotateProjectOrbit 18s linear infinite;
 }
 
-.project-orbit-ring::before,
+.project-orbit-ring.orbit-two {
+  width:520px;
+  opacity:.6;
+  animation-duration:28s;
+  animation-direction:reverse;
+}
+
+.project-orbit-ring.orbit-three {
+  width:700px;
+  opacity:.35;
+  animation-duration:38s;
+}
+
 .project-orbit-ring::after {
   content:"";
   position:absolute;
-  inset:12%;
-  border:1px dashed rgba(108,203,207,.22);
-  border-radius:inherit;
-}
-
-.project-orbit-ring::after {
-  inset:28%;
-  border-style:solid;
-  opacity:.58;
+  left:50%;
+  top:-4px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#2ef4ff;
+  box-shadow:0 0 20px #2ef4ff;
 }
 
 .project-orbit-field {
   position:absolute;
-  inset:0;
-  --orbit-radius:min(30vw, 350px);
+  inset:0 0 140px;
+  z-index:5;
+  --orbit-radius:min(30vw, 360px);
   transform:scaleY(.54);
   transform-origin:50% 50%;
 }
@@ -556,7 +602,7 @@ h2 {
   position:absolute;
   left:50%;
   top:50%;
-  width:min(32vw, 330px);
+  width:min(34vw, 380px);
   animation:projectOrbit var(--orbit-duration, 36s) linear infinite;
   transform:
     translate(-50%, -50%)
@@ -573,7 +619,7 @@ h2 {
 .project-orbit-card {
   display:block;
   width:100%;
-  min-height:230px;
+  min-height:215px;
   cursor:pointer;
   transform:scaleY(1.852);
   transform-origin:center;
@@ -582,9 +628,9 @@ h2 {
 .project-data-sphere {
   position:absolute;
   left:50%;
-  top:50%;
+  top:43%;
   z-index:4;
-  width:230px;
+  width:250px;
   aspect-ratio:1;
   display:grid;
   place-items:center;
@@ -599,33 +645,39 @@ h2 {
   inset:0;
   border-radius:inherit;
   background:
-    radial-gradient(circle at 35% 28%, rgba(155,235,239,.72), transparent 18%),
-    radial-gradient(circle at 50% 50%, rgba(65,163,167,.46), rgba(3,33,36,.92) 62%, rgba(2,10,12,.96));
+    radial-gradient(circle at 34% 24%, rgba(255,255,255,.75), transparent 8%),
+    radial-gradient(circle at 32% 30%, rgba(92,255,255,.46), transparent 22%),
+    radial-gradient(circle at 70% 68%, rgba(0,76,103,.7), transparent 48%),
+    radial-gradient(circle, rgba(22,195,223,.45), rgba(4,28,37,.9) 72%);
   box-shadow:
-    inset -18px -24px 42px rgba(2,10,12,.72),
-    inset 18px 18px 42px rgba(155,235,239,.14),
-    0 0 42px rgba(65,163,167,.34);
-  animation:dataSpherePulse 5.4s ease-in-out infinite;
+    0 0 48px rgba(46,244,255,.45),
+    inset 0 0 60px rgba(46,244,255,.16);
+  animation:dataSpherePulse 5.6s ease-in-out infinite;
 }
 
 .project-data-sphere::after {
   content:"";
   position:absolute;
-  inset:-16px;
-  border-radius:inherit;
-  border:1px solid rgba(108,203,207,.26);
-  transform:rotateX(68deg);
-  box-shadow:0 0 24px rgba(108,203,207,.18);
+  left:-40px;
+  right:-40px;
+  top:50%;
+  height:46px;
+  transform:translateY(-50%) rotate(-3deg);
+  border-radius:50%;
+  border:1px solid rgba(141,248,255,.44);
+  box-shadow:0 0 24px rgba(46,244,255,.25);
 }
 
 .sphere-scanline {
   position:absolute;
-  inset:18px;
+  inset:20px;
   border-radius:50%;
-  background:
-    repeating-linear-gradient(0deg, rgba(155,235,239,.16) 0 1px, transparent 1px 8px);
-  opacity:.38;
-  mix-blend-mode:screen;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:12px 12px;
+  opacity:.35;
+  mask-image:radial-gradient(circle, #000, transparent 72%);
   animation:dataSphereScan 7s linear infinite;
 }
 
@@ -639,20 +691,18 @@ h2 {
 .sphere-core span,
 .sphere-core small {
   display:block;
-  font-family:Consolas,monospace;
-  font-size:11px;
-  letter-spacing:.12em;
-  color:var(--accent-ice);
+  font-size:15px;
+  letter-spacing:0;
+  color:rgba(255,255,255,.86);
 }
 
 .sphere-core strong {
   display:block;
   margin:4px 0;
-  font-family:Consolas,monospace;
   font-size:58px;
   line-height:1;
   color:var(--text);
-  text-shadow:0 0 22px rgba(155,235,239,.36);
+  text-shadow:0 0 26px rgba(255,255,255,.45);
 }
 
 .sphere-stats {
@@ -674,7 +724,58 @@ h2 {
 .sphere-stats b {
   font-family:Consolas,monospace;
   font-size:13px;
-  color:var(--accent-glow);
+  color:#2ef4ff;
+}
+
+.project-stage-stats {
+  position:absolute;
+  left:3%;
+  right:3%;
+  bottom:28px;
+  z-index:6;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  min-height:112px;
+  border:1px solid rgba(89,225,255,.18);
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(7,30,42,.76), rgba(3,13,20,.82));
+  overflow:hidden;
+  box-shadow:
+    inset 0 0 30px rgba(46,244,255,.03),
+    0 0 40px rgba(0,187,255,.05);
+}
+
+.project-stat {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  padding:20px 24px;
+  border-right:1px solid rgba(199,237,255,.16);
+}
+
+.project-stat:last-child { border-right:0; }
+
+.project-stat strong {
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-family:Consolas,monospace;
+  font-size:28px;
+  line-height:1;
+  letter-spacing:.04em;
+  color:#2ef4ff;
+  text-shadow:0 0 14px rgba(46,244,255,.38);
+}
+
+.project-stat span {
+  display:block;
+  margin-top:10px;
+  color:rgba(219,236,242,.68);
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 @keyframes projectOrbit {
@@ -695,23 +796,36 @@ h2 {
 }
 
 @keyframes dataSpherePulse {
-  0%, 100% { filter:brightness(1); transform:scale(1); }
-  50% { filter:brightness(1.12); transform:scale(1.025); }
+  0%, 100% { filter:brightness(1); transform:translateY(0) scale(1); }
+  50% { filter:brightness(1.12); transform:translateY(-12px) scale(1.02); }
 }
 
 @keyframes dataSphereScan {
   to { transform:rotate(360deg); }
 }
 
+@keyframes rotateProjectOrbit {
+  to { transform:translate(-50%, -50%) rotateX(66deg) rotateZ(360deg); }
+}
+
+@keyframes projectMatrixFall {
+  to { transform:translateY(860px); opacity:0; }
+}
+
 .project-card {
   position:relative;
   overflow:hidden;
-  padding:28px;
-  border:1px solid var(--line-2);
-  border-radius:var(--radius-lg);
-  background:rgba(3,33,36,.42);
-  backdrop-filter:blur(12px);
-  transition:transform .25s ease, border-color .25s ease, background .25s ease;
+  padding:30px 30px 24px;
+  border:1px solid rgba(93,232,255,.25);
+  border-radius:20px;
+  background:
+    linear-gradient(135deg, rgba(10,42,54,.78), rgba(5,14,23,.86)),
+    radial-gradient(circle at 10% 0%, rgba(46,244,255,.20), transparent 36%);
+  box-shadow:
+    0 0 40px rgba(46,244,255,.08),
+    inset 0 0 30px rgba(46,244,255,.035);
+  backdrop-filter:blur(18px);
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
 }
 
 .project-card:focus-visible {
@@ -732,8 +846,10 @@ h2 {
 @media (hover: hover) {
   .project-card:hover {
     transform:translateY(-5px);
-    border-color:rgba(65,163,167,.48);
-    background:rgba(3,33,36,.72);
+    border-color:rgba(46,244,255,.58);
+    box-shadow:
+      0 0 48px rgba(46,244,255,.20),
+      inset 0 0 34px rgba(46,244,255,.055);
   }
 
   .project-card:hover::before { opacity:1; }
@@ -746,15 +862,20 @@ h2 {
 }
 
 .card-icon {
-  width:40px;
-  height:40px;
-  border-radius:10px;
-  background:rgba(65,163,167,.12);
+  width:56px;
+  height:56px;
+  border:1px solid rgba(99,240,255,.30);
+  border-radius:16px;
+  background:rgba(14,53,65,.56);
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom:16px;
+  margin-bottom:18px;
   font-size:20px;
+  color:#d9fbff;
+  box-shadow:
+    inset 0 0 24px rgba(46,244,255,.08),
+    0 0 20px rgba(46,244,255,.08);
 }
 
 .card-head {
@@ -764,7 +885,11 @@ h2 {
   margin-bottom:4px;
 }
 
-.card-head h3 { margin:0; font-size:18px; }
+.card-head h3 {
+  margin:0;
+  font-size:21px;
+  line-height:1.25;
+}
 
 .card-badge {
   padding:2px 8px;
@@ -788,17 +913,69 @@ h2 {
   color:#94a3b8;
 }
 
+.badge-purple {
+  background:rgba(157,124,255,.22);
+  color:#dfd4ff;
+}
+
+.project-orbit-slot:nth-child(3) .project-card {
+  border-color:rgba(157,124,255,.34);
+  background:
+    linear-gradient(135deg, rgba(17,20,55,.84), rgba(5,13,23,.88)),
+    radial-gradient(circle at 10% 10%, rgba(157,124,255,.30), transparent 40%);
+}
+
+.project-orbit-slot:nth-child(3) .card-icon {
+  border-color:rgba(157,124,255,.42);
+  background:rgba(64,45,128,.35);
+  box-shadow:
+    inset 0 0 24px rgba(157,124,255,.12),
+    0 0 22px rgba(157,124,255,.12);
+}
+
 .card-desc {
-  margin:10px 0 0;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.7;
+  margin:12px 0 0;
+  color:rgba(220,235,240,.72);
+  font-size:15px;
+  line-height:1.75;
 }
 
 .card-metrics {
   display:flex;
   gap:24px;
   margin-top:18px;
+}
+
+.card-metrics:empty { display:none; }
+
+.card-dots {
+  position:absolute;
+  right:24px;
+  top:20px;
+  color:rgba(224,245,255,.70);
+  letter-spacing:3px;
+  pointer-events:none;
+}
+
+.card-footer {
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid rgba(199,237,255,.08);
+  color:rgba(236,250,255,.90);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.card-footer span {
+  display:inline-block;
+  margin-left:8px;
+  transition:transform .25s ease;
+}
+
+.project-card:hover .card-footer span,
+.project-card:focus-visible .card-footer span {
+  transform:translateX(8px);
 }
 
 .card-metrics .met {
@@ -1140,6 +1317,8 @@ h2 {
   }
 
   .project-orbit-stage::before,
+  .project-orbit-stage::after,
+  .project-stage-matrix,
   .project-orbit-ring,
   .project-data-sphere {
     display:none;
@@ -1168,6 +1347,24 @@ h2 {
   .project-orbit-card.fade-up.is-visible:hover {
     transform:translateY(-5px);
   }
+
+  .project-stage-stats {
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    grid-column:1/-1;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    min-height:auto;
+    margin-top:6px;
+  }
+
+  .project-stat {
+    border-right:0;
+    border-bottom:1px solid rgba(199,237,255,.12);
+  }
+
+  .project-stat:nth-last-child(-n+2) { border-bottom:0; }
 
   .footer-grid {
     grid-template-columns:repeat(2,1fr);
@@ -1229,6 +1426,18 @@ h2 {
   .project-orbit-stage {
     grid-template-columns:1fr;
   }
+
+  .project-stage-stats {
+    grid-template-columns:1fr;
+  }
+
+  .project-stat {
+    border-right:0;
+    border-bottom:1px solid rgba(199,237,255,.12);
+  }
+
+  .project-stat:nth-last-child(-n+2) { border-bottom:1px solid rgba(199,237,255,.12); }
+  .project-stat:last-child { border-bottom:0; }
 
   .footer-grid {
     grid-template-columns:1fr;
@@ -1353,6 +1562,8 @@ h2 {
   .site-loader { display:none; }
   .page { opacity:1; transform:none; }
   .project-orbit-slot,
+  .project-orbit-ring,
+  .project-stage-matrix span,
   .project-data-sphere::before,
   .sphere-scanline {
     animation:none;

@@ -12,7 +12,7 @@ const COPY = {
   'zh-CN': {
     pageTitles: {
       home: 'Adgai - AI 系统与知识自动化',
-      'project-resource-console': 'OpenClaw 资源后台 - Adgai',
+      'project-resource-console': 'AI 资源工作台 - Adgai',
       'project-intelhub': 'IntelHub - Adgai',
       'project-knowledge-automation': '知识自动化 - Adgai',
     },
@@ -30,7 +30,7 @@ const COPY = {
       localOnly:'仅本地', snapshotMissing:'快照缺失',
     },
     projects: { eyebrow:'精选工作', title:'项目', loading:'加载中...' },
-    projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', open:'打开项目' },
+    projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', console:'资源', updated:'更新', open:'进入项目' },
     notes: { eyebrow:'写作', title:'公开文章', empty:'还没有导出通过审核的公开文章。', emptyDesc:'正在进行脱敏审核与白名单导出，通过后自动发布至公开站。' },
     now: {
       eyebrow:'近况', title:'当前关注',
@@ -56,7 +56,7 @@ const COPY = {
     },
     projectPages: {
       resource: {
-        eyebrow:'项目', title:'OpenClaw 资源后台',
+        eyebrow:'项目', title:'AI 资源工作台',
         lead:'面向 AI 模型、工具、计划任务和知识产出的本地优先运行工作台。公开版本只描述方法，不暴露私有资源状态。',
         principlesTitle:'原则', principlesText:'运行数据保留在本地，只导出审核后的摘要，并显式展示采集的新鲜度。',
         boundaryTitle:'公开边界', boundaryText:'这个项目页不会展示实时进程数、私有路径、日志或原始自动化输出。',
@@ -74,7 +74,7 @@ const COPY = {
     },
     footer: {
       note:'公开站由脱敏数据生成。', tagline:'把私人工作沉淀成公开成果的个人 AI 基础设施。',
-      nav:'导航', resources:'资源', connect:'连接', rss:'RSS', sitemap:'站点地图', resourceConsole:'资源后台', knowledgeAuto:'知识自动化',
+      nav:'导航', resources:'资源', connect:'连接', rss:'RSS', sitemap:'站点地图', resourceConsole:'AI 资源工作台', knowledgeAuto:'知识自动化',
     },
     status: { 'private alpha':'私有 Alpha', active:'活跃', building:'建设中' },
     metricLabels: {
@@ -86,7 +86,7 @@ const COPY = {
       'OpenClaw':'OpenClaw', '教程':'教程', 'AI':'AI', '测评':'测评', '知识管理':'知识管理', '设计':'设计',
     },
     projectCopy: {
-      'openclaw-resource-console':{name:'OpenClaw 资源后台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。'},
+      'openclaw-resource-console':{name:'AI 资源工作台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。'},
       intelhub:{name:'IntelHub',summary:'面向固定来源和简报的结构化情报采集工作流。'},
       'knowledge-automation':{name:'知识自动化',summary:'把审核后的私人笔记提升为公开成果的发布流水线。'},
     },
@@ -94,7 +94,7 @@ const COPY = {
   en: {
     pageTitles: {
       home: 'Adgai - AI Systems & Knowledge Automation',
-      'project-resource-console': 'OpenClaw Resource Console - Adgai',
+      'project-resource-console': 'AI Resource Console - Adgai',
       'project-intelhub': 'IntelHub - Adgai',
       'project-knowledge-automation': 'Knowledge Automation - Adgai',
     },
@@ -112,7 +112,7 @@ const COPY = {
       localOnly:'local-only', snapshotMissing:'snapshot missing',
     },
     projects: { eyebrow:'Selected Work', title:'Projects', loading:'Loading...' },
-    projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', open:'Open project' },
+    projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', console:'Resource', updated:'Updated', open:'Open project' },
     notes: { eyebrow:'Writing', title:'Public Notes', empty:'No reviewed public notes yet.', emptyDesc:'Undergoing sanitization review and allowlist export. Automatically published upon approval.' },
     now: {
       eyebrow:'Now', title:'Current Focus',
@@ -138,7 +138,7 @@ const COPY = {
     },
     projectPages: {
       resource: {
-        eyebrow:'Project', title:'OpenClaw Resource Console',
+        eyebrow:'Project', title:'AI Resource Console',
         lead:'A local-first operations surface for AI models, tools, scheduled tasks, and knowledge output. The public version describes the methodology without exposing private resource state.',
         principlesTitle:'Principles', principlesText:'Operational data stays local. Only reviewed summaries are exported, with collection freshness displayed explicitly.',
         boundaryTitle:'Public Boundary', boundaryText:'This project page does not display live process counts, private paths, logs, or raw automation output.',
@@ -156,7 +156,7 @@ const COPY = {
     },
     footer: {
       note:'Public site generated from sanitized data.', tagline:'Personal AI infrastructure that turns private work into public artifacts.',
-      nav:'Navigation', resources:'Resources', connect:'Connect', rss:'RSS', sitemap:'Sitemap', resourceConsole:'Resource Console', knowledgeAuto:'Knowledge Automation',
+      nav:'Navigation', resources:'Resources', connect:'Connect', rss:'RSS', sitemap:'Sitemap', resourceConsole:'AI Resource Console', knowledgeAuto:'Knowledge Automation',
     },
     status: { 'private alpha':'private alpha', active:'active', building:'building' },
     metricLabels: {
@@ -168,7 +168,7 @@ const COPY = {
       'OpenClaw':'OpenClaw', '教程':'Tutorial', 'AI':'AI', '测评':'Review', '知识管理':'Knowledge Mgmt', '设计':'Design',
     },
     projectCopy: {
-      'openclaw-resource-console':{name:'OpenClaw Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.'},
+      'openclaw-resource-console':{name:'AI Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.'},
       intelhub:{name:'IntelHub',summary:'A structured intelligence collection workflow for recurring sources and briefings.'},
       'knowledge-automation':{name:'Knowledge Automation',summary:'A publishing pipeline that promotes reviewed private notes into public artifacts.'},
     },
@@ -285,7 +285,17 @@ function renderProjects(projects, lang) {
   const metricsSummary = snapshotData?.public_metrics || {};
   const projectCount = metricsSummary.project_count ?? projects.length;
   const noteCount = metricsSummary.public_note_count ?? 0;
+  const statusText = localizeConsole(metricsSummary.resource_console_status, lang);
+  const updateText = metricsSummary.last_public_update || '-';
   const duration = Math.max(projects.length * 10, 30);
+  const matrix = Array.from({ length: 72 }, function(_, i) {
+    const bit = (i * 7) % 3 === 0 ? '1' : '0';
+    const left = (i * 37) % 100;
+    const duration = (5 + (i % 8) * .9).toFixed(1);
+    const delay = ((i * 11) % 80 / 10).toFixed(1);
+    const opacity = (.18 + ((i * 13) % 70) / 100).toFixed(2);
+    return '<span style="left:' + left + '%;animation-duration:' + duration + 's;animation-delay:' + delay + 's;opacity:' + opacity + '">' + bit + '</span>';
+  }).join('');
 
   // Feather-style inline SVG icons
   var iconSVGs = [
@@ -299,6 +309,7 @@ function renderProjects(projects, lang) {
     var s = String(status || '').toLowerCase();
     if (s.includes('alpha') || s.includes('beta')) return 'badge-orange';
     if (s.includes('active') || s.includes('活跃') || s.includes('online')) return 'badge-green';
+    if (s.includes('building') || s.includes('开发') || s.includes('建设')) return 'badge-purple';
     return 'badge-gray';
   }
 
@@ -311,6 +322,7 @@ function renderProjects(projects, lang) {
     const angle = Math.round((360 / projects.length) * i - 88);
     const slotStyle = '--orbit-angle:' + angle + ';--orbit-delay:' + ((duration / projects.length) * i).toFixed(2) + 's;--orbit-duration:' + duration + 's;';
     const cardInner =
+      '<div class="card-dots" aria-hidden="true">•••</div>' +
       '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
       '<div class="card-head">' +
         '<h3>' + esc(name) + '</h3>' +
@@ -319,7 +331,8 @@ function renderProjects(projects, lang) {
       '<p class="card-desc">' + esc(desc) + '</p>' +
       '<div class="card-metrics">' +
         metrics.map(m => '<div class="met"><strong>' + esc(localizeMetricLabel(m.v, lang)) + '</strong><span>' + esc(localizeMetricLabel(m.k, lang)) + '</span></div>').join('') +
-      '</div>';
+      '</div>' +
+      '<div class="card-footer">' + esc(orbit.open) + '<span aria-hidden="true">→</span></div>';
 
     return '<div class="project-orbit-slot" style="' + slotStyle + '">' +
       (href
@@ -330,7 +343,10 @@ function renderProjects(projects, lang) {
 
   target.innerHTML =
     '<div class="project-orbit-stage" style="--orbit-duration:' + duration + 's;">' +
-      '<div class="project-orbit-ring" aria-hidden="true"></div>' +
+      '<div class="project-stage-matrix" aria-hidden="true">' + matrix + '</div>' +
+      '<div class="project-orbit-ring orbit-one" aria-hidden="true"></div>' +
+      '<div class="project-orbit-ring orbit-two" aria-hidden="true"></div>' +
+      '<div class="project-orbit-ring orbit-three" aria-hidden="true"></div>' +
       '<div class="project-data-sphere" aria-label="' + esc(orbit.core) + '">' +
         '<div class="sphere-scanline" aria-hidden="true"></div>' +
         '<div class="sphere-core">' +
@@ -344,6 +360,12 @@ function renderProjects(projects, lang) {
         '</div>' +
       '</div>' +
       '<div class="project-orbit-field">' + cards + '</div>' +
+      '<div class="project-stage-stats" aria-label="' + esc(COPY[lang].projects.title) + '">' +
+        '<div class="project-stat"><strong>' + esc(projectCount) + '</strong><span>' + esc(orbit.projects) + '</span></div>' +
+        '<div class="project-stat"><strong>' + esc(noteCount) + '</strong><span>' + esc(orbit.notes) + '</span></div>' +
+        '<div class="project-stat"><strong>' + esc(statusText) + '</strong><span>' + esc(orbit.console) + '</span></div>' +
+        '<div class="project-stat"><strong>' + esc(updateText) + '</strong><span>' + esc(orbit.updated) + '</span></div>' +
+      '</div>' +
     '</div>';
   revealElements(target);
 }

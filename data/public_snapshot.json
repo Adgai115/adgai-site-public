@@ -18,7 +18,7 @@
   "featured_projects": [
     {
       "slug": "openclaw-resource-console",
-      "name": "OpenClaw Resource Console",
+      "name": "AI Resource Console",
       "summary": "A local-first operations surface for AI models, tools, tasks, and knowledge output.",
       "status": "private alpha",
       "public_url": "projects/resource-console.html"
