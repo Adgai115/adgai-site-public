@@ -285,8 +285,6 @@ function renderProjects(projects, lang) {
   const metricsSummary = snapshotData?.public_metrics || {};
   const projectCount = metricsSummary.project_count ?? projects.length;
   const noteCount = metricsSummary.public_note_count ?? 0;
-  const statusText = localizeConsole(metricsSummary.resource_console_status, lang);
-  const updateText = metricsSummary.last_public_update || '-';
   const duration = Math.max(projects.length * 10, 30);
   const matrix = Array.from({ length: 72 }, function(_, i) {
     const bit = (i * 7) % 3 === 0 ? '1' : '0';
@@ -360,12 +358,6 @@ function renderProjects(projects, lang) {
         '</div>' +
       '</div>' +
       '<div class="project-orbit-field">' + cards + '</div>' +
-      '<div class="project-stage-stats" aria-label="' + esc(COPY[lang].projects.title) + '">' +
-        '<div class="project-stat"><strong>' + esc(projectCount) + '</strong><span>' + esc(orbit.projects) + '</span></div>' +
-        '<div class="project-stat"><strong>' + esc(noteCount) + '</strong><span>' + esc(orbit.notes) + '</span></div>' +
-        '<div class="project-stat"><strong>' + esc(statusText) + '</strong><span>' + esc(orbit.console) + '</span></div>' +
-        '<div class="project-stat"><strong>' + esc(updateText) + '</strong><span>' + esc(orbit.updated) + '</span></div>' +
-      '</div>' +
     '</div>';
   revealElements(target);
 }
