@@ -30,6 +30,7 @@ const COPY = {
       localOnly:'仅本地', snapshotMissing:'快照缺失',
     },
     projects: { eyebrow:'精选工作', title:'项目', loading:'加载中...' },
+    projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', open:'打开项目' },
     notes: { eyebrow:'写作', title:'公开文章', empty:'还没有导出通过审核的公开文章。', emptyDesc:'正在进行脱敏审核与白名单导出，通过后自动发布至公开站。' },
     now: {
       eyebrow:'近况', title:'当前关注',
@@ -111,6 +112,7 @@ const COPY = {
       localOnly:'local-only', snapshotMissing:'snapshot missing',
     },
     projects: { eyebrow:'Selected Work', title:'Projects', loading:'Loading...' },
+    projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', open:'Open project' },
     notes: { eyebrow:'Writing', title:'Public Notes', empty:'No reviewed public notes yet.', emptyDesc:'Undergoing sanitization review and allowlist export. Automatically published upon approval.' },
     now: {
       eyebrow:'Now', title:'Current Focus',
@@ -279,6 +281,11 @@ function setMetric(name, val) {
 function renderProjects(projects, lang) {
   const target = document.querySelector('[data-projects]');
   if (!target || !Array.isArray(projects) || projects.length === 0) return;
+  const orbit = COPY[lang].projectOrbit;
+  const metricsSummary = snapshotData?.public_metrics || {};
+  const projectCount = metricsSummary.project_count ?? projects.length;
+  const noteCount = metricsSummary.public_note_count ?? 0;
+  const duration = Math.max(projects.length * 10, 30);
 
   // Feather-style inline SVG icons
   var iconSVGs = [
@@ -295,24 +302,49 @@ function renderProjects(projects, lang) {
     return 'badge-gray';
   }
 
-  target.innerHTML = projects.map((proj, i) => {
+  const cards = projects.map((proj, i) => {
     const copy = COPY[lang].projectCopy[proj.slug] || {};
     const name = copy.name || proj.name || '';
     const desc = copy.summary || proj.summary || '';
     const href = safeUrl(proj.public_url);
     const metrics = Array.isArray(proj.metrics) ? proj.metrics : [];
-    return '<article class="project-card fade-up is-visible">' +
+    const angle = Math.round((360 / projects.length) * i - 88);
+    const slotStyle = '--orbit-angle:' + angle + ';--orbit-delay:' + ((duration / projects.length) * i).toFixed(2) + 's;--orbit-duration:' + duration + 's;';
+    const cardInner =
       '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
       '<div class="card-head">' +
-        '<h3>' + (href ? '<a href="' + esc(href) + '">' + esc(name) + '</a>' : esc(name)) + '</h3>' +
+        '<h3>' + esc(name) + '</h3>' +
         '<span class="card-badge ' + statusColor(proj.status) + '">' + esc(localizeStatus(proj.status, lang)) + '</span>' +
       '</div>' +
       '<p class="card-desc">' + esc(desc) + '</p>' +
       '<div class="card-metrics">' +
         metrics.map(m => '<div class="met"><strong>' + esc(localizeMetricLabel(m.v, lang)) + '</strong><span>' + esc(localizeMetricLabel(m.k, lang)) + '</span></div>').join('') +
-      '</div>' +
-    '</article>';
+      '</div>';
+
+    return '<div class="project-orbit-slot" style="' + slotStyle + '">' +
+      (href
+        ? '<a class="project-card project-orbit-card fade-up is-visible" href="' + esc(href) + '" aria-label="' + esc(orbit.open + ': ' + name) + '">' + cardInner + '</a>'
+        : '<article class="project-card project-orbit-card fade-up is-visible">' + cardInner + '</article>') +
+    '</div>';
   }).join('');
+
+  target.innerHTML =
+    '<div class="project-orbit-stage" style="--orbit-duration:' + duration + 's;">' +
+      '<div class="project-orbit-ring" aria-hidden="true"></div>' +
+      '<div class="project-data-sphere" aria-label="' + esc(orbit.core) + '">' +
+        '<div class="sphere-scanline" aria-hidden="true"></div>' +
+        '<div class="sphere-core">' +
+          '<span>' + esc(orbit.core) + '</span>' +
+          '<strong>' + esc(projectCount) + '</strong>' +
+          '<small>' + esc(orbit.snapshot) + '</small>' +
+        '</div>' +
+        '<div class="sphere-stats" aria-hidden="true">' +
+          '<b>' + esc(projectCount) + '</b><span>' + esc(orbit.projects) + '</span>' +
+          '<b>' + esc(noteCount) + '</b><span>' + esc(orbit.notes) + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="project-orbit-field">' + cards + '</div>' +
+    '</div>';
   revealElements(target);
 }
 
