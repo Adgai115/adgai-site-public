@@ -304,10 +304,24 @@ main {
   display:flex;
   align-items:center;
   min-height:calc(100vh - 64px);
-  padding:80px 32px;
+  padding:80px 32px 168px;
   margin:0 calc(-50vw + 50%);
   width:100vw;
   overflow:hidden;
+}
+
+.hero::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  z-index:1;
+  height:320px;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 62%, rgba(46,244,255,.14), transparent 46%),
+    linear-gradient(180deg, rgba(2,10,12,0), rgba(2,10,12,.62) 52%, var(--bg) 100%);
 }
 
 .hero-bg {
@@ -331,7 +345,7 @@ main {
 
 .hero-copy {
   position:relative;
-  z-index:1;
+  z-index:2;
   max-width:780px;
 }
 
@@ -453,6 +467,51 @@ h1 .gradient {
 .section {
   padding:80px 0;
   border-top:1px solid var(--line);
+}
+
+#projects.section {
+  position:relative;
+  z-index:2;
+  isolation:isolate;
+  margin-top:-132px;
+  padding-top:64px;
+  border-top:0;
+}
+
+#projects.section::before {
+  content:"";
+  position:absolute;
+  left:calc(50% - 50vw);
+  right:calc(50% - 50vw);
+  top:-190px;
+  bottom:-72px;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(2,10,12,0) 0%, rgba(2,10,12,.5) 18%, rgba(2,10,12,.88) 38%, var(--bg) 100%),
+    radial-gradient(ellipse at 50% 18%, rgba(46,244,255,.13), transparent 44%);
+}
+
+#projects.section::after {
+  content:"";
+  position:absolute;
+  left:calc(50% - 50vw);
+  right:calc(50% - 50vw);
+  top:-118px;
+  bottom:0;
+  z-index:-1;
+  opacity:.28;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle, rgba(46,244,255,.22) 1px, transparent 1px),
+    linear-gradient(rgba(61,231,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,231,255,.035) 1px, transparent 1px);
+  background-size:6px 6px, 52px 52px, 52px 52px;
+  mask-image:linear-gradient(to bottom, transparent 0%, #000 18%, #000 92%, transparent 100%);
+}
+
+#projects .section-head {
+  margin-bottom:22px;
 }
 
 .section-head {
@@ -1291,7 +1350,26 @@ h2 {
     grid-template-columns:1fr;
   }
 
-  .hero { min-height:auto; gap:36px; }
+  .hero {
+    min-height:auto;
+    gap:36px;
+    padding:72px 32px 96px;
+  }
+
+  #projects.section {
+    margin-top:0;
+    padding-top:56px;
+  }
+
+  #projects.section::before {
+    top:-64px;
+    bottom:-48px;
+  }
+
+  #projects.section::after {
+    top:-20px;
+    opacity:.18;
+  }
 
   h1 { font-size:60px; }
 
