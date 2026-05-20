@@ -13,7 +13,7 @@ const COPY = {
     pageTitles: {
       home: 'Adgai - AI 系统与知识自动化',
       'project-resource-console': 'AI 资源工作台 - Adgai',
-      'project-intelhub': 'IntelHub - Adgai',
+      'project-intelhub': 'IntelHub 日报 - Adgai',
       'project-knowledge-automation': '知识自动化 - Adgai',
     },
     description: 'Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。',
@@ -62,10 +62,9 @@ const COPY = {
         boundaryTitle:'公开边界', boundaryText:'这个项目页不会展示实时进程数、私有路径、日志或原始自动化输出。',
       },
       intelhub: {
-        eyebrow:'项目', title:'IntelHub',
-        lead:'展示 IntelHub 最新一次信息采集生成的日报，包括告警、变化信号、今日情报和趋势摘要。',
+        eyebrow:'Daily Digest · 日报', title:'IntelHub 日报',
+        lead:'每天 1 分钟，扫读 IntelHub 最新一次信息采集结果。',
         reportTitle:'最新信息采集日报',
-        reportSubtitle:'按告警、变化信号、今日情报和趋势聚合显示。',
         reportLoading:'正在读取最新日报...',
         reportEmpty:'当前没有可展示的日报条目。',
         reportUpdated:'更新时间',
@@ -74,6 +73,11 @@ const COPY = {
         reportPublic:'日报条目',
         reportSources:'来源池',
         reportOpen:'打开来源',
+        reportArchive:'日报归档',
+        latest:'最新',
+        contents:'目录',
+        excerptTitle:'本期摘录',
+        itemsUnit:'条',
         sectionAlerts:'告警',
         sectionSignals:'变化信号',
         sectionIntel:'今日情报',
@@ -108,7 +112,7 @@ const COPY = {
     pageTitles: {
       home: 'Adgai - AI Systems & Knowledge Automation',
       'project-resource-console': 'AI Resource Console - Adgai',
-      'project-intelhub': 'IntelHub - Adgai',
+      'project-intelhub': 'IntelHub Daily - Adgai',
       'project-knowledge-automation': 'Knowledge Automation - Adgai',
     },
     description: 'Adgai builds local-first AI systems, resource orchestration tools, and knowledge automation workflows.',
@@ -157,10 +161,9 @@ const COPY = {
         boundaryTitle:'Public Boundary', boundaryText:'This project page does not display live process counts, private paths, logs, or raw automation output.',
       },
       intelhub: {
-        eyebrow:'Project', title:'IntelHub',
-        lead:'Shows the latest IntelHub information collection daily report, including alerts, change signals, daily intelligence, and trends.',
+        eyebrow:'Daily Digest', title:'IntelHub Daily',
+        lead:'A one-minute skim of the latest IntelHub information collection report.',
         reportTitle:'Latest Collection Daily Report',
-        reportSubtitle:'Grouped by alerts, change signals, daily intelligence, and trends.',
         reportLoading:'Loading latest daily report...',
         reportEmpty:'No daily report items are available yet.',
         reportUpdated:'Updated',
@@ -169,6 +172,11 @@ const COPY = {
         reportPublic:'Report items',
         reportSources:'Source pool',
         reportOpen:'Open source',
+        reportArchive:'Archive',
+        latest:'Latest',
+        contents:'Contents',
+        excerptTitle:'Excerpts',
+        itemsUnit:'items',
         sectionAlerts:'Alerts',
         sectionSignals:'Change Signals',
         sectionIntel:'Daily Intelligence',
@@ -405,7 +413,7 @@ function renderNotes(notes, lang) {
   revealElements(target);
 }
 
-// ── IntelHub Public Report ────────────────
+// ── IntelHub Daily Report ────────────────
 
 function reportSectionLabel(type, lang) {
   const labels = COPY[lang].projectPages.intelhub;
@@ -432,6 +440,22 @@ function renderScore(score) {
   }).join('') + '</span>';
 }
 
+function reportSectionId(type) {
+  return 'daily-' + String(type || 'section').replace(/[^a-z0-9_-]/gi, '').toLowerCase();
+}
+
+function formatReportDate(value, lang) {
+  const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return value || '-';
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (lang === 'en') {
+    return new Intl.DateTimeFormat('en', { month:'short', day:'numeric', year:'numeric' }).format(new Date(Date.UTC(year, month - 1, day)));
+  }
+  return month + '月' + day + '日';
+}
+
 function renderIntelHubReport(report, lang) {
   const target = document.querySelector('[data-intelhub-report]');
   if (!target) return;
@@ -448,18 +472,48 @@ function renderIntelHubReport(report, lang) {
   }
 
   const stats = report.stats || {};
+  const reportDateLabel = formatReportDate(report.report_date, lang);
+  const totalItems = stats.report_items ?? stats.public_items ?? visibleSections.reduce(function(sum, section) {
+    return sum + section.items.length;
+  }, 0);
+  const digestSummary = report.digest?.summary ||
+    (lang === 'en'
+      ? 'The latest IntelHub report is grouped for quick scanning and source-by-source reading.'
+      : '最新 IntelHub 日报已按分组整理，便于快速扫读和继续打开来源。');
   const statCards = [
     [copy.reportUpdated, report.updated_local || report.source_updated_local || report.report_date || '-'],
     [copy.reportCollected, stats.collected ?? '-'],
     [copy.reportNew, stats.new_items ?? '-'],
-    [copy.reportPublic, stats.report_items ?? stats.public_items ?? '-'],
+    [copy.reportPublic, totalItems],
     [copy.reportSources, stats.source_count ?? '-'],
   ].map(function(stat) {
     return '<div class="report-stat"><strong>' + esc(stat[1]) + '</strong><span>' + esc(stat[0]) + '</span></div>';
   }).join('');
 
+  const dateRail =
+    '<div class="daily-date-rail" aria-label="' + esc(copy.reportArchive) + '">' +
+      '<div class="daily-rail-title">' + esc(copy.reportArchive) + '</div>' +
+      '<a class="daily-date-chip active" href="#daily-report-top">' +
+        '<span>' + esc(reportDateLabel) + '</span>' +
+        '<em>' + esc(copy.latest) + '</em>' +
+      '</a>' +
+    '</div>';
+
+  const sectionNav =
+    '<nav class="daily-section-nav" aria-label="' + esc(copy.contents) + '">' +
+      '<div class="daily-rail-title">' + esc(copy.contents) + '</div>' +
+      visibleSections.map(function(section) {
+        return '<a href="#' + esc(reportSectionId(section.type)) + '">' +
+          '<span>' + esc(reportSectionLabel(section.type, lang)) + '</span>' +
+          '<em>' + esc(section.items.length) + '</em>' +
+        '</a>';
+      }).join('') +
+    '</nav>';
+
+  let itemIndex = 0;
   const sectionHtml = visibleSections.map(function(section) {
     const items = section.items.map(function(item) {
+      itemIndex += 1;
       const topics = Array.isArray(item.topics) ? item.topics : [];
       const topicHtml = topics.length
         ? '<div class="report-item-topics">' + topics.map(function(topic) { return '<span>' + esc(topic) + '</span>'; }).join('') + '</div>'
@@ -468,6 +522,7 @@ function renderIntelHubReport(report, lang) {
         ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(copy.reportOpen) + '</a>'
         : '';
       return '<article class="intelhub-report-item fade-up">' +
+        '<div class="report-item-index">' + esc(String(itemIndex).padStart(2, '0')) + '</div>' +
         '<div class="report-item-main">' +
           '<div class="report-item-meta">' +
             (item.source ? '<span>' + esc(item.source) + '</span>' : '') +
@@ -481,15 +536,31 @@ function renderIntelHubReport(report, lang) {
       '</article>';
     }).join('');
 
-    return '<section class="intelhub-report-group">' +
-      '<h3>' + esc(reportSectionLabel(section.type, lang)) + '</h3>' +
+    return '<section class="intelhub-report-group" id="' + esc(reportSectionId(section.type)) + '">' +
+      '<div class="daily-group-head">' +
+        '<h3>' + esc(reportSectionLabel(section.type, lang)) + '</h3>' +
+        '<span>' + esc(section.items.length) + ' ' + esc(copy.itemsUnit) + '</span>' +
+      '</div>' +
       '<div class="intelhub-report-items">' + items + '</div>' +
     '</section>';
   }).join('');
 
   target.innerHTML =
-    '<div class="intelhub-report-summary">' + statCards + '</div>' +
-    '<div class="intelhub-report-list">' + sectionHtml + '</div>';
+    '<div class="daily-report-shell" id="daily-report-top">' +
+      '<article class="daily-report-body">' +
+        '<section class="daily-report-hero fade-up is-visible">' +
+          '<div class="daily-report-kicker">Daily Digest</div>' +
+          '<h2>' + esc(copy.reportTitle) + '｜' + esc(reportDateLabel) + '</h2>' +
+          '<p>' + esc(digestSummary) + '</p>' +
+        '</section>' +
+        '<div class="intelhub-report-summary">' + statCards + '</div>' +
+        '<div class="daily-excerpt-head">' +
+          '<h3>' + esc(copy.excerptTitle) + ' · ' + esc(totalItems) + ' ' + esc(copy.itemsUnit) + '</h3>' +
+        '</div>' +
+        '<div class="intelhub-report-list">' + sectionHtml + '</div>' +
+      '</article>' +
+      '<aside class="daily-report-sidebar">' + dateRail + sectionNav + '</aside>' +
+    '</div>';
   revealElements(target);
 }
 

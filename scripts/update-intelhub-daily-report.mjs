@@ -111,6 +111,21 @@ function localDate(value, fallback) {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
+function digestSummary(reportSections, stats, itemCount) {
+  const priority = ['alerts', 'signals', 'intel', 'trends'];
+  const ordered = [...reportSections].sort((a, b) => priority.indexOf(a.type) - priority.indexOf(b.type));
+  const titles = [];
+  for (const section of ordered) {
+    for (const item of section.items) {
+      if (titles.length >= 5) break;
+      titles.push(item.title.replace(/^[^\p{L}\p{N}]+/u, ''));
+    }
+    if (titles.length >= 5) break;
+  }
+  const lead = `本期共采集 ${Number(stats.totalToday ?? stats.total ?? 0)} 条信息，整理出 ${itemCount} 条日报摘录。`;
+  return titles.length ? `${lead}重点包括：${titles.join('；')}。` : lead;
+}
+
 const source = readJson(sourcePath);
 const stats = source.stats && typeof source.stats === 'object' ? source.stats : {};
 const sourceStats = stats.sources && typeof stats.sources === 'object' ? stats.sources : {};
@@ -124,6 +139,9 @@ const dailyReport = {
   report_date: localDate(meta.dateLocal, meta.dateKey),
   updated_at: text(meta.timestamp, 40),
   updated_local: text(meta.dateLocal, 40),
+  digest: {
+    summary: digestSummary(reportSections, stats, itemCount),
+  },
   stats: {
     collected: Number(stats.totalToday ?? stats.total ?? 0),
     new_items: Number(stats.new ?? stats.totalToday ?? 0),
