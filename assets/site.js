@@ -343,10 +343,11 @@ function renderProjects(projects, lang) {
       '<div class="project-orbit-ring orbit-one" aria-hidden="true"></div>' +
       '<div class="project-orbit-ring orbit-two" aria-hidden="true"></div>' +
       '<div class="project-orbit-ring orbit-three" aria-hidden="true"></div>' +
-      '<div class="project-data-sphere" aria-label="' + esc(orbit.core) + '">' +
+      '<div class="project-data-sphere" aria-label="' + esc(orbit.projects) + '">' +
         '<div class="sphere-scanline" aria-hidden="true"></div>' +
         '<div class="sphere-core">' +
           '<strong>' + esc(projectCount) + '</strong>' +
+          '<span class="sphere-label">' + esc(orbit.projects) + '</span>' +
         '</div>' +
       '</div>' +
       '<div class="project-orbit-field">' + cards + '</div>' +
