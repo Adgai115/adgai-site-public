@@ -63,8 +63,21 @@ const COPY = {
       },
       intelhub: {
         eyebrow:'项目', title:'IntelHub',
-        lead:'面向周期性采集、审阅和综合分析的结构化情报工作流。',
-        focusTitle:'重点', focusText:'强调来源纪律、可重复简报，以及把私人研究循环转化为可发布结论。',
+        lead:'展示 IntelHub 最新一次信息采集生成的日报，包括告警、变化信号、今日情报和趋势摘要。',
+        reportTitle:'最新信息采集日报',
+        reportSubtitle:'按告警、变化信号、今日情报和趋势聚合显示。',
+        reportLoading:'正在读取最新日报...',
+        reportEmpty:'当前没有可展示的日报条目。',
+        reportUpdated:'更新时间',
+        reportCollected:'采集条目',
+        reportNew:'新增条目',
+        reportPublic:'日报条目',
+        reportSources:'来源池',
+        reportOpen:'打开来源',
+        sectionAlerts:'告警',
+        sectionSignals:'变化信号',
+        sectionIntel:'今日情报',
+        sectionTrends:'趋势',
       },
       knowledge: {
         eyebrow:'项目', title:'知识自动化',
@@ -87,7 +100,7 @@ const COPY = {
     },
     projectCopy: {
       'openclaw-resource-console':{name:'AI 资源工作台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。'},
-      intelhub:{name:'IntelHub',summary:'面向固定来源和简报的结构化情报采集工作流。'},
+      intelhub:{name:'IntelHub',summary:'展示最新一次信息采集生成的日报。'},
       'knowledge-automation':{name:'知识自动化',summary:'把审核后的私人笔记提升为公开成果的发布流水线。'},
     },
   },
@@ -145,8 +158,21 @@ const COPY = {
       },
       intelhub: {
         eyebrow:'Project', title:'IntelHub',
-        lead:'A structured intelligence collection workflow for recurring collection, review, and cross-source analysis.',
-        focusTitle:'Focus', focusText:'Emphasizing source discipline, repeatable briefings, and turning private research cycles into publishable conclusions.',
+        lead:'Shows the latest IntelHub information collection daily report, including alerts, change signals, daily intelligence, and trends.',
+        reportTitle:'Latest Collection Daily Report',
+        reportSubtitle:'Grouped by alerts, change signals, daily intelligence, and trends.',
+        reportLoading:'Loading latest daily report...',
+        reportEmpty:'No daily report items are available yet.',
+        reportUpdated:'Updated',
+        reportCollected:'Collected',
+        reportNew:'New',
+        reportPublic:'Report items',
+        reportSources:'Source pool',
+        reportOpen:'Open source',
+        sectionAlerts:'Alerts',
+        sectionSignals:'Change Signals',
+        sectionIntel:'Daily Intelligence',
+        sectionTrends:'Trends',
       },
       knowledge: {
         eyebrow:'Project', title:'Knowledge Automation',
@@ -169,13 +195,14 @@ const COPY = {
     },
     projectCopy: {
       'openclaw-resource-console':{name:'AI Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.'},
-      intelhub:{name:'IntelHub',summary:'A structured intelligence collection workflow for recurring sources and briefings.'},
+      intelhub:{name:'IntelHub',summary:'Shows the latest IntelHub information collection daily report.'},
       'knowledge-automation':{name:'Knowledge Automation',summary:'A publishing pipeline that promotes reviewed private notes into public artifacts.'},
     },
   },
 };
 
 let snapshotData = null;
+let intelHubReportData = null;
 let revealObserver = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
@@ -378,6 +405,94 @@ function renderNotes(notes, lang) {
   revealElements(target);
 }
 
+// ── IntelHub Public Report ────────────────
+
+function reportSectionLabel(type, lang) {
+  const labels = COPY[lang].projectPages.intelhub;
+  const map = {
+    alerts: labels.sectionAlerts,
+    signals: labels.sectionSignals,
+    intel: labels.sectionIntel,
+    trends: labels.sectionTrends,
+  };
+  return map[type] || type;
+}
+
+function renderScore(score) {
+  if (!score || typeof score !== 'object') return '';
+  const pairs = [
+    ['Q', score.quality],
+    ['R', score.relevance],
+    ['P', score.personal],
+    ['O', score.opportunity],
+  ].filter(function(pair) { return Number.isFinite(Number(pair[1])); });
+  if (!pairs.length) return '';
+  return '<span class="report-item-score">' + pairs.map(function(pair) {
+    return '<span>' + esc(pair[0]) + ' ' + esc(pair[1]) + '</span>';
+  }).join('') + '</span>';
+}
+
+function renderIntelHubReport(report, lang) {
+  const target = document.querySelector('[data-intelhub-report]');
+  if (!target) return;
+
+  const copy = COPY[lang].projectPages.intelhub;
+  const sections = Array.isArray(report?.sections) ? report.sections : [];
+  const visibleSections = sections.filter(function(section) {
+    return Array.isArray(section.items) && section.items.length > 0;
+  });
+
+  if (!visibleSections.length) {
+    target.innerHTML = '<div class="notes-empty">' + esc(copy.reportEmpty) + '</div>';
+    return;
+  }
+
+  const stats = report.stats || {};
+  const statCards = [
+    [copy.reportUpdated, report.updated_local || report.source_updated_local || report.report_date || '-'],
+    [copy.reportCollected, stats.collected ?? '-'],
+    [copy.reportNew, stats.new_items ?? '-'],
+    [copy.reportPublic, stats.report_items ?? stats.public_items ?? '-'],
+    [copy.reportSources, stats.source_count ?? '-'],
+  ].map(function(stat) {
+    return '<div class="report-stat"><strong>' + esc(stat[1]) + '</strong><span>' + esc(stat[0]) + '</span></div>';
+  }).join('');
+
+  const sectionHtml = visibleSections.map(function(section) {
+    const items = section.items.map(function(item) {
+      const topics = Array.isArray(item.topics) ? item.topics : [];
+      const topicHtml = topics.length
+        ? '<div class="report-item-topics">' + topics.map(function(topic) { return '<span>' + esc(topic) + '</span>'; }).join('') + '</div>'
+        : '';
+      const link = item.url
+        ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(copy.reportOpen) + '</a>'
+        : '';
+      return '<article class="intelhub-report-item fade-up">' +
+        '<div class="report-item-main">' +
+          '<div class="report-item-meta">' +
+            (item.source ? '<span>' + esc(item.source) + '</span>' : '') +
+            renderScore(item.score) +
+          '</div>' +
+          '<h3>' + esc(item.title || '') + '</h3>' +
+          (item.summary ? '<p>' + esc(item.summary) + '</p>' : '') +
+          topicHtml +
+        '</div>' +
+        (link ? '<div class="report-item-link">' + link + '</div>' : '') +
+      '</article>';
+    }).join('');
+
+    return '<section class="intelhub-report-group">' +
+      '<h3>' + esc(reportSectionLabel(section.type, lang)) + '</h3>' +
+      '<div class="intelhub-report-items">' + items + '</div>' +
+    '</section>';
+  }).join('');
+
+  target.innerHTML =
+    '<div class="intelhub-report-summary">' + statCards + '</div>' +
+    '<div class="intelhub-report-list">' + sectionHtml + '</div>';
+  revealElements(target);
+}
+
 function renderFocus(lang) {
   const target = document.querySelector('[data-focus]');
   if (!target) return;
@@ -401,12 +516,23 @@ function applyLanguage(lang) {
     renderProjects(snapshotData.featured_projects || [], lang);
     renderNotes(snapshotData.public_notes || [], lang);
   }
+  if (intelHubReportData) {
+    renderIntelHubReport(intelHubReportData, lang);
+  }
 }
 
 async function loadSnapshot() {
   const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
   const resp = await fetch(base + 'data/public_snapshot.json', { cache:'no-store' });
   if (!resp.ok) throw new Error('snapshot ' + resp.status);
+  return resp.json();
+}
+
+async function loadIntelHubReport() {
+  if (!document.querySelector('[data-intelhub-report]')) return null;
+  const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
+  const resp = await fetch(base + 'data/intelhub_daily_report.json', { cache:'no-store' });
+  if (!resp.ok) throw new Error('intelhub daily report ' + resp.status);
   return resp.json();
 }
 
@@ -680,4 +806,12 @@ loadSnapshot().then(function(snap) {
   applyLanguage(getLanguage());
 }).catch(function() {
   setMetric('resource_console_status', COPY[getLanguage()].metrics.snapshotMissing);
+});
+
+loadIntelHubReport().then(function(report) {
+  if (!report) return;
+  intelHubReportData = report;
+  renderIntelHubReport(report, getLanguage());
+}).catch(function() {
+  renderIntelHubReport(null, getLanguage());
 });

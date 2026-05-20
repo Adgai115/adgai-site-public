@@ -26,7 +26,7 @@
     {
       "slug": "intelhub",
       "name": "IntelHub",
-      "summary": "A structured intelligence collection workflow for recurring sources and briefings.",
+      "summary": "Latest information collection daily report from IntelHub.",
       "status": "active",
       "public_url": "projects/intelhub.html"
     },

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check": "node scripts/check-public-site.mjs",
+    "update:intelhub-report": "node scripts/update-intelhub-daily-report.mjs",
     "serve": "node server.mjs"
   }
 }
