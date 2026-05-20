@@ -752,43 +752,12 @@ h2 {
   text-transform:uppercase;
 }
 
-.sphere-core span,
-.sphere-core small {
-  display:block;
-  font-size:15px;
-  letter-spacing:0;
-  color:rgba(255,255,255,.86);
-}
-
 .sphere-core strong {
   display:block;
-  margin:4px 0;
   font-size:58px;
   line-height:1;
   color:var(--text);
   text-shadow:0 0 26px rgba(255,255,255,.45);
-}
-
-.sphere-stats {
-  position:absolute;
-  left:50%;
-  bottom:26px;
-  z-index:1;
-  display:grid;
-  grid-template-columns:auto auto auto auto;
-  gap:4px 8px;
-  align-items:baseline;
-  transform:translateX(-50%);
-  font-size:10px;
-  color:var(--faint);
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-.sphere-stats b {
-  font-family:Consolas,monospace;
-  font-size:13px;
-  color:#2ef4ff;
 }
 
 @keyframes projectOrbit {
@@ -1011,15 +980,6 @@ h2 {
 }
 
 .card-metrics:empty { display:none; }
-
-.card-dots {
-  position:absolute;
-  right:18%;
-  top:17%;
-  color:rgba(224,245,255,.70);
-  letter-spacing:3px;
-  pointer-events:none;
-}
 
 .card-footer {
   position:relative;

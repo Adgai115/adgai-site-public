@@ -284,7 +284,6 @@ function renderProjects(projects, lang) {
   const orbit = COPY[lang].projectOrbit;
   const metricsSummary = snapshotData?.public_metrics || {};
   const projectCount = metricsSummary.project_count ?? projects.length;
-  const noteCount = metricsSummary.public_note_count ?? 0;
   const duration = Math.max(projects.length * 10, 30);
   const matrix = Array.from({ length: 72 }, function(_, i) {
     const bit = (i * 7) % 3 === 0 ? '1' : '0';
@@ -320,7 +319,6 @@ function renderProjects(projects, lang) {
     const angle = Math.round((360 / projects.length) * i - 88);
     const slotStyle = '--orbit-angle:' + angle + ';--orbit-delay:' + ((duration / projects.length) * i).toFixed(2) + 's;--orbit-duration:' + duration + 's;';
     const cardInner =
-      '<div class="card-dots" aria-hidden="true">•••</div>' +
       '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
       '<div class="card-head">' +
         '<h3>' + esc(name) + '</h3>' +
@@ -348,13 +346,7 @@ function renderProjects(projects, lang) {
       '<div class="project-data-sphere" aria-label="' + esc(orbit.core) + '">' +
         '<div class="sphere-scanline" aria-hidden="true"></div>' +
         '<div class="sphere-core">' +
-          '<span>' + esc(orbit.core) + '</span>' +
           '<strong>' + esc(projectCount) + '</strong>' +
-          '<small>' + esc(orbit.snapshot) + '</small>' +
-        '</div>' +
-        '<div class="sphere-stats" aria-hidden="true">' +
-          '<b>' + esc(projectCount) + '</b><span>' + esc(orbit.projects) + '</span>' +
-          '<b>' + esc(noteCount) + '</b><span>' + esc(orbit.notes) + '</span>' +
         '</div>' +
       '</div>' +
       '<div class="project-orbit-field">' + cards + '</div>' +
