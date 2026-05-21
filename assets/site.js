@@ -471,8 +471,8 @@ function renderIntelHubReport(report, lang) {
     return;
   }
 
-  const stats = report.stats || {};
   const reportDateLabel = formatReportDate(report.report_date, lang);
+  const stats = report.stats || {};
   const totalItems = stats.report_items ?? stats.public_items ?? visibleSections.reduce(function(sum, section) {
     return sum + section.items.length;
   }, 0);
@@ -480,15 +480,6 @@ function renderIntelHubReport(report, lang) {
     (lang === 'en'
       ? 'The latest IntelHub report is grouped for quick scanning and source-by-source reading.'
       : '最新 IntelHub 日报已按分组整理，便于快速扫读和继续打开来源。');
-  const statCards = [
-    [copy.reportUpdated, report.updated_local || report.source_updated_local || report.report_date || '-'],
-    [copy.reportCollected, stats.collected ?? '-'],
-    [copy.reportNew, stats.new_items ?? '-'],
-    [copy.reportPublic, totalItems],
-    [copy.reportSources, stats.source_count ?? '-'],
-  ].map(function(stat) {
-    return '<div class="report-stat"><strong>' + esc(stat[1]) + '</strong><span>' + esc(stat[0]) + '</span></div>';
-  }).join('');
 
   const dateRail =
     '<div class="daily-date-rail" aria-label="' + esc(copy.reportArchive) + '">' +
@@ -553,7 +544,6 @@ function renderIntelHubReport(report, lang) {
           '<h2>' + esc(copy.reportTitle) + '｜' + esc(reportDateLabel) + '</h2>' +
           '<p>' + esc(digestSummary) + '</p>' +
         '</section>' +
-        '<div class="intelhub-report-summary">' + statCards + '</div>' +
         '<div class="daily-excerpt-head">' +
           '<h3>' + esc(copy.excerptTitle) + ' · ' + esc(totalItems) + ' ' + esc(copy.itemsUnit) + '</h3>' +
         '</div>' +

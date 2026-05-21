@@ -460,41 +460,6 @@ nav a::after {
   font-family:Consolas,monospace;
 }
 
-.intelhub-report-summary {
-  display:grid;
-  grid-template-columns:repeat(5, minmax(0, 1fr));
-  margin:22px 0 30px;
-  border:1px solid rgba(89,225,255,.14);
-  border-radius:0;
-  background:
-    linear-gradient(180deg, rgba(5,35,42,.30), rgba(2,12,16,.20)),
-    radial-gradient(ellipse at 50% 0, rgba(46,244,255,.08), transparent 58%);
-  overflow:hidden;
-}
-
-.report-stat {
-  padding:16px 18px;
-  border-right:1px solid rgba(199,237,255,.11);
-}
-
-.report-stat:last-child { border-right:0; }
-
-.report-stat strong {
-  display:block;
-  color:var(--accent-glow);
-  font-family:Consolas,monospace;
-  font-size:19px;
-  letter-spacing:.04em;
-  text-shadow:0 0 18px rgba(108,203,207,.34);
-}
-
-.report-stat span {
-  display:block;
-  margin-top:8px;
-  color:var(--muted);
-  font-size:12px;
-}
-
 .daily-excerpt-head {
   display:flex;
   justify-content:space-between;
@@ -1958,10 +1923,6 @@ h2 {
     grid-template-columns:repeat(2, minmax(0,1fr));
   }
 
-  .intelhub-report-summary {
-    grid-template-columns:repeat(3, minmax(0,1fr));
-  }
-
   .daily-report-shell {
     grid-template-columns:1fr;
   }
@@ -1974,14 +1935,6 @@ h2 {
 
   .daily-section-nav {
     grid-template-columns:repeat(2, minmax(0,1fr));
-  }
-
-  .report-stat:nth-child(3) {
-    border-right:0;
-  }
-
-  .report-stat:nth-child(-n+3) {
-    border-bottom:1px solid rgba(199,237,255,.10);
   }
 
   .project-grid {
@@ -2119,21 +2072,6 @@ h2 {
 
   .daily-section-nav {
     grid-template-columns:1fr;
-  }
-
-  .intelhub-report-summary {
-    grid-template-columns:1fr;
-  }
-
-  .report-stat,
-  .report-stat:nth-child(3),
-  .report-stat:nth-child(-n+3) {
-    border-right:0;
-    border-bottom:1px solid rgba(199,237,255,.10);
-  }
-
-  .report-stat:last-child {
-    border-bottom:0;
   }
 
   .intelhub-report-item {

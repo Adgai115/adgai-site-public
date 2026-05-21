@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-05-20T09:22:39.934Z",
-  "report_date": "2026-05-20",
-  "updated_at": "2026-05-19T23:06:23.018Z",
-  "updated_local": "2026/5/20 07:06:23",
+  "generated_at": "2026-05-21T00:14:48.839Z",
+  "report_date": "2026-05-21",
+  "updated_at": "2026-05-20T23:06:24.786Z",
+  "updated_local": "2026/5/21 07:06:24",
   "digest": {
-    "summary": "本期共采集 204 条信息，整理出 18 条日报摘录。重点包括：GHSA-7hgr-7h44-33w2: CamoFox MCP: Unauthenticated HTTP MC；I’ve joined Anthropic；Gemini 3.5 Flash；Ai 时代我司的产品经理愈发白痴；suyancc/openai-plus-vxt — 一个基于 WXT 的浏览器插件，用于辅助 ChatGPT 注册、Ch。"
+    "summary": "本期共采集 212 条信息，整理出 17 条日报摘录。重点包括：自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡；Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了；Qwen3.7-Max: The Agent Frontier；An OpenAI model has disproved a central conjecture in discre；Lyft driver caught blatantly using Gemini AI (with watermark。"
   },
   "stats": {
-    "collected": 204,
-    "new_items": 204,
+    "collected": 212,
+    "new_items": 212,
     "source_count": 42,
-    "report_items": 18,
+    "report_items": 17,
     "errors": 0
   },
   "sections": [
@@ -19,48 +19,48 @@
       "type": "alerts",
       "items": [
         {
-          "title": "🚨 GHSA-7hgr-7h44-33w2: CamoFox MCP: Unauthenticated HTTP MC",
-          "source": "GitHub-Advisory",
-          "summary": "关键词: mcp",
-          "url": "https://github.com/advisories/GHSA-7hgr-7h44-33w2",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "I’ve joined Anthropic",
-          "source": "HackerNews",
-          "summary": "关键词: anthropic",
-          "url": "https://twitter.com/karpathy/status/2056753169888334312",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "Gemini 3.5 Flash",
-          "source": "HackerNews",
-          "summary": "关键词: gemini",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "Ai 时代我司的产品经理愈发白痴",
+          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
           "source": "V2EX",
-          "summary": "关键词: deepseek",
-          "url": "https://www.v2ex.com/t/1213704",
+          "summary": "关键词: openai",
+          "url": "https://www.v2ex.com/t/1214094",
           "score": {
-            "quality": 9
+            "quality": 10
           }
         },
         {
-          "title": "suyancc/openai-plus-vxt — 一个基于 WXT 的浏览器插件，用于辅助 ChatGPT 注册、Ch",
-          "source": "GitHub",
-          "summary": "关键词: openai",
-          "url": "https://github.com/suyancc/openai-plus-vxt",
+          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
+          "source": "V2EX",
+          "summary": "关键词: gemini",
+          "url": "https://www.v2ex.com/t/1213965",
           "score": {
-            "quality": 5
+            "quality": 10
+          }
+        },
+        {
+          "title": "Qwen3.7-Max: The Agent Frontier",
+          "source": "HackerNews",
+          "summary": "关键词: qwen",
+          "url": "https://qwen.ai/blog?id=qwen3.7",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "An OpenAI model has disproved a central conjecture in discre",
+          "source": "HackerNews",
+          "summary": "关键词: openai",
+          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "Lyft driver caught blatantly using Gemini AI (with watermark",
+          "source": "Reddit/technology",
+          "summary": "关键词: gemini",
+          "url": "https://www.reddit.com/r/technology/comments/1tiuozz/lyft_driver_caught_blatantly_using_gemini_ai_with/",
+          "score": {
+            "quality": 7
           }
         }
       ]
@@ -69,27 +69,27 @@
       "type": "signals",
       "items": [
         {
-          "title": "AbhishekK130804/Claude-Mythos-AI-Anthropic-App — Claude",
+          "title": "FoundZiGu/GuJumpgate —",
           "source": "IntelHub",
-          "summary": "⭐ 209→467（+258）"
+          "summary": "⭐ 193→921（+728）"
         },
         {
-          "title": "haiddrrs/Steam-Tools — Lua Steam Tools: SteamTools down",
+          "title": "SalhaNabil/CloakBrowser — CloakBrowser Github: anti-det",
           "source": "IntelHub",
-          "summary": "⭐ 210→464（+254）"
+          "summary": "⭐ 203→459（+256）"
         },
         {
-          "title": "做了一个免费的 AI 公益站，今天重新开放注册，送 50 刀额度兑换码",
-          "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
-        },
-        {
-          "title": "[免费蹬 Opus 4.7 ] 回帖送 100 美金 Claude Code API 额度，限时 3 天",
+          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:10）"
         },
         {
-          "title": "[开放注册] 一个真正一目了然的自建 Codex 中转站",
+          "title": "自用 Codex 站（今天继续福利分组--5.20）",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:10）"
         }
@@ -99,59 +99,26 @@
       "type": "intel",
       "items": [
         {
-          "title": "🚨 CVE-2026-46417: @angular/platform-server: SSRF via Hostna",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Impact A Server-Side Request Forgery (SSRF) vulnerabili",
-          "url": "https://github.com/advisories/GHSA-rfh7-fxqc-q52v",
-          "topics": [
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 8,
-            "personal": 6,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "🚨 CVE-2026-46415: Caddy Defender trusted proxy client IP by",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Impact Caddy Defender used r.RemoteAddr when evaluati",
-          "url": "https://github.com/advisories/GHSA-3h23-rrpc-3p87",
-          "topics": [
-            "devtools",
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 10,
-            "personal": 6,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "🚨 CVE-2026-46412: Malicious code in @beproduct/nestjs-auth",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️CRITICAL | Summary Between 2026-05-11 20:19 UTC and 22:56 UTC, an a",
-          "url": "https://github.com/advisories/GHSA-6xwp-cp5h-q856",
-          "topics": [
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 8,
-            "personal": 6,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "Gemini 3.5 Flash",
+          "title": "Qwen3.7-Max: The Agent Frontier",
           "source": "HackerNews",
-          "summary": "440pts, 358评论",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+          "summary": "580pts, 228评论",
+          "url": "https://qwen.ai/blog?id=qwen3.7",
+          "topics": [
+            "ai-agent",
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "An OpenAI model has disproved a central conjecture in discre",
+          "source": "HackerNews",
+          "summary": "557pts, 374评论",
+          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
           "topics": [
             "ai-model"
           ],
@@ -163,30 +130,61 @@
           }
         },
         {
-          "title": "CVE-2026-43999",
-          "source": "NVD",
-          "summary": "vm2 is an open source vm/sandbox for Node.js. Prior to 3.11.0, NodeVM's builtin",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-43999",
+          "title": "GitHub confirms breach of 3,800 repos via malicious VSCode e",
+          "source": "HackerNews",
+          "summary": "379pts, 124评论",
+          "url": "https://www.bleepingcomputer.com/news/security/github-confirms-breach-of-3-800-repos-via-malicious-vscode-extension/",
           "topics": [
             "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 GHSA-mw8f-w6p8-xrf4: wger: cross-tenant account deletion",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Summary GHSA-mhc8-p3jx-84mm (CVE-2026-43948) reported th",
+          "url": "https://github.com/advisories/GHSA-mw8f-w6p8-xrf4",
+          "topics": [
             "security",
             "opensource"
           ],
           "score": {
-            "quality": 8,
+            "quality": 9,
             "relevance": 6,
             "personal": 5,
-            "opportunity": 1
+            "opportunity": 2
           }
         },
         {
-          "title": "Feasibility of Large Language Model-Based Standardized Virtu",
-          "source": "PubMed",
-          "summary": "JMIR Form Res | 2026 May 19",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42155101/",
+          "title": "MFS9628/Deepseek-v4-pro-app — DeepSeek v4 Pro github Flash c",
+          "source": "GitHub",
+          "summary": "⭐275 | N/A | forks:0",
+          "url": "https://github.com/MFS9628/Deepseek-v4-pro-app",
           "topics": [
             "ai-model",
-            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 8,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "A Methodology for Selecting and Composing Runtime Architectu",
+          "source": "arXiv",
+          "summary": "Production LLM agents combine stochastic model outputs with deterministic softwa",
+          "url": "http://arxiv.org/abs/2605.20173v1",
+          "topics": [
+            "ai-agent",
+            "ai-model",
             "crypto",
             "research"
           ],
@@ -198,32 +196,20 @@
           }
         },
         {
-          "title": "做了一个免费的 AI 公益站，今天重新开放注册，送 50 刀额度兑换码",
-          "source": "V2EX",
-          "summary": "💬 398回复 | 推广 | 免费的 AI 公益站，今天重新开放注册 https://cngpt.net 这个站原本是基于我自己的大模型中转站 Cla",
-          "url": "https://www.v2ex.com/t/1213663",
+          "title": "Rethinking Visual Attribution for Chest X-ray Reasoning in L",
+          "source": "arXiv",
+          "summary": "Large Vision Language Models (LVLMs) show promise in medical applications, but t",
+          "url": "http://arxiv.org/abs/2605.20158v1",
           "topics": [
-            "ai-model"
+            "ai-model",
+            "devtools",
+            "crypto",
+            "research"
           ],
           "score": {
-            "quality": 10,
-            "relevance": 2,
-            "personal": 4,
-            "opportunity": 0
-          }
-        },
-        {
-          "title": "[免费蹬 Opus 4.7 ] 回帖送 100 美金 Claude Code API 额度，限时 3 天",
-          "source": "V2EX",
-          "summary": "💬 328回复 | 推广 | 感恩回馈 V 友，上次压力测试 GPT 中转 发现了很多问题，多次重构了架构 网站现已支持超 2 千人同时蹬 GPT自营",
-          "url": "https://www.v2ex.com/t/1213790",
-          "topics": [
-            "ai-model"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 4,
-            "personal": 4,
+            "quality": 6,
+            "relevance": 9,
+            "personal": 5,
             "opportunity": 0
           }
         }
