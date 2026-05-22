@@ -6,6 +6,7 @@
   "scripts": {
     "check": "node scripts/check-public-site.mjs",
     "update:intelhub-report": "node scripts/update-intelhub-daily-report.mjs",
+    "publish:intelhub-report": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/publish-intelhub-daily-report.ps1",
     "serve": "node server.mjs"
   }
 }

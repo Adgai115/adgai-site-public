@@ -132,12 +132,13 @@ const sourceStats = stats.sources && typeof stats.sources === 'object' ? stats.s
 const reportSections = sections(source);
 const itemCount = reportSections.reduce((sum, section) => sum + section.items.length, 0);
 const meta = source.meta && typeof source.meta === 'object' ? source.meta : {};
+const sourceTimestamp = text(meta.timestamp, 40);
 
 const dailyReport = {
   version: 1,
-  generated_at: new Date().toISOString(),
+  generated_at: sourceTimestamp || new Date().toISOString(),
   report_date: localDate(meta.dateLocal, meta.dateKey),
-  updated_at: text(meta.timestamp, 40),
+  updated_at: sourceTimestamp,
   updated_local: text(meta.dateLocal, 40),
   digest: {
     summary: digestSummary(reportSections, stats, itemCount),

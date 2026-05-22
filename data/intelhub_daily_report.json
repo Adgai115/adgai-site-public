@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generated_at": "2026-05-21T00:14:48.839Z",
-  "report_date": "2026-05-21",
-  "updated_at": "2026-05-20T23:06:24.786Z",
-  "updated_local": "2026/5/21 07:06:24",
+  "generated_at": "2026-05-21T23:06:24.276Z",
+  "report_date": "2026-05-22",
+  "updated_at": "2026-05-21T23:06:24.276Z",
+  "updated_local": "2026/5/22 07:06:24",
   "digest": {
-    "summary": "本期共采集 212 条信息，整理出 17 条日报摘录。重点包括：自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡；Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了；Qwen3.7-Max: The Agent Frontier；An OpenAI model has disproved a central conjecture in discre；Lyft driver caught blatantly using Gemini AI (with watermark。"
+    "summary": "本期共采集 191 条信息，整理出 17 条日报摘录。重点包括：CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin；CVE-2026-44717；Can GPT-5 Support Licensing Examination Preparation? Analysi；zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w；新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿。"
   },
   "stats": {
-    "collected": 212,
-    "new_items": 212,
-    "source_count": 42,
+    "collected": 191,
+    "new_items": 191,
+    "source_count": 41,
     "report_items": 17,
     "errors": 0
   },
@@ -19,48 +19,39 @@
       "type": "alerts",
       "items": [
         {
-          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
-          "source": "V2EX",
+          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
+          "source": "GitHub-Advisory",
+          "summary": "关键词: mcp",
+          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "CVE-2026-44717",
+          "source": "NVD",
+          "summary": "关键词: mcp",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44717",
+          "score": {
+            "quality": 8
+          }
+        },
+        {
+          "title": "Can GPT-5 Support Licensing Examination Preparation? Analysi",
+          "source": "PubMed",
+          "summary": "关键词: gpt-5",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42166754/",
+          "score": {
+            "quality": 6
+          }
+        },
+        {
+          "title": "zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w",
+          "source": "GitHub",
           "summary": "关键词: openai",
-          "url": "https://www.v2ex.com/t/1214094",
+          "url": "https://github.com/zqbxdev/webchat2api",
           "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
-          "source": "V2EX",
-          "summary": "关键词: gemini",
-          "url": "https://www.v2ex.com/t/1213965",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "Qwen3.7-Max: The Agent Frontier",
-          "source": "HackerNews",
-          "summary": "关键词: qwen",
-          "url": "https://qwen.ai/blog?id=qwen3.7",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "An OpenAI model has disproved a central conjecture in discre",
-          "source": "HackerNews",
-          "summary": "关键词: openai",
-          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
-          "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "Lyft driver caught blatantly using Gemini AI (with watermark",
-          "source": "Reddit/technology",
-          "summary": "关键词: gemini",
-          "url": "https://www.reddit.com/r/technology/comments/1tiuozz/lyft_driver_caught_blatantly_using_gemini_ai_with/",
-          "score": {
-            "quality": 7
+            "quality": 5
           }
         }
       ]
@@ -69,29 +60,29 @@
       "type": "signals",
       "items": [
         {
-          "title": "FoundZiGu/GuJumpgate —",
-          "source": "IntelHub",
-          "summary": "⭐ 193→921（+728）"
-        },
-        {
-          "title": "SalhaNabil/CloakBrowser — CloakBrowser Github: anti-det",
-          "source": "IntelHub",
-          "summary": "⭐ 203→459（+256）"
-        },
-        {
-          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
+          "title": "新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:10）"
         },
         {
-          "title": "自用 Codex 站（今天继续福利分组--5.20）",
+          "title": "如何评价上海交大某同学用豆包 P 收款图，私吞部分奖金的行为",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
+          "summary": "新出现的高分情报（质量:9）"
         },
         {
-          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
+          "title": "CVE-2026-44717",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
+          "summary": "新出现的高分情报（质量:8）"
+        },
+        {
+          "title": "CVE-2021-47964",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:7）"
+        },
+        {
+          "title": "CVE-2021-47965",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
         }
       ]
     },
@@ -99,118 +90,136 @@
       "type": "intel",
       "items": [
         {
-          "title": "Qwen3.7-Max: The Agent Frontier",
-          "source": "HackerNews",
-          "summary": "580pts, 228评论",
-          "url": "https://qwen.ai/blog?id=qwen3.7",
+          "title": "🚨 CVE-2026-46679: js-libp2p: Memory DoS via subscription fl",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Summary Three cooperating omissions in @libp2p/gossipsu",
+          "url": "https://github.com/advisories/GHSA-4f8r-922h-2vgv",
           "topics": [
-            "ai-agent",
-            "ai-model"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 4,
-            "personal": 5,
-            "opportunity": 3
-          }
-        },
-        {
-          "title": "An OpenAI model has disproved a central conjecture in discre",
-          "source": "HackerNews",
-          "summary": "557pts, 374评论",
-          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
-          "topics": [
-            "ai-model"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 2,
-            "personal": 5,
-            "opportunity": 3
-          }
-        },
-        {
-          "title": "GitHub confirms breach of 3,800 repos via malicious VSCode e",
-          "source": "HackerNews",
-          "summary": "379pts, 124评论",
-          "url": "https://www.bleepingcomputer.com/news/security/github-confirms-breach-of-3-800-repos-via-malicious-vscode-extension/",
-          "topics": [
-            "devtools",
+            "security",
+            "memory",
             "opensource"
           ],
           "score": {
             "quality": 10,
-            "relevance": 4,
-            "personal": 5,
-            "opportunity": 3
+            "relevance": 8,
+            "personal": 7,
+            "opportunity": 5
           }
         },
         {
-          "title": "🚨 GHSA-mw8f-w6p8-xrf4: wger: cross-tenant account deletion",
+          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
           "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Summary GHSA-mhc8-p3jx-84mm (CVE-2026-43948) reported th",
-          "url": "https://github.com/advisories/GHSA-mw8f-w6p8-xrf4",
+          "summary": "⚠️HIGH | Unauthenticated Cross-Origin MCP Tool Invocation via Empty",
+          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
           "topics": [
             "security",
             "opensource"
           ],
           "score": {
-            "quality": 9,
+            "quality": 10,
+            "relevance": 6,
+            "personal": 6,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46703: Boxlite: Path Traversal Vulnerability Lea",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️CRITICAL | Summary Boxlite is a sandbox service that allows users",
+          "url": "https://github.com/advisories/GHSA-f396-4rp4-7v2j",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
             "relevance": 6,
             "personal": 5,
             "opportunity": 2
           }
         },
         {
-          "title": "MFS9628/Deepseek-v4-pro-app — DeepSeek v4 Pro github Flash c",
-          "source": "GitHub",
-          "summary": "⭐275 | N/A | forks:0",
-          "url": "https://github.com/MFS9628/Deepseek-v4-pro-app",
+          "title": "Agent JIT Compilation for Latency-Optimizing Web Agent Plann",
+          "source": "arXiv",
+          "summary": "Computer-use agents (CUA) automate tasks specified with natural language such as",
+          "url": "http://arxiv.org/abs/2605.21470v1",
           "topics": [
-            "ai-model",
-            "opensource"
+            "ai-agent",
+            "devtools",
+            "research",
+            "automation"
           ],
           "score": {
             "quality": 6,
             "relevance": 8,
             "personal": 5,
-            "opportunity": 2
+            "opportunity": 1
           }
         },
         {
-          "title": "A Methodology for Selecting and Composing Runtime Architectu",
+          "title": "Mem-$π$: Adaptive Memory through Learning When and What to G",
           "source": "arXiv",
-          "summary": "Production LLM agents combine stochastic model outputs with deterministic softwa",
-          "url": "http://arxiv.org/abs/2605.20173v1",
+          "summary": "We present Mem-$π$, a framework for adaptive memory in large language model (LLM",
+          "url": "http://arxiv.org/abs/2605.21463v1",
           "topics": [
             "ai-agent",
             "ai-model",
-            "crypto",
-            "research"
+            "research",
+            "memory"
           ],
           "score": {
             "quality": 6,
-            "relevance": 9,
+            "relevance": 10,
             "personal": 5,
-            "opportunity": 0
+            "opportunity": 1
           }
         },
         {
-          "title": "Rethinking Visual Attribution for Chest X-ray Reasoning in L",
-          "source": "arXiv",
-          "summary": "Large Vision Language Models (LVLMs) show promise in medical applications, but t",
-          "url": "http://arxiv.org/abs/2605.20158v1",
+          "title": "Python 3.15: features that didn't make the headlines",
+          "source": "HackerNews",
+          "summary": "317pts, 146评论",
+          "url": "https://blog.changs.co.uk/python-315-features-that-didnt-make-the-headlines.html",
           "topics": [
-            "ai-model",
-            "devtools",
-            "crypto",
-            "research"
+            "devtools"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "kageroumado/phosphene — A video wallpaper engine for macOS T",
+          "source": "GitHub",
+          "summary": "⭐536 | Swift | forks:13",
+          "url": "https://github.com/kageroumado/phosphene",
+          "topics": [
+            "research",
+            "opensource"
           ],
           "score": {
             "quality": 6,
-            "relevance": 9,
-            "personal": 5,
-            "opportunity": 0
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "texsellix/polymarket-trading-bot — Polymarket from your term",
+          "source": "GitHub",
+          "summary": "⭐245 | TypeScript | forks:18",
+          "url": "https://github.com/texsellix/polymarket-trading-bot",
+          "topics": [
+            "ai-agent",
+            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 4,
+            "personal": 4,
+            "opportunity": 2
           }
         }
       ]

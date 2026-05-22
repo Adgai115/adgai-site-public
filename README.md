@@ -35,6 +35,24 @@ npm run check
 
 验证快照完整性、路径正确性、域名一致性、SEO 元标签、robots/sitemap 存在性。
 
+## IntelHub 日报自动更新
+
+公开站不会直接读取本机 IntelHub 运行目录。每天 IntelHub 本地日报生成后，由计划任务刷新 `data/intelhub_daily_report.json`，并在内容变化时自动提交推送到 GitHub Pages 仓库。
+
+手动刷新并发布：
+
+```powershell
+npm run publish:intelhub-report
+```
+
+安装 Windows 计划任务（每天 07:15）：
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/install-intelhub-daily-task.ps1 -At 07:15
+```
+
+任务日志写入本地 `logs/intelhub-daily-publish.log`，该目录不会提交到仓库。
+
 ## 技术栈
 
 - 零框架、零 npm 依赖
@@ -62,6 +80,8 @@ projects/
   knowledge-automation.html
 scripts/
   check-public-site.mjs 部署前检查
+  update-intelhub-daily-report.mjs 生成 IntelHub 日报公开数据
+  publish-intelhub-daily-report.ps1 刷新、提交并推送日报
+  install-intelhub-daily-task.ps1 安装 07:15 自动发布计划任务
 server.mjs              本地开发服务器
 ```
-
