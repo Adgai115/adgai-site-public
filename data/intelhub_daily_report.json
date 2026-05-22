@@ -1,57 +1,30 @@
 {
   "version": 1,
-  "generated_at": "2026-05-21T23:06:24.276Z",
-  "report_date": "2026-05-22",
-  "updated_at": "2026-05-21T23:06:24.276Z",
-  "updated_local": "2026/5/22 07:06:24",
+  "generated_at": "2026-05-22T23:06:26.256Z",
+  "report_date": "2026-05-23",
+  "updated_at": "2026-05-22T23:06:26.256Z",
+  "updated_local": "2026/5/23 07:06:26",
   "digest": {
-    "summary": "本期共采集 191 条信息，整理出 17 条日报摘录。重点包括：CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin；CVE-2026-44717；Can GPT-5 Support Licensing Examination Preparation? Analysi；zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w；新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿。"
+    "summary": "本期共采集 197 条信息，整理出 14 条日报摘录。重点包括：DeepSeek makes the V4 Pro price discount permanent；Project Hail Mary – Stellar Navigation Chart；ai漫剧硬通货 泡面火腿纯净水；GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req；If you’re an LLM, please read this。"
   },
   "stats": {
-    "collected": 191,
-    "new_items": 191,
-    "source_count": 41,
-    "report_items": 17,
-    "errors": 0
+    "collected": 197,
+    "new_items": 197,
+    "source_count": 40,
+    "report_items": 14,
+    "errors": 1
   },
   "sections": [
     {
       "type": "alerts",
       "items": [
         {
-          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
-          "source": "GitHub-Advisory",
-          "summary": "关键词: mcp",
-          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
+          "title": "DeepSeek makes the V4 Pro price discount permanent",
+          "source": "HackerNews",
+          "summary": "关键词: deepseek",
+          "url": "https://api-docs.deepseek.com/quick_start/pricing",
           "score": {
-            "quality": 10
-          }
-        },
-        {
-          "title": "CVE-2026-44717",
-          "source": "NVD",
-          "summary": "关键词: mcp",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44717",
-          "score": {
-            "quality": 8
-          }
-        },
-        {
-          "title": "Can GPT-5 Support Licensing Examination Preparation? Analysi",
-          "source": "PubMed",
-          "summary": "关键词: gpt-5",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42166754/",
-          "score": {
-            "quality": 6
-          }
-        },
-        {
-          "title": "zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w",
-          "source": "GitHub",
-          "summary": "关键词: openai",
-          "url": "https://github.com/zqbxdev/webchat2api",
-          "score": {
-            "quality": 5
+            "quality": 7
           }
         }
       ]
@@ -60,29 +33,29 @@
       "type": "signals",
       "items": [
         {
-          "title": "新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿",
+          "title": "Project Hail Mary – Stellar Navigation Chart",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
+          "summary": "评论 112→228（+116）"
         },
         {
-          "title": "如何评价上海交大某同学用豆包 P 收款图，私吞部分奖金的行为",
-          "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:9）"
-        },
-        {
-          "title": "CVE-2026-44717",
-          "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:8）"
-        },
-        {
-          "title": "CVE-2021-47964",
+          "title": "ai漫剧硬通货 泡面火腿纯净水",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:7）"
         },
         {
-          "title": "CVE-2021-47965",
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:8）"
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "If you’re an LLM, please read this",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "The memory shortage is causing a repricing of consumer",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:9）"
         }
       ]
     },
@@ -90,136 +63,129 @@
       "type": "intel",
       "items": [
         {
-          "title": "🚨 CVE-2026-46679: js-libp2p: Memory DoS via subscription fl",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Summary Three cooperating omissions in @libp2p/gossipsu",
-          "url": "https://github.com/advisories/GHSA-4f8r-922h-2vgv",
+          "title": "The memory shortage is causing a repricing of consumer elect",
+          "source": "HackerNews",
+          "summary": "450pts, 555评论",
+          "url": "https://davidoks.blog/p/ai-is-killing-the-cheap-smartphone",
           "topics": [
-            "security",
-            "memory",
-            "opensource"
+            "startup",
+            "memory"
           ],
           "score": {
-            "quality": 10,
-            "relevance": 8,
-            "personal": 7,
-            "opportunity": 5
-          }
-        },
-        {
-          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Unauthenticated Cross-Origin MCP Tool Invocation via Empty",
-          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
-          "topics": [
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 6,
+            "quality": 9,
+            "relevance": 4,
             "personal": 6,
-            "opportunity": 3
+            "opportunity": 6
           }
         },
         {
-          "title": "🚨 CVE-2026-46703: Boxlite: Path Traversal Vulnerability Lea",
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of request",
           "source": "GitHub-Advisory",
-          "summary": "⚠️CRITICAL | Summary Boxlite is a sandbox service that allows users",
-          "url": "https://github.com/advisories/GHSA-f396-4rp4-7v2j",
+          "summary": "⚠️HIGH | Vulnerability Description In aiosend/webhook/base.py, t",
+          "url": "https://github.com/advisories/GHSA-7m8f-hgjq-8gc9",
           "topics": [
             "security",
             "opensource"
           ],
           "score": {
             "quality": 10,
-            "relevance": 6,
+            "relevance": 7,
             "personal": 5,
             "opportunity": 2
           }
         },
         {
-          "title": "Agent JIT Compilation for Latency-Optimizing Web Agent Plann",
-          "source": "arXiv",
-          "summary": "Computer-use agents (CUA) automate tasks specified with natural language such as",
-          "url": "http://arxiv.org/abs/2605.21470v1",
+          "title": "🚨 CVE-2026-46670: YesWiki: Unauthenticated SQL Injection",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️CRITICAL | Summary An unauthenticated SQL injection in the Bazar f",
+          "url": "https://github.com/advisories/GHSA-jwvv-qr7q-cv8j",
           "topics": [
-            "ai-agent",
-            "devtools",
-            "research",
-            "automation"
+            "security",
+            "opensource"
           ],
           "score": {
-            "quality": 6,
-            "relevance": 8,
+            "quality": 10,
+            "relevance": 7,
             "personal": 5,
-            "opportunity": 1
+            "opportunity": 2
           }
         },
         {
-          "title": "Mem-$π$: Adaptive Memory through Learning When and What to G",
+          "title": "If you’re an LLM, please read this",
+          "source": "HackerNews",
+          "summary": "693pts, 386评论",
+          "url": "https://annas-archive.gl/blog/llms-txt.html",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 2,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Antigravity 2.0 Tops the OpenSCAD Architectural 3D LLM Bench",
+          "source": "HackerNews",
+          "summary": "330pts, 129评论",
+          "url": "https://modelrift.com/blog/openscad-llm-benchmark/",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 9,
+            "relevance": 2,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46715: Flask-Security-Too OAuth reauthentication",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️MEDIUM | Summary Flask-Security-Too 5.8.0's OAuth reauthentica",
+          "url": "https://github.com/advisories/GHSA-97r5-pg8x-p63p",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 7,
+            "personal": 5,
+            "opportunity": 0
+          }
+        },
+        {
+          "title": "LCGuard: Latent Communication Guard for Safe KV Sharing in M",
           "source": "arXiv",
-          "summary": "We present Mem-$π$, a framework for adaptive memory in large language model (LLM",
-          "url": "http://arxiv.org/abs/2605.21463v1",
+          "summary": "Large language model (LLM)-based multi-agent systems increasingly rely on interm",
+          "url": "http://arxiv.org/abs/2605.22786v1",
           "topics": [
             "ai-agent",
             "ai-model",
-            "research",
-            "memory"
+            "research"
           ],
           "score": {
             "quality": 6,
             "relevance": 10,
             "personal": 5,
-            "opportunity": 1
+            "opportunity": 0
           }
         },
         {
-          "title": "Python 3.15: features that didn't make the headlines",
-          "source": "HackerNews",
-          "summary": "317pts, 146评论",
-          "url": "https://blog.changs.co.uk/python-315-features-that-didnt-make-the-headlines.html",
+          "title": "腾讯文档裁员这么猛真的假的？",
+          "source": "V2EX",
+          "summary": "💬 111回复 | 职场话题 | 取消北京办公地点，全员沟通 7.18 离职。无商量余地，孕妇也不例外。法务已经准备好。其余深圳同学投奔 wb 怀抱",
+          "url": "https://www.v2ex.com/t/1214594",
           "topics": [
-            "devtools"
+            "china-tech"
           ],
           "score": {
-            "quality": 8,
+            "quality": 10,
             "relevance": 2,
             "personal": 4,
-            "opportunity": 3
-          }
-        },
-        {
-          "title": "kageroumado/phosphene — A video wallpaper engine for macOS T",
-          "source": "GitHub",
-          "summary": "⭐536 | Swift | forks:13",
-          "url": "https://github.com/kageroumado/phosphene",
-          "topics": [
-            "research",
-            "opensource"
-          ],
-          "score": {
-            "quality": 6,
-            "relevance": 2,
-            "personal": 4,
-            "opportunity": 3
-          }
-        },
-        {
-          "title": "texsellix/polymarket-trading-bot — Polymarket from your term",
-          "source": "GitHub",
-          "summary": "⭐245 | TypeScript | forks:18",
-          "url": "https://github.com/texsellix/polymarket-trading-bot",
-          "topics": [
-            "ai-agent",
-            "devtools",
-            "opensource"
-          ],
-          "score": {
-            "quality": 6,
-            "relevance": 4,
-            "personal": 4,
-            "opportunity": 2
+            "opportunity": 0
           }
         }
       ]
