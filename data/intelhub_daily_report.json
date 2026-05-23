@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-05-22T23:06:26.256Z",
-  "report_date": "2026-05-23",
-  "updated_at": "2026-05-22T23:06:26.256Z",
-  "updated_local": "2026/5/23 07:06:26",
+  "generated_at": "2026-05-23T23:06:26.774Z",
+  "report_date": "2026-05-24",
+  "updated_at": "2026-05-23T23:06:26.774Z",
+  "updated_local": "2026/5/24 07:06:26",
   "digest": {
-    "summary": "本期共采集 197 条信息，整理出 14 条日报摘录。重点包括：DeepSeek makes the V4 Pro price discount permanent；Project Hail Mary – Stellar Navigation Chart；ai漫剧硬通货 泡面火腿纯净水；GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req；If you’re an LLM, please read this。"
+    "summary": "本期共采集 181 条信息，整理出 15 条日报摘录。重点包括：qwen3.7-max 的代码能力提升非常大；muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze；open-gsd/get-shit-done-redux — Getting Shit Done, the A；作为程序员，你愿意为“0 AI 代码介入”的汽车支付溢价吗？；你们有没有觉得，用了 AI 后，收入没增长，开销却变大了？。"
   },
   "stats": {
-    "collected": 197,
-    "new_items": 197,
-    "source_count": 40,
-    "report_items": 14,
+    "collected": 181,
+    "new_items": 181,
+    "source_count": 39,
+    "report_items": 15,
     "errors": 1
   },
   "sections": [
@@ -19,12 +19,21 @@
       "type": "alerts",
       "items": [
         {
-          "title": "DeepSeek makes the V4 Pro price discount permanent",
-          "source": "HackerNews",
-          "summary": "关键词: deepseek",
-          "url": "https://api-docs.deepseek.com/quick_start/pricing",
+          "title": "qwen3.7-max 的代码能力提升非常大",
+          "source": "V2EX",
+          "summary": "关键词: qwen",
+          "url": "https://www.v2ex.com/t/1214878",
           "score": {
             "quality": 7
+          }
+        },
+        {
+          "title": "muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze",
+          "source": "GitHub",
+          "summary": "关键词: mcp",
+          "url": "https://github.com/muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics",
+          "score": {
+            "quality": 5
           }
         }
       ]
@@ -33,29 +42,29 @@
       "type": "signals",
       "items": [
         {
-          "title": "Project Hail Mary – Stellar Navigation Chart",
+          "title": "open-gsd/get-shit-done-redux — Getting Shit Done, the A",
           "source": "IntelHub",
-          "summary": "评论 112→228（+116）"
+          "summary": "⭐ 114→356（+242）"
         },
         {
-          "title": "ai漫剧硬通货 泡面火腿纯净水",
+          "title": "作为程序员，你愿意为“0 AI 代码介入”的汽车支付溢价吗？",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
+        },
+        {
+          "title": "你们有没有觉得，用了 AI 后，收入没增长，开销却变大了？",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:7）"
         },
         {
-          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req",
+          "title": "qwen3.7-max 的代码能力提升非常大",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
+          "summary": "新出现的高分情报（质量:7）"
         },
         {
-          "title": "If you’re an LLM, please read this",
+          "title": "做了第一款 iOS 小游戏：用 SwiftUI 写了个水墨麻将连连看，送 50 个内购码",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:10）"
-        },
-        {
-          "title": "The memory shortage is causing a repricing of consumer",
-          "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:9）"
+          "summary": "新出现的高分情报（质量:7）"
         }
       ]
     },
@@ -63,26 +72,27 @@
       "type": "intel",
       "items": [
         {
-          "title": "The memory shortage is causing a repricing of consumer elect",
-          "source": "HackerNews",
-          "summary": "450pts, 555评论",
-          "url": "https://davidoks.blog/p/ai-is-killing-the-cheap-smartphone",
+          "title": "🚨 CVE-2026-47138: Parse Server: Pre-authentication denial o",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Impact An unauthenticated attacker who knows a publicly",
+          "url": "https://github.com/advisories/GHSA-38m6-82c8-4xfm",
           "topics": [
-            "startup",
-            "memory"
+            "devtools",
+            "security",
+            "opensource"
           ],
           "score": {
             "quality": 9,
-            "relevance": 4,
+            "relevance": 9,
             "personal": 6,
-            "opportunity": 6
+            "opportunity": 2
           }
         },
         {
-          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of request",
+          "title": "🚨 CVE-2026-46716: Nezha Monitoring: RoleMember can run shel",
           "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Vulnerability Description In aiosend/webhook/base.py, t",
-          "url": "https://github.com/advisories/GHSA-7m8f-hgjq-8gc9",
+          "summary": "⚠️CRITICAL | Summary nezha's dashboard supports two user roles: Ro",
+          "url": "https://github.com/advisories/GHSA-99gv-2m7h-3hh9",
           "topics": [
             "security",
             "opensource"
@@ -95,97 +105,100 @@
           }
         },
         {
-          "title": "🚨 CVE-2026-46670: YesWiki: Unauthenticated SQL Injection",
+          "title": "🚨 CVE-2026-47125: Arcane: Missing admin authorization on gl",
           "source": "GitHub-Advisory",
-          "summary": "⚠️CRITICAL | Summary An unauthenticated SQL injection in the Bazar f",
-          "url": "https://github.com/advisories/GHSA-jwvv-qr7q-cv8j",
+          "summary": "⚠️HIGH | Summary The PUT /api/environments/{id}/templates/variab",
+          "url": "https://github.com/advisories/GHSA-jpjh-jm2p-39hh",
           "topics": [
             "security",
             "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 7,
-            "personal": 5,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "If you’re an LLM, please read this",
-          "source": "HackerNews",
-          "summary": "693pts, 386评论",
-          "url": "https://annas-archive.gl/blog/llms-txt.html",
-          "topics": [
-            "ai-model"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 2,
-            "personal": 5,
-            "opportunity": 3
-          }
-        },
-        {
-          "title": "Antigravity 2.0 Tops the OpenSCAD Architectural 3D LLM Bench",
-          "source": "HackerNews",
-          "summary": "330pts, 129评论",
-          "url": "https://modelrift.com/blog/openscad-llm-benchmark/",
-          "topics": [
-            "ai-model"
           ],
           "score": {
             "quality": 9,
-            "relevance": 2,
+            "relevance": 7,
             "personal": 5,
-            "opportunity": 3
+            "opportunity": 2
           }
         },
         {
-          "title": "🚨 CVE-2026-46715: Flask-Security-Too OAuth reauthentication",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️MEDIUM | Summary Flask-Security-Too 5.8.0's OAuth reauthentica",
-          "url": "https://github.com/advisories/GHSA-97r5-pg8x-p63p",
+          "title": "SpaceX launches Starship v3 rocket",
+          "source": "HackerNews",
+          "summary": "318pts, 221评论",
+          "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-v3-megarocket-first-test-flight",
           "topics": [
-            "security",
             "opensource"
           ],
           "score": {
             "quality": 8,
-            "relevance": 7,
+            "relevance": 2,
             "personal": 5,
-            "opportunity": 0
+            "opportunity": 4
           }
         },
         {
-          "title": "LCGuard: Latent Communication Guard for Safe KV Sharing in M",
-          "source": "arXiv",
-          "summary": "Large language model (LLM)-based multi-agent systems increasingly rely on interm",
-          "url": "http://arxiv.org/abs/2605.22786v1",
+          "title": "muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze",
+          "source": "GitHub",
+          "summary": "⭐393 | N/A | forks:0",
+          "url": "https://github.com/muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics",
           "topics": [
             "ai-agent",
+            "ai-model",
+            "openclaw",
+            "opensource"
+          ],
+          "score": {
+            "quality": 5,
+            "relevance": 8,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "Predicting poor wrist function recovery after internal fixat",
+          "source": "PubMed",
+          "summary": "Medicine (Baltimore) | 2026 May 22",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42175515/",
+          "topics": [
             "ai-model",
             "research"
           ],
           "score": {
             "quality": 6,
-            "relevance": 10,
-            "personal": 5,
+            "relevance": 6,
+            "personal": 4,
             "opportunity": 0
           }
         },
         {
-          "title": "腾讯文档裁员这么猛真的假的？",
-          "source": "V2EX",
-          "summary": "💬 111回复 | 职场话题 | 取消北京办公地点，全员沟通 7.18 离职。无商量余地，孕妇也不例外。法务已经准备好。其余深圳同学投奔 wb 怀抱",
-          "url": "https://www.v2ex.com/t/1214594",
+          "title": "Survival prediction of colorectal cancer using 101 machine l",
+          "source": "PubMed",
+          "summary": "Medicine (Baltimore) | 2026 May 22",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42175499/",
           "topics": [
-            "china-tech"
+            "crypto",
+            "research"
           ],
           "score": {
-            "quality": 10,
-            "relevance": 2,
+            "quality": 6,
+            "relevance": 5,
             "personal": 4,
             "opportunity": 0
+          }
+        },
+        {
+          "title": "hahavelhojoguinho/guild-advancement-automator — 🚀 Discord S",
+          "source": "GitHub",
+          "summary": "⭐395 | N/A | forks:0",
+          "url": "https://github.com/hahavelhojoguinho/guild-advancement-automator",
+          "topics": [
+            "automation",
+            "opensource"
+          ],
+          "score": {
+            "quality": 5,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
           }
         }
       ]
