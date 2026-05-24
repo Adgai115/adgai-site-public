@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generated_at": "2026-05-23T23:06:26.774Z",
-  "report_date": "2026-05-24",
-  "updated_at": "2026-05-23T23:06:26.774Z",
-  "updated_local": "2026/5/24 07:06:26",
+  "generated_at": "2026-05-24T23:06:19.671Z",
+  "report_date": "2026-05-25",
+  "updated_at": "2026-05-24T23:06:19.671Z",
+  "updated_local": "2026/5/25 07:06:19",
   "digest": {
-    "summary": "本期共采集 181 条信息，整理出 15 条日报摘录。重点包括：qwen3.7-max 的代码能力提升非常大；muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze；open-gsd/get-shit-done-redux — Getting Shit Done, the A；作为程序员，你愿意为“0 AI 代码介入”的汽车支付溢价吗？；你们有没有觉得，用了 AI 后，收入没增长，开销却变大了？。"
+    "summary": "本期共采集 243 条信息，整理出 17 条日报摘录。重点包括：DeepSeek reasonix, DeepSeek native coding agent with high ca；openai 周限又重置了，已经放弃 claude 了；US President administration and Anthropic finalizing deal to；mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash；openai 周限又重置了，已经放弃 claude 了。"
   },
   "stats": {
-    "collected": 181,
-    "new_items": 181,
-    "source_count": 39,
-    "report_items": 15,
+    "collected": 243,
+    "new_items": 243,
+    "source_count": 45,
+    "report_items": 17,
     "errors": 1
   },
   "sections": [
@@ -19,19 +19,37 @@
       "type": "alerts",
       "items": [
         {
-          "title": "qwen3.7-max 的代码能力提升非常大",
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with high ca",
+          "source": "HackerNews",
+          "summary": "关键词: deepseek",
+          "url": "https://esengine.github.io/DeepSeek-Reasonix/",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "openai 周限又重置了，已经放弃 claude 了",
           "source": "V2EX",
-          "summary": "关键词: qwen",
-          "url": "https://www.v2ex.com/t/1214878",
+          "summary": "关键词: openai",
+          "url": "https://www.v2ex.com/t/1215013",
+          "score": {
+            "quality": 8
+          }
+        },
+        {
+          "title": "US President administration and Anthropic finalizing deal to",
+          "source": "Reddit/technology",
+          "summary": "关键词: anthropic",
+          "url": "https://www.reddit.com/r/technology/comments/1tm8h1t/us_president_administration_and_anthropic/",
           "score": {
             "quality": 7
           }
         },
         {
-          "title": "muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze",
+          "title": "mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash",
           "source": "GitHub",
-          "summary": "关键词: mcp",
-          "url": "https://github.com/muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics",
+          "summary": "关键词: deepseek",
+          "url": "https://github.com/mikaeldengale-cloud/Deepseek-v4-Pro-App",
           "score": {
             "quality": 5
           }
@@ -42,27 +60,27 @@
       "type": "signals",
       "items": [
         {
-          "title": "open-gsd/get-shit-done-redux — Getting Shit Done, the A",
-          "source": "IntelHub",
-          "summary": "⭐ 114→356（+242）"
-        },
-        {
-          "title": "作为程序员，你愿意为“0 AI 代码介入”的汽车支付溢价吗？",
+          "title": "openai 周限又重置了，已经放弃 claude 了",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:8）"
         },
         {
-          "title": "你们有没有觉得，用了 AI 后，收入没增长，开销却变大了？",
+          "title": "你们都在用什么机器跑 hermes",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:7）"
         },
         {
-          "title": "qwen3.7-max 的代码能力提升非常大",
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req",
           "source": "IntelHub",
-          "summary": "新出现的高分情报（质量:7）"
+          "summary": "新出现的高分情报（质量:8）"
         },
         {
-          "title": "做了第一款 iOS 小游戏：用 SwiftUI 写了个水墨麻将连连看，送 50 个内购码",
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with hi",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "Memory has grown to nearly two-thirds of AI chip compon",
           "source": "IntelHub",
           "summary": "新出现的高分情报（质量:7）"
         }
@@ -72,126 +90,122 @@
       "type": "intel",
       "items": [
         {
-          "title": "🚨 CVE-2026-47138: Parse Server: Pre-authentication denial o",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Impact An unauthenticated attacker who knows a publicly",
-          "url": "https://github.com/advisories/GHSA-38m6-82c8-4xfm",
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with high ca",
+          "source": "HackerNews",
+          "summary": "380pts, 184评论",
+          "url": "https://esengine.github.io/DeepSeek-Reasonix/",
+          "topics": [
+            "ai-agent",
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "openai 周限又重置了，已经放弃 claude 了",
+          "source": "V2EX",
+          "summary": "💬 64回复 | OpenAI | 好订阅，不易封号，gpt5.5 和 codex 使用体验顶级，额度量大管饱，还经常找理由重置额度，针对正规订阅的付费用户",
+          "url": "https://www.v2ex.com/t/1215013",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Memory has grown to nearly two-thirds of AI chip component c",
+          "source": "HackerNews",
+          "summary": "252pts, 272评论",
+          "url": "https://epoch.ai/data-insights/ai-chip-component-cost-shares",
+          "topics": [
+            "memory"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Australia Four-Day Work Week Study Data Shows Boosted Produc",
+          "source": "HackerNews",
+          "summary": "175pts, 102评论",
+          "url": "https://scienceaim.com/australia-just-proved-the-four-day-work-week-works-here-is-what-the-data-actually-says/",
+          "topics": [
+            "research"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "‘Star Citizen’ Hits $1 Billion in Lifetime Funding",
+          "source": "Reddit/technology",
+          "summary": "submitted by /u/PaiDuck [link] [comments]",
+          "url": "https://www.reddit.com/r/technology/comments/1tmi9mo/star_citizen_hits_1_billion_in_lifetime_funding/",
+          "topics": [
+            "opensource"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 0,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Mclisterjoeh2o/yellowkey-bitlocker — yellowkey bitlocker gi",
+          "source": "GitHub",
+          "summary": "⭐232 | TypeScript | forks:3",
+          "url": "https://github.com/Mclisterjoeh2o/yellowkey-bitlocker",
           "topics": [
             "devtools",
             "security",
             "opensource"
           ],
           "score": {
-            "quality": 9,
-            "relevance": 9,
-            "personal": 6,
+            "quality": 5,
+            "relevance": 8,
+            "personal": 4,
             "opportunity": 2
           }
         },
         {
-          "title": "🚨 CVE-2026-46716: Nezha Monitoring: RoleMember can run shel",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️CRITICAL | Summary nezha's dashboard supports two user roles: Ro",
-          "url": "https://github.com/advisories/GHSA-99gv-2m7h-3hh9",
-          "topics": [
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 10,
-            "relevance": 7,
-            "personal": 5,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "🚨 CVE-2026-47125: Arcane: Missing admin authorization on gl",
-          "source": "GitHub-Advisory",
-          "summary": "⚠️HIGH | Summary The PUT /api/environments/{id}/templates/variab",
-          "url": "https://github.com/advisories/GHSA-jpjh-jm2p-39hh",
-          "topics": [
-            "security",
-            "opensource"
-          ],
-          "score": {
-            "quality": 9,
-            "relevance": 7,
-            "personal": 5,
-            "opportunity": 2
-          }
-        },
-        {
-          "title": "SpaceX launches Starship v3 rocket",
-          "source": "HackerNews",
-          "summary": "318pts, 221评论",
-          "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-v3-megarocket-first-test-flight",
-          "topics": [
-            "opensource"
-          ],
-          "score": {
-            "quality": 8,
-            "relevance": 2,
-            "personal": 5,
-            "opportunity": 4
-          }
-        },
-        {
-          "title": "muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics — 🚀 Ze",
+          "title": "mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash",
           "source": "GitHub",
-          "summary": "⭐393 | N/A | forks:0",
-          "url": "https://github.com/muhammadqasimkalhoro94-blip/claude-zeroclaw-agentics",
+          "summary": "⭐229 | TypeScript | forks:0",
+          "url": "https://github.com/mikaeldengale-cloud/Deepseek-v4-Pro-App",
           "topics": [
-            "ai-agent",
             "ai-model",
-            "openclaw",
+            "devtools",
             "opensource"
           ],
           "score": {
             "quality": 5,
-            "relevance": 8,
-            "personal": 5,
+            "relevance": 6,
+            "personal": 4,
             "opportunity": 2
           }
         },
         {
-          "title": "Predicting poor wrist function recovery after internal fixat",
-          "source": "PubMed",
-          "summary": "Medicine (Baltimore) | 2026 May 22",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42175515/",
-          "topics": [
-            "ai-model",
-            "research"
-          ],
-          "score": {
-            "quality": 6,
-            "relevance": 6,
-            "personal": 4,
-            "opportunity": 0
-          }
-        },
-        {
-          "title": "Survival prediction of colorectal cancer using 101 machine l",
-          "source": "PubMed",
-          "summary": "Medicine (Baltimore) | 2026 May 22",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42175499/",
-          "topics": [
-            "crypto",
-            "research"
-          ],
-          "score": {
-            "quality": 6,
-            "relevance": 5,
-            "personal": 4,
-            "opportunity": 0
-          }
-        },
-        {
-          "title": "hahavelhojoguinho/guild-advancement-automator — 🚀 Discord S",
+          "title": "resonancegnatassess/Lossless-Scaling — Powerful upscaling an",
           "source": "GitHub",
-          "summary": "⭐395 | N/A | forks:0",
-          "url": "https://github.com/hahavelhojoguinho/guild-advancement-automator",
+          "summary": "⭐201 | Python | forks:0",
+          "url": "https://github.com/resonancegnatassess/Lossless-Scaling",
           "topics": [
-            "automation",
+            "devtools",
             "opensource"
           ],
           "score": {
