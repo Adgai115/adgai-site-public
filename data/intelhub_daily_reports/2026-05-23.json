@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-22T23:06:26.256Z",
+  "report_date": "2026-05-23",
+  "updated_at": "2026-05-22T23:06:26.256Z",
+  "updated_local": "2026/5/23 07:06:26",
+  "digest": {
+    "summary": "本期共采集 197 条信息，整理出 14 条日报摘录。重点包括：DeepSeek makes the V4 Pro price discount permanent；Project Hail Mary – Stellar Navigation Chart；ai漫剧硬通货 泡面火腿纯净水；GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req；If you’re an LLM, please read this。"
+  },
+  "stats": {
+    "collected": 197,
+    "new_items": 197,
+    "source_count": 40,
+    "report_items": 14,
+    "errors": 1
+  },
+  "sections": [
+    {
+      "type": "alerts",
+      "items": [
+        {
+          "title": "DeepSeek makes the V4 Pro price discount permanent",
+          "source": "HackerNews",
+          "summary": "关键词: deepseek",
+          "url": "https://api-docs.deepseek.com/quick_start/pricing",
+          "score": {
+            "quality": 7
+          }
+        }
+      ]
+    },
+    {
+      "type": "signals",
+      "items": [
+        {
+          "title": "Project Hail Mary – Stellar Navigation Chart",
+          "source": "IntelHub",
+          "summary": "评论 112→228（+116）"
+        },
+        {
+          "title": "ai漫剧硬通货 泡面火腿纯净水",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:7）"
+        },
+        {
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "If you’re an LLM, please read this",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "The memory shortage is causing a repricing of consumer",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:9）"
+        }
+      ]
+    },
+    {
+      "type": "intel",
+      "items": [
+        {
+          "title": "The memory shortage is causing a repricing of consumer elect",
+          "source": "HackerNews",
+          "summary": "450pts, 555评论",
+          "url": "https://davidoks.blog/p/ai-is-killing-the-cheap-smartphone",
+          "topics": [
+            "startup",
+            "memory"
+          ],
+          "score": {
+            "quality": 9,
+            "relevance": 4,
+            "personal": 6,
+            "opportunity": 6
+          }
+        },
+        {
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of request",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Vulnerability Description In aiosend/webhook/base.py, t",
+          "url": "https://github.com/advisories/GHSA-7m8f-hgjq-8gc9",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 7,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46670: YesWiki: Unauthenticated SQL Injection",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️CRITICAL | Summary An unauthenticated SQL injection in the Bazar f",
+          "url": "https://github.com/advisories/GHSA-jwvv-qr7q-cv8j",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 7,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "If you’re an LLM, please read this",
+          "source": "HackerNews",
+          "summary": "693pts, 386评论",
+          "url": "https://annas-archive.gl/blog/llms-txt.html",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 2,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Antigravity 2.0 Tops the OpenSCAD Architectural 3D LLM Bench",
+          "source": "HackerNews",
+          "summary": "330pts, 129评论",
+          "url": "https://modelrift.com/blog/openscad-llm-benchmark/",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 9,
+            "relevance": 2,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46715: Flask-Security-Too OAuth reauthentication",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️MEDIUM | Summary Flask-Security-Too 5.8.0's OAuth reauthentica",
+          "url": "https://github.com/advisories/GHSA-97r5-pg8x-p63p",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 7,
+            "personal": 5,
+            "opportunity": 0
+          }
+        },
+        {
+          "title": "LCGuard: Latent Communication Guard for Safe KV Sharing in M",
+          "source": "arXiv",
+          "summary": "Large language model (LLM)-based multi-agent systems increasingly rely on interm",
+          "url": "http://arxiv.org/abs/2605.22786v1",
+          "topics": [
+            "ai-agent",
+            "ai-model",
+            "research"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 10,
+            "personal": 5,
+            "opportunity": 0
+          }
+        },
+        {
+          "title": "腾讯文档裁员这么猛真的假的？",
+          "source": "V2EX",
+          "summary": "💬 111回复 | 职场话题 | 取消北京办公地点，全员沟通 7.18 离职。无商量余地，孕妇也不例外。法务已经准备好。其余深圳同学投奔 wb 怀抱",
+          "url": "https://www.v2ex.com/t/1214594",
+          "topics": [
+            "china-tech"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 0
+          }
+        }
+      ]
+    }
+  ]
+}

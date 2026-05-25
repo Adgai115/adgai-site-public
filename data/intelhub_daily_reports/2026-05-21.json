@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-21T00:14:48.839Z",
+  "report_date": "2026-05-21",
+  "updated_at": "2026-05-20T23:06:24.786Z",
+  "updated_local": "2026/5/21 07:06:24",
+  "digest": {
+    "summary": "本期共采集 212 条信息，整理出 17 条日报摘录。重点包括：自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡；Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了；Qwen3.7-Max: The Agent Frontier；An OpenAI model has disproved a central conjecture in discre；Lyft driver caught blatantly using Gemini AI (with watermark。"
+  },
+  "stats": {
+    "collected": 212,
+    "new_items": 212,
+    "source_count": 42,
+    "report_items": 17,
+    "errors": 0
+  },
+  "sections": [
+    {
+      "type": "alerts",
+      "items": [
+        {
+          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
+          "source": "V2EX",
+          "summary": "关键词: openai",
+          "url": "https://www.v2ex.com/t/1214094",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
+          "source": "V2EX",
+          "summary": "关键词: gemini",
+          "url": "https://www.v2ex.com/t/1213965",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "Qwen3.7-Max: The Agent Frontier",
+          "source": "HackerNews",
+          "summary": "关键词: qwen",
+          "url": "https://qwen.ai/blog?id=qwen3.7",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "An OpenAI model has disproved a central conjecture in discre",
+          "source": "HackerNews",
+          "summary": "关键词: openai",
+          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "Lyft driver caught blatantly using Gemini AI (with watermark",
+          "source": "Reddit/technology",
+          "summary": "关键词: gemini",
+          "url": "https://www.reddit.com/r/technology/comments/1tiuozz/lyft_driver_caught_blatantly_using_gemini_ai_with/",
+          "score": {
+            "quality": 7
+          }
+        }
+      ]
+    },
+    {
+      "type": "signals",
+      "items": [
+        {
+          "title": "FoundZiGu/GuJumpgate —",
+          "source": "IntelHub",
+          "summary": "⭐ 193→921（+728）"
+        },
+        {
+          "title": "SalhaNabil/CloakBrowser — CloakBrowser Github: anti-det",
+          "source": "IntelHub",
+          "summary": "⭐ 203→459（+256）"
+        },
+        {
+          "title": "自用 OpenAI API 中转，邀 同行分摊成本 🤡 🤡 🤡",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "自用 Codex 站（今天继续福利分组--5.20）",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "Antigravity 更新了，引入了 Gemini 3.5 Flash，更新的不像 vscode 了",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        }
+      ]
+    },
+    {
+      "type": "intel",
+      "items": [
+        {
+          "title": "Qwen3.7-Max: The Agent Frontier",
+          "source": "HackerNews",
+          "summary": "580pts, 228评论",
+          "url": "https://qwen.ai/blog?id=qwen3.7",
+          "topics": [
+            "ai-agent",
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "An OpenAI model has disproved a central conjecture in discre",
+          "source": "HackerNews",
+          "summary": "557pts, 374评论",
+          "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 2,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "GitHub confirms breach of 3,800 repos via malicious VSCode e",
+          "source": "HackerNews",
+          "summary": "379pts, 124评论",
+          "url": "https://www.bleepingcomputer.com/news/security/github-confirms-breach-of-3-800-repos-via-malicious-vscode-extension/",
+          "topics": [
+            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 GHSA-mw8f-w6p8-xrf4: wger: cross-tenant account deletion",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Summary GHSA-mhc8-p3jx-84mm (CVE-2026-43948) reported th",
+          "url": "https://github.com/advisories/GHSA-mw8f-w6p8-xrf4",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 9,
+            "relevance": 6,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "MFS9628/Deepseek-v4-pro-app — DeepSeek v4 Pro github Flash c",
+          "source": "GitHub",
+          "summary": "⭐275 | N/A | forks:0",
+          "url": "https://github.com/MFS9628/Deepseek-v4-pro-app",
+          "topics": [
+            "ai-model",
+            "opensource"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 8,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "A Methodology for Selecting and Composing Runtime Architectu",
+          "source": "arXiv",
+          "summary": "Production LLM agents combine stochastic model outputs with deterministic softwa",
+          "url": "http://arxiv.org/abs/2605.20173v1",
+          "topics": [
+            "ai-agent",
+            "ai-model",
+            "crypto",
+            "research"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 9,
+            "personal": 5,
+            "opportunity": 0
+          }
+        },
+        {
+          "title": "Rethinking Visual Attribution for Chest X-ray Reasoning in L",
+          "source": "arXiv",
+          "summary": "Large Vision Language Models (LVLMs) show promise in medical applications, but t",
+          "url": "http://arxiv.org/abs/2605.20158v1",
+          "topics": [
+            "ai-model",
+            "devtools",
+            "crypto",
+            "research"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 9,
+            "personal": 5,
+            "opportunity": 0
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -65,20 +65,21 @@ if ([int]$aheadBehind[0] -gt 0) {
 Invoke-Logged "npm" @("run", "update:intelhub-report")
 Invoke-Logged "npm" @("run", "check")
 
-$reportDiff = Test-GitQuiet @("diff", "--quiet", "--", "data/intelhub_daily_report.json")
-if ($reportDiff -eq 0) {
+$reportPaths = @("data/intelhub_daily_report.json", "data/intelhub_daily_index.json", "data/intelhub_daily_reports")
+$reportChanges = & git status --porcelain -- @reportPaths
+if ($LASTEXITCODE -ne 0) {
+  throw "Unable to inspect IntelHub report changes."
+}
+if (-not $reportChanges) {
   Write-Log "IntelHub daily report is already up to date. No commit needed."
   exit 0
-}
-if ($reportDiff -ne 1) {
-  throw "Unable to inspect data/intelhub_daily_report.json diff. Exit code: $reportDiff"
 }
 
 $report = Get-Content -LiteralPath (Join-Path $RepoRoot "data/intelhub_daily_report.json") -Raw | ConvertFrom-Json
 $reportDate = if ($report.report_date) { [string]$report.report_date } else { Get-Date -Format "yyyy-MM-dd" }
 $message = "Refresh IntelHub daily report $reportDate"
 
-Invoke-Logged "git" @("add", "--", "data/intelhub_daily_report.json")
+Invoke-Logged "git" @("add", "--", "data/intelhub_daily_report.json", "data/intelhub_daily_index.json", "data/intelhub_daily_reports")
 Invoke-Logged "git" @("commit", "-m", $message)
 
 if ($NoPush) {

@@ -431,6 +431,33 @@ nav a::after {
   background:linear-gradient(180deg, rgba(5,30,36,.44), rgba(2,12,16,.28));
 }
 
+.daily-rail-hint {
+  margin:-2px 0 2px;
+  color:var(--faint);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.daily-date-list {
+  position:relative;
+  display:grid;
+  gap:8px;
+  max-height:360px;
+  overflow:auto;
+  padding:0 2px 0 14px;
+  scrollbar-width:thin;
+}
+
+.daily-date-list::before {
+  content:"";
+  position:absolute;
+  left:3px;
+  top:8px;
+  bottom:8px;
+  width:1px;
+  background:linear-gradient(180deg, rgba(89,225,255,.06), rgba(89,225,255,.34), rgba(89,225,255,.06));
+}
+
 .daily-date-chip,
 .daily-section-nav a {
   display:flex;
@@ -445,12 +472,57 @@ nav a::after {
   font-size:13px;
 }
 
+.daily-date-chip {
+  position:relative;
+  min-height:58px;
+  padding:8px 12px;
+  background:rgba(1,16,20,.36);
+}
+
+.daily-date-chip::before {
+  content:"";
+  position:absolute;
+  left:-15px;
+  top:50%;
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  transform:translateY(-50%);
+  border:1px solid rgba(89,225,255,.36);
+  background:var(--bg);
+  box-shadow:0 0 12px rgba(46,244,255,.18);
+}
+
+.daily-date-chip > span {
+  display:grid;
+  gap:3px;
+  min-width:0;
+}
+
+.daily-date-chip strong {
+  color:inherit;
+  font-size:14px;
+  line-height:1.15;
+}
+
+.daily-date-chip small {
+  color:var(--faint);
+  font-size:12px;
+  line-height:1.2;
+}
+
 .daily-date-chip.active,
 .daily-section-nav a:hover,
 .daily-section-nav a:focus-visible {
   border-color:rgba(89,225,255,.26);
   color:var(--text);
   background:rgba(46,244,255,.07);
+}
+
+.daily-date-chip.active::before {
+  border-color:rgba(46,244,255,.82);
+  background:var(--accent-glow);
+  box-shadow:0 0 18px rgba(46,244,255,.65);
 }
 
 .daily-date-chip em,
@@ -1933,6 +2005,10 @@ h2 {
     grid-template-columns:1fr 1.4fr;
   }
 
+  .daily-date-list {
+    max-height:260px;
+  }
+
   .daily-section-nav {
     grid-template-columns:repeat(2, minmax(0,1fr));
   }
@@ -2068,6 +2144,23 @@ h2 {
 
   .daily-report-sidebar {
     grid-template-columns:1fr;
+  }
+
+  .daily-date-list {
+    display:flex;
+    gap:10px;
+    max-height:none;
+    overflow-x:auto;
+    padding:0 0 6px;
+  }
+
+  .daily-date-list::before,
+  .daily-date-chip::before {
+    display:none;
+  }
+
+  .daily-date-chip {
+    flex:0 0 168px;
   }
 
   .daily-section-nav {

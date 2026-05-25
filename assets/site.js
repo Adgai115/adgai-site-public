@@ -65,6 +65,7 @@ const COPY = {
         eyebrow:'Daily Digest · 日报', title:'IntelHub 日报',
         lead:'每天 1 分钟，扫读 IntelHub 最新一次信息采集结果。',
         reportTitle:'最新信息采集日报',
+        historyReportTitle:'历史信息采集日报',
         reportLoading:'正在读取最新日报...',
         reportEmpty:'当前没有可展示的日报条目。',
         reportUpdated:'更新时间',
@@ -74,7 +75,9 @@ const COPY = {
         reportSources:'来源池',
         reportOpen:'打开来源',
         reportArchive:'日报归档',
+        reportArchiveHint:'点击日期查看历史日报',
         latest:'最新',
+        reading:'阅读中',
         contents:'目录',
         excerptTitle:'本期摘录',
         itemsUnit:'条',
@@ -164,6 +167,7 @@ const COPY = {
         eyebrow:'Daily Digest', title:'IntelHub Daily',
         lead:'A one-minute skim of the latest IntelHub information collection report.',
         reportTitle:'Latest Collection Daily Report',
+        historyReportTitle:'Collection Daily Report Archive',
         reportLoading:'Loading latest daily report...',
         reportEmpty:'No daily report items are available yet.',
         reportUpdated:'Updated',
@@ -173,7 +177,9 @@ const COPY = {
         reportSources:'Source pool',
         reportOpen:'Open source',
         reportArchive:'Archive',
+        reportArchiveHint:'Select a date to read older reports',
         latest:'Latest',
+        reading:'Reading',
         contents:'Contents',
         excerptTitle:'Excerpts',
         itemsUnit:'items',
@@ -211,6 +217,8 @@ const COPY = {
 
 let snapshotData = null;
 let intelHubReportData = null;
+let intelHubReportIndex = null;
+let intelHubSelectedDate = null;
 let revealObserver = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
@@ -456,6 +464,58 @@ function formatReportDate(value, lang) {
   return month + '月' + day + '日';
 }
 
+function validReportDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(value || ''));
+}
+
+function normalizeReportEntries(index, report) {
+  const byDate = new Map();
+  const reports = Array.isArray(index?.reports) ? index.reports : [];
+  reports.forEach(function(entry) {
+    if (!validReportDate(entry?.date)) return;
+    byDate.set(entry.date, {
+      date: entry.date,
+      path: typeof entry.path === 'string' ? entry.path : '',
+      report_items: Number(entry.report_items || 0),
+      collected: Number(entry.collected || 0),
+      updated_local: entry.updated_local || '',
+    });
+  });
+
+  if (validReportDate(report?.report_date) && !byDate.has(report.report_date)) {
+    const stats = report.stats || {};
+    byDate.set(report.report_date, {
+      date: report.report_date,
+      path: 'data/intelhub_daily_report.json',
+      report_items: Number(stats.report_items || stats.public_items || 0),
+      collected: Number(stats.collected || 0),
+      updated_local: report.updated_local || '',
+    });
+  }
+
+  return Array.from(byDate.values()).sort(function(a, b) {
+    return b.date.localeCompare(a.date);
+  });
+}
+
+function safeReportPath(value) {
+  const path = String(value || '');
+  if (path === 'data/intelhub_daily_report.json') return path;
+  if (/^data\/intelhub_daily_reports\/\d{4}-\d{2}-\d{2}\.json$/.test(path)) return path;
+  return '';
+}
+
+function requestedReportDate() {
+  const date = new URLSearchParams(location.search).get('date');
+  return validReportDate(date) ? date : '';
+}
+
+function reportDateHref(date) {
+  const params = new URLSearchParams(location.search);
+  params.set('date', date);
+  return '?' + params.toString() + '#daily-report-top';
+}
+
 function syncDailyReportAnchor() {
   if (location.hash !== '#daily-report-top') return;
   const target = document.getElementById('daily-report-top');
@@ -464,7 +524,7 @@ function syncDailyReportAnchor() {
   window.scrollTo({ top, behavior:'auto' });
 }
 
-function renderIntelHubReport(report, lang) {
+function renderIntelHubReport(report, lang, index, selectedDate) {
   const target = document.querySelector('[data-intelhub-report]');
   if (!target) return;
 
@@ -480,6 +540,10 @@ function renderIntelHubReport(report, lang) {
   }
 
   const reportDateLabel = formatReportDate(report.report_date, lang);
+  const archiveEntries = normalizeReportEntries(index, report);
+  const activeDate = selectedDate || report.report_date;
+  const latestDate = index?.latest_date || archiveEntries[0]?.date || report.report_date;
+  const titleText = report.report_date === latestDate ? copy.reportTitle : copy.historyReportTitle;
   const stats = report.stats || {};
   const totalItems = stats.report_items ?? stats.public_items ?? visibleSections.reduce(function(sum, section) {
     return sum + section.items.length;
@@ -492,10 +556,22 @@ function renderIntelHubReport(report, lang) {
   const dateRail =
     '<div class="daily-date-rail" aria-label="' + esc(copy.reportArchive) + '">' +
       '<div class="daily-rail-title">' + esc(copy.reportArchive) + '</div>' +
-      '<a class="daily-date-chip active" href="#daily-report-top">' +
-        '<span>' + esc(reportDateLabel) + '</span>' +
-        '<em>' + esc(copy.latest) + '</em>' +
-      '</a>' +
+      '<p class="daily-rail-hint">' + esc(copy.reportArchiveHint) + '</p>' +
+      '<div class="daily-date-list">' +
+        archiveEntries.map(function(entry) {
+          const isActive = entry.date === activeDate;
+          const isLatest = entry.date === latestDate;
+          const badge = isLatest ? copy.latest : isActive ? copy.reading : '';
+          const itemCount = Number(entry.report_items || 0);
+          return '<a class="daily-date-chip' + (isActive ? ' active' : '') + '" href="' + esc(isActive ? '#daily-report-top' : reportDateHref(entry.date)) + '"' + (isActive ? ' aria-current="date"' : '') + '>' +
+            '<span>' +
+              '<strong>' + esc(formatReportDate(entry.date, lang)) + '</strong>' +
+              '<small>' + esc(itemCount ? itemCount + ' ' + copy.itemsUnit : entry.date) + '</small>' +
+            '</span>' +
+            (badge ? '<em>' + esc(badge) + '</em>' : '') +
+          '</a>';
+        }).join('') +
+      '</div>' +
     '</div>';
 
   const sectionNav =
@@ -549,7 +625,7 @@ function renderIntelHubReport(report, lang) {
       '<article class="daily-report-body">' +
         '<section class="daily-report-hero fade-up is-visible">' +
           '<div class="daily-report-kicker">Daily Digest</div>' +
-          '<h2>' + esc(copy.reportTitle) + '｜' + esc(reportDateLabel) + '</h2>' +
+          '<h2>' + esc(titleText) + '｜' + esc(reportDateLabel) + '</h2>' +
           '<p>' + esc(digestSummary) + '</p>' +
         '</section>' +
         '<div class="daily-excerpt-head">' +
@@ -587,7 +663,7 @@ function applyLanguage(lang) {
     renderNotes(snapshotData.public_notes || [], lang);
   }
   if (intelHubReportData) {
-    renderIntelHubReport(intelHubReportData, lang);
+    renderIntelHubReport(intelHubReportData, lang, intelHubReportIndex, intelHubSelectedDate);
   }
 }
 
@@ -598,12 +674,43 @@ async function loadSnapshot() {
   return resp.json();
 }
 
+async function fetchJson(url) {
+  const resp = await fetch(url, { cache:'no-store' });
+  if (!resp.ok) throw new Error(url + ' ' + resp.status);
+  return resp.json();
+}
+
 async function loadIntelHubReport() {
   if (!document.querySelector('[data-intelhub-report]')) return null;
   const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
-  const resp = await fetch(base + 'data/intelhub_daily_report.json', { cache:'no-store' });
-  if (!resp.ok) throw new Error('intelhub daily report ' + resp.status);
-  return resp.json();
+  const latestPath = 'data/intelhub_daily_report.json';
+  let index = null;
+  try {
+    index = await fetchJson(base + 'data/intelhub_daily_index.json');
+  } catch {}
+
+  const entries = normalizeReportEntries(index, null);
+  const requestedDate = requestedReportDate();
+  const selectedEntry =
+    (requestedDate ? entries.find(function(entry) { return entry.date === requestedDate; }) : null) ||
+    (index?.latest_date ? entries.find(function(entry) { return entry.date === index.latest_date; }) : null) ||
+    entries[0] ||
+    null;
+
+  let report = null;
+  const selectedPath = safeReportPath(selectedEntry?.path);
+  if (selectedPath) {
+    try {
+      report = await fetchJson(base + selectedPath);
+    } catch {}
+  }
+  if (!report) report = await fetchJson(base + latestPath);
+
+  return {
+    report,
+    index,
+    selectedDate: selectedEntry?.date || report.report_date,
+  };
 }
 
 // ── Loader ─────────────────────────────────
@@ -878,10 +985,12 @@ loadSnapshot().then(function(snap) {
   setMetric('resource_console_status', COPY[getLanguage()].metrics.snapshotMissing);
 });
 
-loadIntelHubReport().then(function(report) {
-  if (!report) return;
-  intelHubReportData = report;
-  renderIntelHubReport(report, getLanguage());
+loadIntelHubReport().then(function(state) {
+  if (!state) return;
+  intelHubReportData = state.report;
+  intelHubReportIndex = state.index;
+  intelHubSelectedDate = state.selectedDate;
+  renderIntelHubReport(state.report, getLanguage(), state.index, state.selectedDate);
 }).catch(function() {
-  renderIntelHubReport(null, getLanguage());
+  renderIntelHubReport(null, getLanguage(), null, null);
 });

@@ -24,6 +24,37 @@ if (!Array.isArray(snapshot.featured_projects) || snapshot.featured_projects.len
   fail('public_snapshot.json must include featured_projects');
 }
 
+const intelHubReport = JSON.parse(read('data/intelhub_daily_report.json'));
+if (!/^\d{4}-\d{2}-\d{2}$/.test(String(intelHubReport.report_date || ''))) {
+  fail('intelhub_daily_report.json must include report_date in YYYY-MM-DD format');
+}
+
+const intelHubIndex = JSON.parse(read('data/intelhub_daily_index.json'));
+if (!Array.isArray(intelHubIndex.reports) || intelHubIndex.reports.length === 0) {
+  fail('intelhub_daily_index.json must include reports');
+}
+if (intelHubIndex.latest_date !== intelHubReport.report_date) {
+  fail('intelhub_daily_index.json latest_date must match intelhub_daily_report.json report_date');
+}
+for (const entry of intelHubIndex.reports || []) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(entry.date || ''))) {
+    fail('intelhub_daily_index.json has an invalid report date');
+    continue;
+  }
+  if (typeof entry.path !== 'string' || !entry.path.startsWith('data/intelhub_daily_reports/')) {
+    fail(`IntelHub report index entry ${entry.date} must point at data/intelhub_daily_reports/`);
+    continue;
+  }
+  if (!exists(entry.path)) {
+    fail(`IntelHub archived report is missing: ${entry.path}`);
+    continue;
+  }
+  const archivedReport = JSON.parse(read(entry.path));
+  if (archivedReport.report_date !== entry.date) {
+    fail(`IntelHub archived report date mismatch: ${entry.path}`);
+  }
+}
+
 for (const project of snapshot.featured_projects || []) {
   const url = project.public_url;
   if (typeof url !== 'string' || !url.startsWith('projects/')) {

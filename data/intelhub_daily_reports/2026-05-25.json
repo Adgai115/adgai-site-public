@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-24T23:06:19.671Z",
+  "report_date": "2026-05-25",
+  "updated_at": "2026-05-24T23:06:19.671Z",
+  "updated_local": "2026/5/25 07:06:19",
+  "digest": {
+    "summary": "本期共采集 243 条信息，整理出 17 条日报摘录。重点包括：DeepSeek reasonix, DeepSeek native coding agent with high ca；openai 周限又重置了，已经放弃 claude 了；US President administration and Anthropic finalizing deal to；mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash；openai 周限又重置了，已经放弃 claude 了。"
+  },
+  "stats": {
+    "collected": 243,
+    "new_items": 243,
+    "source_count": 45,
+    "report_items": 17,
+    "errors": 1
+  },
+  "sections": [
+    {
+      "type": "alerts",
+      "items": [
+        {
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with high ca",
+          "source": "HackerNews",
+          "summary": "关键词: deepseek",
+          "url": "https://esengine.github.io/DeepSeek-Reasonix/",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "openai 周限又重置了，已经放弃 claude 了",
+          "source": "V2EX",
+          "summary": "关键词: openai",
+          "url": "https://www.v2ex.com/t/1215013",
+          "score": {
+            "quality": 8
+          }
+        },
+        {
+          "title": "US President administration and Anthropic finalizing deal to",
+          "source": "Reddit/technology",
+          "summary": "关键词: anthropic",
+          "url": "https://www.reddit.com/r/technology/comments/1tm8h1t/us_president_administration_and_anthropic/",
+          "score": {
+            "quality": 7
+          }
+        },
+        {
+          "title": "mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash",
+          "source": "GitHub",
+          "summary": "关键词: deepseek",
+          "url": "https://github.com/mikaeldengale-cloud/Deepseek-v4-Pro-App",
+          "score": {
+            "quality": 5
+          }
+        }
+      ]
+    },
+    {
+      "type": "signals",
+      "items": [
+        {
+          "title": "openai 周限又重置了，已经放弃 claude 了",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
+        },
+        {
+          "title": "你们都在用什么机器跑 hermes",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:7）"
+        },
+        {
+          "title": "🚨 GHSA-7m8f-hgjq-8gc9: aiosend: Deserialization of req",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
+        },
+        {
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with hi",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "Memory has grown to nearly two-thirds of AI chip compon",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:7）"
+        }
+      ]
+    },
+    {
+      "type": "intel",
+      "items": [
+        {
+          "title": "DeepSeek reasonix, DeepSeek native coding agent with high ca",
+          "source": "HackerNews",
+          "summary": "380pts, 184评论",
+          "url": "https://esengine.github.io/DeepSeek-Reasonix/",
+          "topics": [
+            "ai-agent",
+            "ai-model"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "openai 周限又重置了，已经放弃 claude 了",
+          "source": "V2EX",
+          "summary": "💬 64回复 | OpenAI | 好订阅，不易封号，gpt5.5 和 codex 使用体验顶级，额度量大管饱，还经常找理由重置额度，针对正规订阅的付费用户",
+          "url": "https://www.v2ex.com/t/1215013",
+          "topics": [
+            "ai-model"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 4,
+            "personal": 5,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Memory has grown to nearly two-thirds of AI chip component c",
+          "source": "HackerNews",
+          "summary": "252pts, 272评论",
+          "url": "https://epoch.ai/data-insights/ai-chip-component-cost-shares",
+          "topics": [
+            "memory"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Australia Four-Day Work Week Study Data Shows Boosted Produc",
+          "source": "HackerNews",
+          "summary": "175pts, 102评论",
+          "url": "https://scienceaim.com/australia-just-proved-the-four-day-work-week-works-here-is-what-the-data-actually-says/",
+          "topics": [
+            "research"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "‘Star Citizen’ Hits $1 Billion in Lifetime Funding",
+          "source": "Reddit/technology",
+          "summary": "submitted by /u/PaiDuck [link] [comments]",
+          "url": "https://www.reddit.com/r/technology/comments/1tmi9mo/star_citizen_hits_1_billion_in_lifetime_funding/",
+          "topics": [
+            "opensource"
+          ],
+          "score": {
+            "quality": 7,
+            "relevance": 0,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "Mclisterjoeh2o/yellowkey-bitlocker — yellowkey bitlocker gi",
+          "source": "GitHub",
+          "summary": "⭐232 | TypeScript | forks:3",
+          "url": "https://github.com/Mclisterjoeh2o/yellowkey-bitlocker",
+          "topics": [
+            "devtools",
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 5,
+            "relevance": 8,
+            "personal": 4,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "mikaeldengale-cloud/Deepseek-v4-Pro-App — deepseek v4 flash",
+          "source": "GitHub",
+          "summary": "⭐229 | TypeScript | forks:0",
+          "url": "https://github.com/mikaeldengale-cloud/Deepseek-v4-Pro-App",
+          "topics": [
+            "ai-model",
+            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 5,
+            "relevance": 6,
+            "personal": 4,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "resonancegnatassess/Lossless-Scaling — Powerful upscaling an",
+          "source": "GitHub",
+          "summary": "⭐201 | Python | forks:0",
+          "url": "https://github.com/resonancegnatassess/Lossless-Scaling",
+          "topics": [
+            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 5,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        }
+      ]
+    }
+  ]
+}

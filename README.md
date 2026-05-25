@@ -37,7 +37,11 @@ npm run check
 
 ## IntelHub 日报自动更新
 
-公开站不会直接读取本机 IntelHub 运行目录。每天 IntelHub 本地日报生成后，由计划任务刷新 `data/intelhub_daily_report.json`，并在内容变化时自动提交推送到 GitHub Pages 仓库。
+公开站不会直接读取本机 IntelHub 运行目录。每天 IntelHub 本地日报生成后，由计划任务刷新最新日报、日期归档和索引，并在内容变化时自动提交推送到 GitHub Pages 仓库。
+
+- `data/intelhub_daily_report.json`：最新日报
+- `data/intelhub_daily_reports/YYYY-MM-DD.json`：按日期保留的历史日报
+- `data/intelhub_daily_index.json`：公开页日期/时间轴索引
 
 手动刷新并发布：
 
@@ -56,7 +60,7 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/install-intelhub-daily-tas
 ## 技术栈
 
 - 零框架、零 npm 依赖
-- 原生 JS 数据驱动渲染（`site.js` 约 670 行）
+- 原生 JS 数据驱动渲染（`site.js`）
 - Canvas 背景动画（粒子、数据雨、光条、网格）
 - CSS 3D 轨道布局（`perspective` + `rotateX`）
 - 双语国际化（中文默认，英文可选，`localStorage` 持久化）
@@ -74,6 +78,9 @@ assets/
   resource-workbench.png OG 图片
 data/
   public_snapshot.json  脱敏数据源
+  intelhub_daily_report.json  IntelHub 最新日报
+  intelhub_daily_index.json   IntelHub 日报归档索引
+  intelhub_daily_reports/     IntelHub 历史日报
 projects/
   resource-console.html
   intelhub.html

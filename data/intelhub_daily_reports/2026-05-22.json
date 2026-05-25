@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-21T23:06:24.276Z",
+  "report_date": "2026-05-22",
+  "updated_at": "2026-05-21T23:06:24.276Z",
+  "updated_local": "2026/5/22 07:06:24",
+  "digest": {
+    "summary": "本期共采集 191 条信息，整理出 17 条日报摘录。重点包括：CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin；CVE-2026-44717；Can GPT-5 Support Licensing Examination Preparation? Analysi；zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w；新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿。"
+  },
+  "stats": {
+    "collected": 191,
+    "new_items": 191,
+    "source_count": 41,
+    "report_items": 17,
+    "errors": 0
+  },
+  "sections": [
+    {
+      "type": "alerts",
+      "items": [
+        {
+          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
+          "source": "GitHub-Advisory",
+          "summary": "关键词: mcp",
+          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
+          "score": {
+            "quality": 10
+          }
+        },
+        {
+          "title": "CVE-2026-44717",
+          "source": "NVD",
+          "summary": "关键词: mcp",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44717",
+          "score": {
+            "quality": 8
+          }
+        },
+        {
+          "title": "Can GPT-5 Support Licensing Examination Preparation? Analysi",
+          "source": "PubMed",
+          "summary": "关键词: gpt-5",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42166754/",
+          "score": {
+            "quality": 6
+          }
+        },
+        {
+          "title": "zqbxdev/webchat2api — OpenAI-compatible Web Chat API proxy w",
+          "source": "GitHub",
+          "summary": "关键词: openai",
+          "url": "https://github.com/zqbxdev/webchat2api",
+          "score": {
+            "quality": 5
+          }
+        }
+      ]
+    },
+    {
+      "type": "signals",
+      "items": [
+        {
+          "title": "新用户福利 | ChaoyeAPI 免费 10 刀额度等你来拿",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:10）"
+        },
+        {
+          "title": "如何评价上海交大某同学用豆包 P 收款图，私吞部分奖金的行为",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:9）"
+        },
+        {
+          "title": "CVE-2026-44717",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
+        },
+        {
+          "title": "CVE-2021-47964",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:7）"
+        },
+        {
+          "title": "CVE-2021-47965",
+          "source": "IntelHub",
+          "summary": "新出现的高分情报（质量:8）"
+        }
+      ]
+    },
+    {
+      "type": "intel",
+      "items": [
+        {
+          "title": "🚨 CVE-2026-46679: js-libp2p: Memory DoS via subscription fl",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Summary Three cooperating omissions in @libp2p/gossipsu",
+          "url": "https://github.com/advisories/GHSA-4f8r-922h-2vgv",
+          "topics": [
+            "security",
+            "memory",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 8,
+            "personal": 7,
+            "opportunity": 5
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46701: Network-AI: Unauthenticated Cross-Origin",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️HIGH | Unauthenticated Cross-Origin MCP Tool Invocation via Empty",
+          "url": "https://github.com/advisories/GHSA-j3vx-cx2r-pvg8",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 6,
+            "personal": 6,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "🚨 CVE-2026-46703: Boxlite: Path Traversal Vulnerability Lea",
+          "source": "GitHub-Advisory",
+          "summary": "⚠️CRITICAL | Summary Boxlite is a sandbox service that allows users",
+          "url": "https://github.com/advisories/GHSA-f396-4rp4-7v2j",
+          "topics": [
+            "security",
+            "opensource"
+          ],
+          "score": {
+            "quality": 10,
+            "relevance": 6,
+            "personal": 5,
+            "opportunity": 2
+          }
+        },
+        {
+          "title": "Agent JIT Compilation for Latency-Optimizing Web Agent Plann",
+          "source": "arXiv",
+          "summary": "Computer-use agents (CUA) automate tasks specified with natural language such as",
+          "url": "http://arxiv.org/abs/2605.21470v1",
+          "topics": [
+            "ai-agent",
+            "devtools",
+            "research",
+            "automation"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 8,
+            "personal": 5,
+            "opportunity": 1
+          }
+        },
+        {
+          "title": "Mem-$π$: Adaptive Memory through Learning When and What to G",
+          "source": "arXiv",
+          "summary": "We present Mem-$π$, a framework for adaptive memory in large language model (LLM",
+          "url": "http://arxiv.org/abs/2605.21463v1",
+          "topics": [
+            "ai-agent",
+            "ai-model",
+            "research",
+            "memory"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 10,
+            "personal": 5,
+            "opportunity": 1
+          }
+        },
+        {
+          "title": "Python 3.15: features that didn't make the headlines",
+          "source": "HackerNews",
+          "summary": "317pts, 146评论",
+          "url": "https://blog.changs.co.uk/python-315-features-that-didnt-make-the-headlines.html",
+          "topics": [
+            "devtools"
+          ],
+          "score": {
+            "quality": 8,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "kageroumado/phosphene — A video wallpaper engine for macOS T",
+          "source": "GitHub",
+          "summary": "⭐536 | Swift | forks:13",
+          "url": "https://github.com/kageroumado/phosphene",
+          "topics": [
+            "research",
+            "opensource"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 2,
+            "personal": 4,
+            "opportunity": 3
+          }
+        },
+        {
+          "title": "texsellix/polymarket-trading-bot — Polymarket from your term",
+          "source": "GitHub",
+          "summary": "⭐245 | TypeScript | forks:18",
+          "url": "https://github.com/texsellix/polymarket-trading-bot",
+          "topics": [
+            "ai-agent",
+            "devtools",
+            "opensource"
+          ],
+          "score": {
+            "quality": 6,
+            "relevance": 4,
+            "personal": 4,
+            "opportunity": 2
+          }
+        }
+      ]
+    }
+  ]
+}

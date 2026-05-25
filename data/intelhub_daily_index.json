@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "latest_date": "2026-05-25",
+  "generated_at": "2026-05-24T23:06:19.671Z",
+  "reports": [
+    {
+      "date": "2026-05-25",
+      "path": "data/intelhub_daily_reports/2026-05-25.json",
+      "updated_at": "2026-05-24T23:06:19.671Z",
+      "updated_local": "2026/5/25 07:06:19",
+      "collected": 243,
+      "new_items": 243,
+      "source_count": 45,
+      "report_items": 17
+    },
+    {
+      "date": "2026-05-24",
+      "path": "data/intelhub_daily_reports/2026-05-24.json",
+      "updated_at": "2026-05-23T23:06:26.774Z",
+      "updated_local": "2026/5/24 07:06:26",
+      "collected": 181,
+      "new_items": 181,
+      "source_count": 39,
+      "report_items": 15
+    },
+    {
+      "date": "2026-05-23",
+      "path": "data/intelhub_daily_reports/2026-05-23.json",
+      "updated_at": "2026-05-22T23:06:26.256Z",
+      "updated_local": "2026/5/23 07:06:26",
+      "collected": 197,
+      "new_items": 197,
+      "source_count": 40,
+      "report_items": 14
+    },
+    {
+      "date": "2026-05-22",
+      "path": "data/intelhub_daily_reports/2026-05-22.json",
+      "updated_at": "2026-05-21T23:06:24.276Z",
+      "updated_local": "2026/5/22 07:06:24",
+      "collected": 191,
+      "new_items": 191,
+      "source_count": 41,
+      "report_items": 17
+    },
+    {
+      "date": "2026-05-21",
+      "path": "data/intelhub_daily_reports/2026-05-21.json",
+      "updated_at": "2026-05-20T23:06:24.786Z",
+      "updated_local": "2026/5/21 07:06:24",
+      "collected": 212,
+      "new_items": 212,
+      "source_count": 42,
+      "report_items": 17
+    },
+    {
+      "date": "2026-05-20",
+      "path": "data/intelhub_daily_reports/2026-05-20.json",
+      "updated_at": "2026-05-19T23:06:23.018Z",
+      "updated_local": "2026/5/20 07:06:23",
+      "collected": 204,
+      "new_items": 204,
+      "source_count": 42,
+      "report_items": 18
+    }
+  ]
+}

@@ -7,6 +7,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const intelHubDataDir = process.env.INTELHUB_DATA_DIR || path.resolve(root, '..', '.openclaw', 'workspace', 'skills', 'intelhub', 'data');
 const sourcePath = path.resolve(process.env.INTELHUB_IR_PATH || path.join(intelHubDataDir, 'latest-ir.json'));
 const outputPath = path.resolve(process.env.INTELHUB_DAILY_REPORT_OUT || path.join(root, 'data', 'intelhub_daily_report.json'));
+const archiveDir = path.resolve(process.env.INTELHUB_DAILY_REPORT_ARCHIVE_DIR || path.join(root, 'data', 'intelhub_daily_reports'));
+const indexPath = path.resolve(process.env.INTELHUB_DAILY_REPORT_INDEX_OUT || path.join(root, 'data', 'intelhub_daily_index.json'));
 const sectionLimit = Number.parseInt(process.env.INTELHUB_DAILY_REPORT_LIMIT || '8', 10);
 const privatePattern = /(?:oc_[a-z0-9_]+|token|secret|password|api[_-]?key|bearer|file:\/\/|localhost|127\.0\.0\.1|\\Users\\|[A-Z]:\\|\.openclaw)/i;
 
@@ -111,6 +113,61 @@ function localDate(value, fallback) {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
+function repoPath(file) {
+  return path.relative(root, file).split(path.sep).join('/');
+}
+
+function indexEntry(report, file) {
+  const date = text(report?.report_date, 16);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  const stats = report.stats && typeof report.stats === 'object' ? report.stats : {};
+  return {
+    date,
+    path: repoPath(file),
+    updated_at: text(report.updated_at || report.generated_at, 40),
+    updated_local: text(report.updated_local, 40),
+    collected: Number(stats.collected ?? 0),
+    new_items: Number(stats.new_items ?? 0),
+    source_count: Number(stats.source_count ?? 0),
+    report_items: Number(stats.report_items ?? stats.public_items ?? 0),
+  };
+}
+
+function readReportQuiet(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function writeReportIndex(latestReport, latestArchivePath) {
+  const byDate = new Map();
+  if (fs.existsSync(archiveDir)) {
+    for (const name of fs.readdirSync(archiveDir)) {
+      if (!/^\d{4}-\d{2}-\d{2}\.json$/.test(name)) continue;
+      const file = path.join(archiveDir, name);
+      const entry = indexEntry(readReportQuiet(file), file);
+      if (entry) byDate.set(entry.date, entry);
+    }
+  }
+
+  const latestEntry = indexEntry(latestReport, latestArchivePath);
+  if (latestEntry) byDate.set(latestEntry.date, latestEntry);
+
+  const reports = [...byDate.values()].sort((a, b) => b.date.localeCompare(a.date));
+  const index = {
+    version: 1,
+    latest_date: latestEntry?.date || reports[0]?.date || '',
+    generated_at: latestReport.generated_at,
+    reports,
+  };
+
+  fs.mkdirSync(path.dirname(indexPath), { recursive: true });
+  fs.writeFileSync(indexPath, `${JSON.stringify(index, null, 2)}\n`);
+  return reports.length;
+}
+
 function digestSummary(reportSections, stats, itemCount) {
   const priority = ['alerts', 'signals', 'intel', 'trends'];
   const ordered = [...reportSections].sort((a, b) => priority.indexOf(a.type) - priority.indexOf(b.type));
@@ -137,7 +194,7 @@ const sourceTimestamp = text(meta.timestamp, 40);
 const dailyReport = {
   version: 1,
   generated_at: sourceTimestamp || new Date().toISOString(),
-  report_date: localDate(meta.dateLocal, meta.dateKey),
+  report_date: localDate(meta.dateLocal, meta.dateKey) || new Date().toISOString().slice(0, 10),
   updated_at: sourceTimestamp,
   updated_local: text(meta.dateLocal, 40),
   digest: {
@@ -153,6 +210,14 @@ const dailyReport = {
   sections: reportSections,
 };
 
+const archivePath = path.join(archiveDir, `${dailyReport.report_date}.json`);
+
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, `${JSON.stringify(dailyReport, null, 2)}\n`);
-console.log(`Updated ${path.relative(root, outputPath)} with ${itemCount} IntelHub daily report items`);
+fs.mkdirSync(archiveDir, { recursive: true });
+fs.writeFileSync(archivePath, `${JSON.stringify(dailyReport, null, 2)}\n`);
+const archiveCount = writeReportIndex(dailyReport, archivePath);
+
+console.log(
+  `Updated ${repoPath(outputPath)}, ${repoPath(archivePath)}, and ${repoPath(indexPath)} with ${itemCount} IntelHub daily report items across ${archiveCount} archived reports`,
+);
