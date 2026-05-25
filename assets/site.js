@@ -221,6 +221,7 @@ let snapshotData = null;
 let intelHubReportData = null;
 let intelHubReportIndex = null;
 let intelHubSelectedDate = null;
+const intelHubReportCache = new Map();
 let revealObserver = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
@@ -529,6 +530,28 @@ function reportDateHref(date) {
   return '?' + params.toString() + '#daily-report-top';
 }
 
+function intelHubDataBase() {
+  return (document.body.dataset.page || '') === 'home' ? '' : '../';
+}
+
+function cacheIntelHubReport(report) {
+  if (validReportDate(report?.report_date)) {
+    intelHubReportCache.set(report.report_date, report);
+  }
+}
+
+function resolveReportEntry(index, date) {
+  const entries = normalizeReportEntries(index, null);
+  return {
+    entries,
+    selectedEntry:
+      (date ? entries.find(function(entry) { return entry.date === date; }) : null) ||
+      (index?.latest_date ? entries.find(function(entry) { return entry.date === index.latest_date; }) : null) ||
+      entries[0] ||
+      null,
+  };
+}
+
 function renderReportCalendar(entries, activeDate, latestDate, lang, copy) {
   const entryMap = new Map(entries.map(function(entry) { return [entry.date, entry]; }));
   const months = new Map();
@@ -573,6 +596,7 @@ function renderReportCalendar(entries, activeDate, latestDate, lang, copy) {
       cells.push(
         '<a class="daily-calendar-day has-report' + (isActive ? ' active' : '') + (isLatest ? ' latest' : '') + '" href="' +
           esc(isActive ? '#daily-report-top' : reportDateHref(date)) + '"' +
+          ' data-report-date="' + esc(date) + '"' +
           (isActive ? ' aria-current="date"' : '') +
           ' aria-label="' + esc(aria) + '">' +
           '<span>' + esc(day) + '</span>' +
@@ -703,6 +727,107 @@ function renderIntelHubReport(report, lang, index, selectedDate) {
   syncDailyReportAnchor();
 }
 
+async function loadIntelHubReportState(date) {
+  const base = intelHubDataBase();
+  const latestPath = 'data/intelhub_daily_report.json';
+  let index = intelHubReportIndex;
+  if (!index) {
+    try {
+      index = await fetchJson(base + 'data/intelhub_daily_index.json');
+    } catch {}
+  }
+
+  const resolved = resolveReportEntry(index, validReportDate(date) ? date : '');
+  let report = null;
+  if (resolved.selectedEntry?.date) {
+    report = intelHubReportCache.get(resolved.selectedEntry.date) || null;
+  }
+
+  const selectedPath = safeReportPath(resolved.selectedEntry?.path);
+  if (!report && selectedPath) {
+    try {
+      report = await fetchJson(base + selectedPath);
+    } catch {}
+  }
+  if (!report) report = await fetchJson(base + latestPath);
+  cacheIntelHubReport(report);
+
+  return {
+    report,
+    index,
+    selectedDate: resolved.selectedEntry?.date || report.report_date,
+  };
+}
+
+function setIntelHubSwitching(active) {
+  const target = document.querySelector('[data-intelhub-report]');
+  if (!target) return;
+  target.classList.toggle('is-switching', active);
+  target.setAttribute('aria-busy', active ? 'true' : 'false');
+}
+
+function scrollDailyReportTop(behavior) {
+  const target = document.getElementById('daily-report-top');
+  if (!target) return;
+  const top = Math.max(target.getBoundingClientRect().top + window.pageYOffset - 80, 0);
+  window.scrollTo({ top, behavior });
+}
+
+async function selectIntelHubReportDate(date, options) {
+  const opts = options || {};
+  if (!validReportDate(date)) return;
+  if (date === intelHubSelectedDate) {
+    scrollDailyReportTop('smooth');
+    return;
+  }
+
+  setIntelHubSwitching(true);
+  try {
+    const state = await loadIntelHubReportState(date);
+    intelHubReportData = state.report;
+    intelHubReportIndex = state.index;
+    intelHubSelectedDate = state.selectedDate;
+    if (opts.pushState) {
+      history.pushState({ intelHubDate: state.selectedDate }, '', reportDateHref(state.selectedDate));
+    }
+    renderIntelHubReport(state.report, getLanguage(), state.index, state.selectedDate);
+    scrollDailyReportTop(opts.smooth === false ? 'auto' : 'smooth');
+  } finally {
+    requestAnimationFrame(function() {
+      setIntelHubSwitching(false);
+    });
+  }
+}
+
+function initIntelHubReportNavigation() {
+  const target = document.querySelector('[data-intelhub-report]');
+  if (!target || target.dataset.navigationBound === 'true') return;
+  target.dataset.navigationBound = 'true';
+  target.addEventListener('click', function(event) {
+    const link = event.target.closest('a[data-report-date]');
+    if (!link || !target.contains(link)) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    const date = link.dataset.reportDate;
+    if (!validReportDate(date)) return;
+    event.preventDefault();
+    if (date === intelHubSelectedDate) {
+      scrollDailyReportTop('smooth');
+      return;
+    }
+    link.classList.add('pending');
+    selectIntelHubReportDate(date, { pushState:true }).catch(function() {
+      location.href = link.href;
+    });
+  });
+
+  window.addEventListener('popstate', function() {
+    const date = requestedReportDate() || intelHubReportIndex?.latest_date || intelHubReportData?.report_date;
+    if (validReportDate(date)) {
+      selectIntelHubReportDate(date, { pushState:false, smooth:false }).catch(function(){});
+    }
+  });
+}
+
 function renderFocus(lang) {
   const target = document.querySelector('[data-focus]');
   if (!target) return;
@@ -746,35 +871,7 @@ async function fetchJson(url) {
 
 async function loadIntelHubReport() {
   if (!document.querySelector('[data-intelhub-report]')) return null;
-  const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
-  const latestPath = 'data/intelhub_daily_report.json';
-  let index = null;
-  try {
-    index = await fetchJson(base + 'data/intelhub_daily_index.json');
-  } catch {}
-
-  const entries = normalizeReportEntries(index, null);
-  const requestedDate = requestedReportDate();
-  const selectedEntry =
-    (requestedDate ? entries.find(function(entry) { return entry.date === requestedDate; }) : null) ||
-    (index?.latest_date ? entries.find(function(entry) { return entry.date === index.latest_date; }) : null) ||
-    entries[0] ||
-    null;
-
-  let report = null;
-  const selectedPath = safeReportPath(selectedEntry?.path);
-  if (selectedPath) {
-    try {
-      report = await fetchJson(base + selectedPath);
-    } catch {}
-  }
-  if (!report) report = await fetchJson(base + latestPath);
-
-  return {
-    report,
-    index,
-    selectedDate: selectedEntry?.date || report.report_date,
-  };
+  return loadIntelHubReportState(requestedReportDate());
 }
 
 // ── Loader ─────────────────────────────────
@@ -1054,7 +1151,10 @@ loadIntelHubReport().then(function(state) {
   intelHubReportData = state.report;
   intelHubReportIndex = state.index;
   intelHubSelectedDate = state.selectedDate;
+  cacheIntelHubReport(state.report);
+  initIntelHubReportNavigation();
   renderIntelHubReport(state.report, getLanguage(), state.index, state.selectedDate);
 }).catch(function() {
+  initIntelHubReportNavigation();
   renderIntelHubReport(null, getLanguage(), null, null);
 });

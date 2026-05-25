@@ -365,6 +365,21 @@ nav a::after {
   gap:28px;
 }
 
+.intelhub-report .daily-report-shell {
+  transition:opacity .18s ease, filter .18s ease;
+}
+
+.intelhub-report.is-switching .daily-report-shell {
+  opacity:.62;
+  filter:saturate(.78);
+  pointer-events:none;
+}
+
+.intelhub-report.is-switching .fade-up {
+  opacity:1;
+  transform:none;
+}
+
 .intelhub-report-section {
   margin-top:38px;
   padding-top:0;
@@ -533,6 +548,11 @@ nav a::after {
   border-color:rgba(46,244,255,.82);
   background:var(--accent-glow);
   box-shadow:0 0 18px rgba(46,244,255,.22);
+}
+
+.daily-calendar-day.pending {
+  border-color:rgba(46,244,255,.64);
+  box-shadow:0 0 20px rgba(46,244,255,.24);
 }
 
 .daily-calendar-day.active::after {
