@@ -537,7 +537,7 @@ function renderIntelHubReport(report, lang) {
   }).join('');
 
   target.innerHTML =
-    '<div class="daily-report-shell" id="daily-report-top">' +
+    '<div class="daily-report-shell">' +
       '<article class="daily-report-body">' +
         '<section class="daily-report-hero fade-up is-visible">' +
           '<div class="daily-report-kicker">Daily Digest</div>' +
