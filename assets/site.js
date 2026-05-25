@@ -456,6 +456,14 @@ function formatReportDate(value, lang) {
   return month + '月' + day + '日';
 }
 
+function syncDailyReportAnchor() {
+  if (location.hash !== '#daily-report-top') return;
+  const target = document.getElementById('daily-report-top');
+  if (!target) return;
+  const top = Math.max(target.getBoundingClientRect().top + window.pageYOffset - 80, 0);
+  window.scrollTo({ top, behavior:'auto' });
+}
+
 function renderIntelHubReport(report, lang) {
   const target = document.querySelector('[data-intelhub-report]');
   if (!target) return;
@@ -552,6 +560,7 @@ function renderIntelHubReport(report, lang) {
       '<aside class="daily-report-sidebar">' + dateRail + sectionNav + '</aside>' +
     '</div>';
   revealElements(target);
+  syncDailyReportAnchor();
 }
 
 function renderFocus(lang) {
