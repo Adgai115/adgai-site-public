@@ -78,6 +78,7 @@ const COPY = {
         reportArchiveHint:'点击日期查看历史日报',
         latest:'最新',
         reading:'阅读中',
+        calendarReportsUnit:'期',
         contents:'目录',
         excerptTitle:'本期摘录',
         itemsUnit:'条',
@@ -180,6 +181,7 @@ const COPY = {
         reportArchiveHint:'Select a date to read older reports',
         latest:'Latest',
         reading:'Reading',
+        calendarReportsUnit:'reports',
         contents:'Contents',
         excerptTitle:'Excerpts',
         itemsUnit:'items',
@@ -464,6 +466,17 @@ function formatReportDate(value, lang) {
   return month + '月' + day + '日';
 }
 
+function formatReportMonth(value, lang) {
+  const match = String(value || '').match(/^(\d{4})-(\d{2})$/);
+  if (!match) return value || '-';
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  if (lang === 'en') {
+    return new Intl.DateTimeFormat('en', { month:'long', year:'numeric' }).format(new Date(Date.UTC(year, month - 1, 1)));
+  }
+  return year + '年' + month + '月';
+}
+
 function validReportDate(value) {
   return /^\d{4}-\d{2}-\d{2}$/.test(String(value || ''));
 }
@@ -516,6 +529,71 @@ function reportDateHref(date) {
   return '?' + params.toString() + '#daily-report-top';
 }
 
+function renderReportCalendar(entries, activeDate, latestDate, lang, copy) {
+  const entryMap = new Map(entries.map(function(entry) { return [entry.date, entry]; }));
+  const months = new Map();
+  entries.forEach(function(entry) {
+    const key = entry.date.slice(0, 7);
+    if (!months.has(key)) months.set(key, []);
+    months.get(key).push(entry);
+  });
+
+  const weekdays = lang === 'en'
+    ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    : ['一', '二', '三', '四', '五', '六', '日'];
+
+  return Array.from(months.keys()).sort(function(a, b) { return b.localeCompare(a); }).map(function(monthKey) {
+    const parts = monthKey.match(/^(\d{4})-(\d{2})$/);
+    if (!parts) return '';
+    const year = Number(parts[1]);
+    const month = Number(parts[2]);
+    const firstWeekday = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
+    const offset = (firstWeekday + 6) % 7;
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    const monthEntries = months.get(monthKey) || [];
+    const cells = [];
+
+    for (let i = 0; i < offset; i += 1) {
+      cells.push('<span class="daily-calendar-day empty" aria-hidden="true"></span>');
+    }
+
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const date = monthKey + '-' + String(day).padStart(2, '0');
+      const entry = entryMap.get(date);
+      if (!entry) {
+        cells.push('<span class="daily-calendar-day muted"><span>' + esc(day) + '</span></span>');
+        continue;
+      }
+
+      const isActive = date === activeDate;
+      const isLatest = date === latestDate;
+      const badge = isLatest ? copy.latest : isActive ? copy.reading : '';
+      const itemCount = Number(entry.report_items || 0);
+      const aria = formatReportDate(date, lang) + (itemCount ? ', ' + itemCount + ' ' + copy.itemsUnit : '') + (badge ? ', ' + badge : '');
+      cells.push(
+        '<a class="daily-calendar-day has-report' + (isActive ? ' active' : '') + (isLatest ? ' latest' : '') + '" href="' +
+          esc(isActive ? '#daily-report-top' : reportDateHref(date)) + '"' +
+          (isActive ? ' aria-current="date"' : '') +
+          ' aria-label="' + esc(aria) + '">' +
+          '<span>' + esc(day) + '</span>' +
+          (badge ? '<em>' + esc(badge) + '</em>' : '<i aria-hidden="true"></i>') +
+        '</a>',
+      );
+    }
+
+    return '<section class="daily-calendar-month">' +
+      '<div class="daily-calendar-head">' +
+        '<strong>' + esc(formatReportMonth(monthKey, lang)) + '</strong>' +
+        '<span>' + esc(monthEntries.length) + ' ' + esc(copy.calendarReportsUnit) + '</span>' +
+      '</div>' +
+      '<div class="daily-calendar-weekdays" aria-hidden="true">' +
+        weekdays.map(function(day) { return '<span>' + esc(day) + '</span>'; }).join('') +
+      '</div>' +
+      '<div class="daily-calendar-grid">' + cells.join('') + '</div>' +
+    '</section>';
+  }).join('');
+}
+
 function syncDailyReportAnchor() {
   if (location.hash !== '#daily-report-top') return;
   const target = document.getElementById('daily-report-top');
@@ -554,24 +632,10 @@ function renderIntelHubReport(report, lang, index, selectedDate) {
       : '最新 IntelHub 日报已按分组整理，便于快速扫读和继续打开来源。');
 
   const dateRail =
-    '<div class="daily-date-rail" aria-label="' + esc(copy.reportArchive) + '">' +
+    '<div class="daily-date-rail daily-calendar-rail" aria-label="' + esc(copy.reportArchive) + '">' +
       '<div class="daily-rail-title">' + esc(copy.reportArchive) + '</div>' +
       '<p class="daily-rail-hint">' + esc(copy.reportArchiveHint) + '</p>' +
-      '<div class="daily-date-list">' +
-        archiveEntries.map(function(entry) {
-          const isActive = entry.date === activeDate;
-          const isLatest = entry.date === latestDate;
-          const badge = isLatest ? copy.latest : isActive ? copy.reading : '';
-          const itemCount = Number(entry.report_items || 0);
-          return '<a class="daily-date-chip' + (isActive ? ' active' : '') + '" href="' + esc(isActive ? '#daily-report-top' : reportDateHref(entry.date)) + '"' + (isActive ? ' aria-current="date"' : '') + '>' +
-            '<span>' +
-              '<strong>' + esc(formatReportDate(entry.date, lang)) + '</strong>' +
-              '<small>' + esc(itemCount ? itemCount + ' ' + copy.itemsUnit : entry.date) + '</small>' +
-            '</span>' +
-            (badge ? '<em>' + esc(badge) + '</em>' : '') +
-          '</a>';
-        }).join('') +
-      '</div>' +
+      '<div class="daily-calendar-stack">' + renderReportCalendar(archiveEntries, activeDate, latestDate, lang, copy) + '</div>' +
     '</div>';
 
   const sectionNav =

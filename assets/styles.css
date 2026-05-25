@@ -438,27 +438,128 @@ nav a::after {
   line-height:1.6;
 }
 
-.daily-date-list {
-  position:relative;
+.daily-calendar-stack {
   display:grid;
-  gap:8px;
-  max-height:360px;
+  gap:16px;
+  max-height:430px;
   overflow:auto;
-  padding:0 2px 0 14px;
+  padding-right:2px;
   scrollbar-width:thin;
 }
 
-.daily-date-list::before {
-  content:"";
-  position:absolute;
-  left:3px;
-  top:8px;
-  bottom:8px;
-  width:1px;
-  background:linear-gradient(180deg, rgba(89,225,255,.06), rgba(89,225,255,.34), rgba(89,225,255,.06));
+.daily-calendar-month {
+  display:grid;
+  gap:10px;
 }
 
-.daily-date-chip,
+.daily-calendar-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.daily-calendar-head strong {
+  color:var(--text);
+  font-size:14px;
+  line-height:1.2;
+}
+
+.daily-calendar-head span {
+  color:var(--faint);
+  font-family:Consolas,monospace;
+  font-size:12px;
+}
+
+.daily-calendar-weekdays,
+.daily-calendar-grid {
+  display:grid;
+  grid-template-columns:repeat(7, minmax(0, 1fr));
+  gap:5px;
+}
+
+.daily-calendar-weekdays span {
+  color:var(--faint);
+  font-family:Consolas,monospace;
+  font-size:11px;
+  line-height:1;
+  text-align:center;
+}
+
+.daily-calendar-day {
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-width:0;
+  min-height:36px;
+  border:1px solid rgba(89,225,255,.08);
+  border-radius:8px;
+  background:rgba(2,16,21,.32);
+  color:var(--faint);
+  font-family:Consolas,monospace;
+  font-size:13px;
+  text-decoration:none;
+}
+
+.daily-calendar-day.empty {
+  visibility:hidden;
+}
+
+.daily-calendar-day.has-report {
+  color:var(--text);
+  border-color:rgba(89,225,255,.20);
+  background:rgba(46,244,255,.055);
+}
+
+.daily-calendar-day.has-report::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:5px;
+  width:4px;
+  height:4px;
+  border-radius:999px;
+  transform:translateX(-50%);
+  background:var(--accent-glow);
+  box-shadow:0 0 10px rgba(46,244,255,.5);
+}
+
+.daily-calendar-day.latest {
+  border-color:rgba(46,244,255,.44);
+}
+
+.daily-calendar-day.active {
+  color:var(--bg);
+  border-color:rgba(46,244,255,.82);
+  background:var(--accent-glow);
+  box-shadow:0 0 18px rgba(46,244,255,.22);
+}
+
+.daily-calendar-day.active::after {
+  background:rgba(2,10,12,.76);
+  box-shadow:none;
+}
+
+.daily-calendar-day em,
+.daily-calendar-day i {
+  position:absolute;
+  left:50%;
+  bottom:3px;
+  transform:translateX(-50%);
+}
+
+.daily-calendar-day em {
+  max-width:calc(100% - 6px);
+  overflow:hidden;
+  color:inherit;
+  font-family:inherit;
+  font-size:8px;
+  font-style:normal;
+  line-height:1;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
 .daily-section-nav a {
   display:flex;
   align-items:center;
@@ -472,46 +573,6 @@ nav a::after {
   font-size:13px;
 }
 
-.daily-date-chip {
-  position:relative;
-  min-height:58px;
-  padding:8px 12px;
-  background:rgba(1,16,20,.36);
-}
-
-.daily-date-chip::before {
-  content:"";
-  position:absolute;
-  left:-15px;
-  top:50%;
-  width:7px;
-  height:7px;
-  border-radius:999px;
-  transform:translateY(-50%);
-  border:1px solid rgba(89,225,255,.36);
-  background:var(--bg);
-  box-shadow:0 0 12px rgba(46,244,255,.18);
-}
-
-.daily-date-chip > span {
-  display:grid;
-  gap:3px;
-  min-width:0;
-}
-
-.daily-date-chip strong {
-  color:inherit;
-  font-size:14px;
-  line-height:1.15;
-}
-
-.daily-date-chip small {
-  color:var(--faint);
-  font-size:12px;
-  line-height:1.2;
-}
-
-.daily-date-chip.active,
 .daily-section-nav a:hover,
 .daily-section-nav a:focus-visible {
   border-color:rgba(89,225,255,.26);
@@ -519,13 +580,6 @@ nav a::after {
   background:rgba(46,244,255,.07);
 }
 
-.daily-date-chip.active::before {
-  border-color:rgba(46,244,255,.82);
-  background:var(--accent-glow);
-  box-shadow:0 0 18px rgba(46,244,255,.65);
-}
-
-.daily-date-chip em,
 .daily-section-nav em {
   font-style:normal;
   color:var(--accent-glow);
@@ -2005,7 +2059,7 @@ h2 {
     grid-template-columns:1fr 1.4fr;
   }
 
-  .daily-date-list {
+  .daily-calendar-stack {
     max-height:260px;
   }
 
@@ -2146,21 +2200,15 @@ h2 {
     grid-template-columns:1fr;
   }
 
-  .daily-date-list {
-    display:flex;
-    gap:10px;
+  .daily-calendar-stack {
     max-height:none;
-    overflow-x:auto;
-    padding:0 0 6px;
+    overflow:visible;
+    padding-right:0;
   }
 
-  .daily-date-list::before,
-  .daily-date-chip::before {
-    display:none;
-  }
-
-  .daily-date-chip {
-    flex:0 0 168px;
+  .daily-calendar-day {
+    min-height:34px;
+    border-radius:7px;
   }
 
   .daily-section-nav {
