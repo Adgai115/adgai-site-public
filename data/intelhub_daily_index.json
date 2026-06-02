@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "latest_date": "2026-06-02",
-  "generated_at": "2026-06-01T23:06:29.807Z",
+  "latest_date": "2026-06-03",
+  "generated_at": "2026-06-02T23:06:38.371Z",
   "reports": [
+    {
+      "date": "2026-06-03",
+      "path": "data/intelhub_daily_reports/2026-06-03.json",
+      "updated_at": "2026-06-02T23:06:38.371Z",
+      "updated_local": "2026/6/3 07:06:38",
+      "collected": 101,
+      "new_items": 101,
+      "source_count": 15,
+      "report_items": 7
+    },
     {
       "date": "2026-06-02",
       "path": "data/intelhub_daily_reports/2026-06-02.json",
