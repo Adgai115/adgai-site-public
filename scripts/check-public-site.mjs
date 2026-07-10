@@ -138,6 +138,13 @@ for (const rel of ['.nojekyll', '404.html', 'robots.txt', 'sitemap.xml', '.well-
   if (!exists(rel)) fail(`${rel} is missing`);
 }
 
+if (exists('.github/workflows/deploy-pages.yml')) {
+  const workflow = read('.github/workflows/deploy-pages.yml');
+  if (!/include-hidden-files:\s*true/.test(workflow)) {
+    fail('deploy-pages.yml must include hidden files so .well-known/security.txt is published');
+  }
+}
+
 if (exists('404.html')) {
   const notFound = read('404.html');
   if (!notFound.includes('noindex,follow')) fail('404.html must be noindex,follow');
