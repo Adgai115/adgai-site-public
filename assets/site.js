@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════
    Adgai Public Site — Pure JS
-   Canvas BG + Loader + i18n + Snapshot
+   i18n + public snapshot + IntelHub archive
    ═══════════════════════════════════════════ */
 
 // ── i18n ───────────────────────────────────
@@ -17,28 +17,33 @@ const COPY = {
       'project-knowledge-automation': '知识自动化 - Adgai',
     },
     description: 'Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。',
-    nav: { projects:'项目', notes:'输出', now:'近况', about:'关于', home:'首页', menu:'菜单', skip:'跳到主要内容' },
+    nav: { projects:'项目', notes:'输出', now:'方法', about:'关于', home:'首页', menu:'菜单', skip:'跳到主要内容' },
     home: {
-      heroEyebrow:'本地优先 · 持续交付',
-      heroTitle:'让本地 <span class="gradient">AI</span> 系统<br>持续产出<br>公开成果',
-      heroLead:'我构建 AI 资源编排、信息采集和知识发布系统。运行留在本地，经过审核的成果持续发布到这里。',
-      viewProjects:'查看项目',
-      latestReport:'最新日报',
+      status:'系统持续运行中',
+      heroEyebrow:'本地优先的 AI 系统构建者',
+      heroTitle:'把复杂的<br><span class="hero-highlight">AI 系统</span><br><span class="hero-line">做成长期资产。</span>',
+      heroLead:'我设计资源编排、信息采集与知识发布系统，让私人工作在本地安全运行，并持续沉淀为可复用、可公开的成果。',
+      viewProjects:'查看系统', latestReport:'阅读最新日报',
+      principleLocal:'运行默认留在本地', principlePublic:'成果经过审核再公开',
+      systemLabel:'公开系统切片',
+      collectTitle:'采集', collectText:'本地工具与信息源',
+      processTitle:'编排', processText:'筛选、自动化、审核',
+      publishTitle:'发布', publishText:'脱敏后的公开成果',
     },
     metrics: {
       projects:'活跃项目', notes:'公开文章', reports:'日报归档', console:'资源后台', updated:'最新更新',
       localOnly:'仅本地', snapshotMissing:'快照缺失',
     },
-    projects: { eyebrow:'正在构建', title:'核心系统', intro:'从资源调度、信息筛选到知识发布，每个项目都服务于同一条本地优先工作流。', loading:'加载中...' },
-    projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', console:'资源', updated:'更新', open:'进入项目' },
-    notes: { eyebrow:'持续发布', title:'最新公开输出', empty:'暂时无法读取公开输出。', emptyDesc:'日报和文章会在通过白名单与安全检查后发布。' },
+    projects: { eyebrow:'Selected systems / 核心系统', title:'不是 Demo，<br>是持续运行的系统。', intro:'从模型与工具的统一调度，到每日信息筛选，再到知识发布门禁——这些项目组成一条完整的本地优先工作流。', loading:'正在读取项目...' },
+    projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', console:'资源', updated:'更新', open:'查看系统' },
+    notes: { eyebrow:'Public output / 持续发布', title:'系统每天都在<br>留下新的证据。', intro:'公开页面只接收通过白名单、脱敏与发布检查的内容。最新日报是这条流水线最直接的输出。', empty:'暂时无法读取公开输出。', emptyDesc:'日报和文章会在通过白名单与安全检查后发布。' },
     output: {
       kicker:'IntelHub · 最新日报', title:'每日信息筛选正在持续运行',
       description:'把多来源信息压缩成一分钟可以扫读的公开摘要，并保留按日期浏览的完整归档。',
       archive:'归档', collected:'采集', selected:'入选', sources:'来源', open:'阅读最新日报', loading:'正在读取最新公开输出...'
     },
     now: {
-      eyebrow:'近况', title:'当前关注',
+      eyebrow:'Operating model / 工作方法', title:'私有运行，<br>公开交付。', focusLabel:'CURRENT FOCUS', pipelineLabel:'PUBLISHING PIPELINE',
       focus:[
         {title:'AI 资源编排',desc:'构建可复用的资源编排能力'},
         {title:'本地优先的个人知识系统',desc:'让知识沉淀在自己掌控的系统里'},
@@ -56,8 +61,9 @@ const COPY = {
       scanTitle:'发布扫描', scanText:'自动检查会在部署前拦截本地路径、原始会话、日志、凭据和其他敏感字符串。',
     },
     about: {
-      eyebrow:'关于', title:'关于 Adgai', connect:'// 连接', rss:'RSS 订阅',
-      text:'<p>Adgai 是一个 <strong>本地优先的 AI 系统构建者</strong>，专注于 AI 资源编排、个人知识自动化和智能工作流。</p><p>所有运行数据保留在本地，公开站只展示经过脱敏处理的项目成果和文章。这是一个将 <strong>私有工作转化为公开成果</strong> 的实践项目。</p>',
+      eyebrow:'About / 关于', title:'关于 Adgai', connect:'// 连接', rss:'RSS 订阅',
+      statement:'我不关心让 AI 看起来聪明。<br>我更想把它变成<br><span>可靠、可控、可积累</span><br>的长期基础设施。',
+      text:'<p>Adgai 是一个本地优先的 AI 系统构建者，专注于资源编排、个人知识自动化和智能工作流。</p><p>这里展示的不是实时后台，而是经过筛选、脱敏和审核后的公开成果。</p>',
     },
     projectPages: {
       resource: {
@@ -100,7 +106,7 @@ const COPY = {
     },
     footer: {
       note:'公开站由脱敏数据生成。', tagline:'把私人工作沉淀成公开成果的个人 AI 基础设施。',
-      nav:'导航', resources:'资源', connect:'连接', rss:'RSS', sitemap:'站点地图', resourceConsole:'AI 资源工作台', knowledgeAuto:'知识自动化',
+      nav:'导航', resources:'系统', connect:'连接', rss:'RSS', sitemap:'站点地图', resourceConsole:'AI 资源工作台', knowledgeAuto:'知识自动化',
     },
     status: { 'private alpha':'私有 Alpha', active:'活跃', building:'建设中' },
     metricLabels: {
@@ -125,28 +131,33 @@ const COPY = {
       'project-knowledge-automation': 'Knowledge Automation - Adgai',
     },
     description: 'Adgai builds local-first AI systems, resource orchestration tools, and knowledge automation workflows.',
-    nav: { projects:'Projects', notes:'Output', now:'Now', about:'About', home:'Home', menu:'Menu', skip:'Skip to main content' },
+    nav: { projects:'Projects', notes:'Output', now:'Method', about:'About', home:'Home', menu:'Menu', skip:'Skip to main content' },
     home: {
-      heroEyebrow:'Local-first · Continuous Delivery',
-      heroTitle:'Turn local <span class="gradient">AI</span> systems<br>into a steady stream of<br>public artifacts',
-      heroLead:'I build systems for AI resource orchestration, information collection, and knowledge publishing. Operations stay local; reviewed outcomes ship here.',
-      viewProjects:'View Projects',
-      latestReport:'Latest Daily',
+      status:'Systems running continuously',
+      heroEyebrow:'Local-first AI systems builder',
+      heroTitle:'Turn complex<br><span class="hero-highlight">AI systems</span><br><span class="hero-line">into durable assets.</span>',
+      heroLead:'I design resource orchestration, information collection, and knowledge publishing systems—keeping private work safely local while turning it into reusable public outcomes.',
+      viewProjects:'View systems', latestReport:'Read latest daily',
+      principleLocal:'Operations stay local by default', principlePublic:'Outcomes ship after review',
+      systemLabel:'Public system slice',
+      collectTitle:'Collect', collectText:'Local tools and sources',
+      processTitle:'Orchestrate', processText:'Filter, automate, review',
+      publishTitle:'Publish', publishText:'Sanitized public output',
     },
     metrics: {
       projects:'Active Projects', notes:'Public Notes', reports:'Daily Archive', console:'Console', updated:'Latest Update',
       localOnly:'local-only', snapshotMissing:'snapshot missing',
     },
-    projects: { eyebrow:'In Development', title:'Core Systems', intro:'From resource orchestration and signal filtering to knowledge publishing, each project supports one local-first workflow.', loading:'Loading...' },
-    projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', console:'Resource', updated:'Updated', open:'Open project' },
-    notes: { eyebrow:'Continuous Publishing', title:'Latest Public Output', empty:'Public output is temporarily unavailable.', emptyDesc:'Daily reports and notes are published after allowlist and security checks.' },
+    projects: { eyebrow:'Selected systems', title:'Not demos.<br>Systems that keep running.', intro:'From model and tool orchestration to daily signal filtering and publishing gates, these projects form one complete local-first workflow.', loading:'Loading systems...' },
+    projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', console:'Resource', updated:'Updated', open:'View system' },
+    notes: { eyebrow:'Public output', title:'Every day, the system<br>leaves new evidence.', intro:'Only content that passes allowlist, sanitization, and release checks reaches this public surface. The daily report is the clearest output of that pipeline.', empty:'Public output is temporarily unavailable.', emptyDesc:'Daily reports and notes are published after allowlist and security checks.' },
     output: {
       kicker:'IntelHub · Latest Daily', title:'Daily signal filtering, continuously running',
       description:'Multiple information sources are compressed into a one-minute public digest, with a complete date-based archive.',
       archive:'Archive', collected:'Collected', selected:'Selected', sources:'Sources', open:'Read latest daily', loading:'Loading latest public output...'
     },
     now: {
-      eyebrow:'Now', title:'Current Focus',
+      eyebrow:'Operating model', title:'Private operations.<br>Public delivery.', focusLabel:'CURRENT FOCUS', pipelineLabel:'PUBLISHING PIPELINE',
       focus:[
         {title:'AI Resource Orchestration',desc:'Building reusable resource orchestration capabilities'},
         {title:'Local-first Knowledge Systems',desc:'Knowledge that stays within your own infrastructure'},
@@ -165,7 +176,8 @@ const COPY = {
     },
     about: {
       eyebrow:'About', title:'About Adgai', connect:'// Connect', rss:'RSS Feed',
-      text:'<p>Adgai is a <strong>local-first AI systems builder</strong>, focused on AI resource orchestration, personal knowledge automation, and intelligent workflows.</p><p>All operational data stays local. This public site showcases only sanitized project outputs and articles — a practice of turning <strong>private work into public artifacts</strong>.</p>',
+      statement:'I care less about making AI look smart.<br>I want infrastructure that is<br><span>reliable and controllable,</span><br><span>designed to compound.</span>',
+      text:'<p>Adgai is a local-first AI systems builder focused on resource orchestration, personal knowledge automation, and intelligent workflows.</p><p>This is not a live operations console. It is a curated public surface for outcomes that have passed review and sanitization.</p>',
     },
     projectPages: {
       resource: {
@@ -208,7 +220,7 @@ const COPY = {
     },
     footer: {
       note:'Public site generated from sanitized data.', tagline:'Personal AI infrastructure that turns private work into public artifacts.',
-      nav:'Navigation', resources:'Resources', connect:'Connect', rss:'RSS', sitemap:'Sitemap', resourceConsole:'AI Resource Console', knowledgeAuto:'Knowledge Automation',
+      nav:'Navigation', resources:'Systems', connect:'Connect', rss:'RSS', sitemap:'Sitemap', resourceConsole:'AI Resource Console', knowledgeAuto:'Knowledge Automation',
     },
     status: { 'private alpha':'private alpha', active:'active', building:'building' },
     metricLabels: {
@@ -365,12 +377,16 @@ function renderProjects(projects, lang) {
     const desc = copy.summary || proj.summary || '';
     const meta = copy.meta || '';
     const href = safeUrl(proj.public_url);
+    const cardClass = 'project-tile project-tile-' + (i + 1) + (i === 0 ? ' project-tile-featured' : '');
     const cardInner =
       '<div class="project-tile-top">' +
-        '<div class="project-tile-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
+        '<span class="project-tile-sequence">0' + (i + 1) + ' / SYSTEM</span>' +
         '<span class="card-badge ' + statusColor(proj.status) + '">' + esc(localizeStatus(proj.status, lang)) + '</span>' +
       '</div>' +
-      '<div class="project-tile-sequence">0' + (i + 1) + ' / SYSTEM</div>' +
+      '<div class="project-tile-visual" aria-hidden="true">' +
+        '<span class="project-tile-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</span>' +
+        '<i></i><i></i><i></i>' +
+      '</div>' +
       '<div class="project-tile-copy">' +
         '<h3>' + esc(name) + '</h3>' +
         '<p>' + esc(desc) + '</p>' +
@@ -378,12 +394,11 @@ function renderProjects(projects, lang) {
       '<div class="project-tile-footer">' +
         '<span>' + esc(meta) + '</span>' +
         '<strong>' + esc(orbit.open) + ' <i aria-hidden="true">↗</i></strong>' +
-      '</div>' +
-      '<span class="project-tile-orb" aria-hidden="true"></span>';
+      '</div>';
 
     return href
-      ? '<a class="project-tile fade-up is-visible" data-project-index="' + (i + 1) + '" href="' + esc(href) + '" aria-label="' + esc(orbit.open + ': ' + name) + '">' + cardInner + '</a>'
-      : '<article class="project-tile fade-up is-visible" data-project-index="' + (i + 1) + '">' + cardInner + '</article>';
+      ? '<a class="' + cardClass + ' fade-up is-visible" data-project-index="' + (i + 1) + '" href="' + esc(href) + '" aria-label="' + esc(orbit.open + ': ' + name) + '">' + cardInner + '</a>'
+      : '<article class="' + cardClass + ' fade-up is-visible" data-project-index="' + (i + 1) + '">' + cardInner + '</article>';
   }).join('');
 
   target.innerHTML = '<div class="project-showcase">' + cards + '</div>';
@@ -858,14 +873,9 @@ function initIntelHubReportNavigation() {
 function renderFocus(lang) {
   const target = document.querySelector('[data-focus]');
   if (!target) return;
-  var icons = [
-    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
-    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
-    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
-  ];
   var items = COPY[lang].now.focus;
   target.innerHTML = items.map(function(f, i) {
-    return '<li class="focus-item"><div class="focus-icon">' + (icons[i] || '') + '</div>' +
+    return '<li class="focus-item"><span class="focus-number">0' + (i + 1) + '</span>' +
       '<div class="focus-text"><strong>' + esc(f.title) + '</strong><span>' + esc(f.desc) + '</span></div></li>';
   }).join('');
 }
