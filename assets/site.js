@@ -17,21 +17,26 @@ const COPY = {
       'project-knowledge-automation': '知识自动化 - Adgai',
     },
     description: 'Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。',
-    nav: { projects:'项目', notes:'文章', now:'近况', about:'关于', home:'首页' },
+    nav: { projects:'项目', notes:'输出', now:'近况', about:'关于', home:'首页', menu:'菜单', skip:'跳到主要内容' },
     home: {
-      heroEyebrow:'本地优先的 AI 系统',
-      heroTitle:'把私人工作<br>沉淀成公开成果的<br>个人 <span class="gradient">AI</span><br>基础设施',
-      heroLead:'这里展示经过筛选的项目、文章和工作原则。实时资源后台保持私有；公开站只读取脱敏后的发布数据。',
+      heroEyebrow:'本地优先 · 持续交付',
+      heroTitle:'让本地 <span class="gradient">AI</span> 系统<br>持续产出<br>公开成果',
+      heroLead:'我构建 AI 资源编排、信息采集和知识发布系统。运行留在本地，经过审核的成果持续发布到这里。',
       viewProjects:'查看项目',
-      learnMore:'了解更多',
+      latestReport:'最新日报',
     },
     metrics: {
-      projects:'项目', notes:'公开文章', console:'资源后台', updated:'更新',
+      projects:'活跃项目', notes:'公开文章', reports:'日报归档', console:'资源后台', updated:'最新更新',
       localOnly:'仅本地', snapshotMissing:'快照缺失',
     },
-    projects: { eyebrow:'精选工作', title:'项目', loading:'加载中...' },
+    projects: { eyebrow:'正在构建', title:'核心系统', intro:'从资源调度、信息筛选到知识发布，每个项目都服务于同一条本地优先工作流。', loading:'加载中...' },
     projectOrbit: { core:'数据球', snapshot:'脱敏快照', projects:'项目', notes:'文章', console:'资源', updated:'更新', open:'进入项目' },
-    notes: { eyebrow:'写作', title:'公开文章', empty:'还没有导出通过审核的公开文章。', emptyDesc:'正在进行脱敏审核与白名单导出，通过后自动发布至公开站。' },
+    notes: { eyebrow:'持续发布', title:'最新公开输出', empty:'暂时无法读取公开输出。', emptyDesc:'日报和文章会在通过白名单与安全检查后发布。' },
+    output: {
+      kicker:'IntelHub · 最新日报', title:'每日信息筛选正在持续运行',
+      description:'把多来源信息压缩成一分钟可以扫读的公开摘要，并保留按日期浏览的完整归档。',
+      archive:'归档', collected:'采集', selected:'入选', sources:'来源', open:'阅读最新日报', loading:'正在读取最新公开输出...'
+    },
     now: {
       eyebrow:'近况', title:'当前关注',
       focus:[
@@ -107,9 +112,9 @@ const COPY = {
       'OpenClaw':'OpenClaw', '教程':'教程', 'AI':'AI', '测评':'测评', '知识管理':'知识管理', '设计':'设计',
     },
     projectCopy: {
-      'openclaw-resource-console':{name:'AI 资源工作台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。'},
-      intelhub:{name:'IntelHub',summary:'展示最新一次信息采集生成的日报。'},
-      'knowledge-automation':{name:'知识自动化',summary:'把审核后的私人笔记提升为公开成果的发布流水线。'},
+      'openclaw-resource-console':{name:'AI 资源工作台',summary:'面向 AI 模型、工具、任务和知识产出的本地优先运行工作台。',meta:'模型 · 工具 · 任务'},
+      intelhub:{name:'IntelHub',summary:'从多来源信息中筛选信号，生成可按日期浏览的每日摘要。',meta:'采集 · 筛选 · 日报'},
+      'knowledge-automation':{name:'知识自动化',summary:'把审核后的私人笔记提升为公开成果的发布流水线。',meta:'审核 · 脱敏 · 发布'},
     },
   },
   en: {
@@ -120,21 +125,26 @@ const COPY = {
       'project-knowledge-automation': 'Knowledge Automation - Adgai',
     },
     description: 'Adgai builds local-first AI systems, resource orchestration tools, and knowledge automation workflows.',
-    nav: { projects:'Projects', notes:'Notes', now:'Now', about:'About', home:'Home' },
+    nav: { projects:'Projects', notes:'Output', now:'Now', about:'About', home:'Home', menu:'Menu', skip:'Skip to main content' },
     home: {
-      heroEyebrow:'Local-first AI Systems',
-      heroTitle:'Personal <span class="gradient">AI</span><br>infrastructure that turns<br>private work into<br>public artifacts',
-      heroLead:'A public surface for selected projects, writing, and operating principles. The live resource console stays private; this site only reads sanitized release data.',
+      heroEyebrow:'Local-first · Continuous Delivery',
+      heroTitle:'Turn local <span class="gradient">AI</span> systems<br>into a steady stream of<br>public artifacts',
+      heroLead:'I build systems for AI resource orchestration, information collection, and knowledge publishing. Operations stay local; reviewed outcomes ship here.',
       viewProjects:'View Projects',
-      learnMore:'Learn More',
+      latestReport:'Latest Daily',
     },
     metrics: {
-      projects:'Projects', notes:'Public Notes', console:'Console', updated:'Updated',
+      projects:'Active Projects', notes:'Public Notes', reports:'Daily Archive', console:'Console', updated:'Latest Update',
       localOnly:'local-only', snapshotMissing:'snapshot missing',
     },
-    projects: { eyebrow:'Selected Work', title:'Projects', loading:'Loading...' },
+    projects: { eyebrow:'In Development', title:'Core Systems', intro:'From resource orchestration and signal filtering to knowledge publishing, each project supports one local-first workflow.', loading:'Loading...' },
     projectOrbit: { core:'Data Sphere', snapshot:'Sanitized Snapshot', projects:'Projects', notes:'Notes', console:'Resource', updated:'Updated', open:'Open project' },
-    notes: { eyebrow:'Writing', title:'Public Notes', empty:'No reviewed public notes yet.', emptyDesc:'Undergoing sanitization review and allowlist export. Automatically published upon approval.' },
+    notes: { eyebrow:'Continuous Publishing', title:'Latest Public Output', empty:'Public output is temporarily unavailable.', emptyDesc:'Daily reports and notes are published after allowlist and security checks.' },
+    output: {
+      kicker:'IntelHub · Latest Daily', title:'Daily signal filtering, continuously running',
+      description:'Multiple information sources are compressed into a one-minute public digest, with a complete date-based archive.',
+      archive:'Archive', collected:'Collected', selected:'Selected', sources:'Sources', open:'Read latest daily', loading:'Loading latest public output...'
+    },
     now: {
       eyebrow:'Now', title:'Current Focus',
       focus:[
@@ -210,14 +220,15 @@ const COPY = {
       'OpenClaw':'OpenClaw', '教程':'Tutorial', 'AI':'AI', '测评':'Review', '知识管理':'Knowledge Mgmt', '设计':'Design',
     },
     projectCopy: {
-      'openclaw-resource-console':{name:'AI Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.'},
-      intelhub:{name:'IntelHub',summary:'Shows the latest IntelHub information collection daily report.'},
-      'knowledge-automation':{name:'Knowledge Automation',summary:'A publishing pipeline that promotes reviewed private notes into public artifacts.'},
+      'openclaw-resource-console':{name:'AI Resource Console',summary:'A local-first operations surface for AI models, tools, tasks, and knowledge output.',meta:'Models · Tools · Tasks'},
+      intelhub:{name:'IntelHub',summary:'Filters signals from multiple sources into a daily, date-browsable digest.',meta:'Collect · Filter · Brief'},
+      'knowledge-automation':{name:'Knowledge Automation',summary:'A publishing pipeline that promotes reviewed private notes into public artifacts.',meta:'Review · Sanitize · Publish'},
     },
   },
 };
 
 let snapshotData = null;
+let homeOutputData = null;
 let intelHubReportData = null;
 let intelHubReportIndex = null;
 let intelHubSelectedDate = null;
@@ -286,6 +297,11 @@ function applyStaticTranslations(lang) {
     if (typeof v === 'string') el.setAttribute('title', v);
   });
 
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const v = getNested(c, el.dataset.i18nAriaLabel);
+    if (typeof v === 'string') el.setAttribute('aria-label', v);
+  });
+
   document.querySelectorAll('[data-lang-option]').forEach(btn => {
     const active = btn.dataset.langOption === lang;
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
@@ -315,7 +331,7 @@ function localizeTag(tag, lang) {
 function renderMetrics(snap, lang) {
   const m = snap?.public_metrics || {};
   setMetric('project_count', m.project_count ?? '-');
-  setMetric('public_note_count', m.public_note_count ?? '-');
+  setMetric('report_count', '-');
   setMetric('resource_console_status', localizeConsole(m.resource_console_status, lang));
   setMetric('last_public_update', m.last_public_update || '-');
 }
@@ -328,26 +344,13 @@ function renderProjects(projects, lang) {
   const target = document.querySelector('[data-projects]');
   if (!target || !Array.isArray(projects) || projects.length === 0) return;
   const orbit = COPY[lang].projectOrbit;
-  const metricsSummary = snapshotData?.public_metrics || {};
-  const projectCount = metricsSummary.project_count ?? projects.length;
-  const duration = Math.max(projects.length * 10, 30);
-  const matrix = Array.from({ length: 72 }, function(_, i) {
-    const bit = (i * 7) % 3 === 0 ? '1' : '0';
-    const left = (i * 37) % 100;
-    const duration = (5 + (i % 8) * .9).toFixed(1);
-    const delay = ((i * 11) % 80 / 10).toFixed(1);
-    const opacity = (.18 + ((i * 13) % 70) / 100).toFixed(2);
-    return '<span style="left:' + left + '%;animation-duration:' + duration + 's;animation-delay:' + delay + 's;opacity:' + opacity + '">' + bit + '</span>';
-  }).join('');
 
-  // Feather-style inline SVG icons
   var iconSVGs = [
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>',
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>',
   ];
 
-  // Color-coded status badges
   function statusColor(status) {
     var s = String(status || '').toLowerCase();
     if (s.includes('alpha') || s.includes('beta')) return 'badge-orange';
@@ -360,45 +363,64 @@ function renderProjects(projects, lang) {
     const copy = COPY[lang].projectCopy[proj.slug] || {};
     const name = copy.name || proj.name || '';
     const desc = copy.summary || proj.summary || '';
+    const meta = copy.meta || '';
     const href = safeUrl(proj.public_url);
-    const metrics = Array.isArray(proj.metrics) ? proj.metrics : [];
-    const angle = Math.round((360 / projects.length) * i - 88);
-    const slotStyle = '--orbit-angle:' + angle + ';--orbit-delay:' + ((duration / projects.length) * i).toFixed(2) + 's;--orbit-duration:' + duration + 's;';
     const cardInner =
-      '<div class="card-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
-      '<div class="card-head">' +
-        '<h3>' + esc(name) + '</h3>' +
+      '<div class="project-tile-top">' +
+        '<div class="project-tile-icon">' + (iconSVGs[i] || iconSVGs[0]) + '</div>' +
         '<span class="card-badge ' + statusColor(proj.status) + '">' + esc(localizeStatus(proj.status, lang)) + '</span>' +
       '</div>' +
-      '<p class="card-desc">' + esc(desc) + '</p>' +
-      '<div class="card-metrics">' +
-        metrics.map(m => '<div class="met"><strong>' + esc(localizeMetricLabel(m.v, lang)) + '</strong><span>' + esc(localizeMetricLabel(m.k, lang)) + '</span></div>').join('') +
+      '<div class="project-tile-sequence">0' + (i + 1) + ' / SYSTEM</div>' +
+      '<div class="project-tile-copy">' +
+        '<h3>' + esc(name) + '</h3>' +
+        '<p>' + esc(desc) + '</p>' +
       '</div>' +
-      '<div class="card-footer">' + esc(orbit.open) + '<span aria-hidden="true">→</span></div>';
+      '<div class="project-tile-footer">' +
+        '<span>' + esc(meta) + '</span>' +
+        '<strong>' + esc(orbit.open) + ' <i aria-hidden="true">↗</i></strong>' +
+      '</div>' +
+      '<span class="project-tile-orb" aria-hidden="true"></span>';
 
-    return '<div class="project-orbit-slot" style="' + slotStyle + '">' +
-      (href
-        ? '<a class="project-card project-orbit-card fade-up is-visible" href="' + esc(href) + '" aria-label="' + esc(orbit.open + ': ' + name) + '">' + cardInner + '</a>'
-        : '<article class="project-card project-orbit-card fade-up is-visible">' + cardInner + '</article>') +
-    '</div>';
+    return href
+      ? '<a class="project-tile fade-up is-visible" data-project-index="' + (i + 1) + '" href="' + esc(href) + '" aria-label="' + esc(orbit.open + ': ' + name) + '">' + cardInner + '</a>'
+      : '<article class="project-tile fade-up is-visible" data-project-index="' + (i + 1) + '">' + cardInner + '</article>';
   }).join('');
 
-  target.innerHTML =
-    '<div class="project-orbit-stage" style="--orbit-duration:' + duration + 's;">' +
-      '<div class="project-stage-matrix" aria-hidden="true">' + matrix + '</div>' +
-      '<div class="project-orbit-ring orbit-one" aria-hidden="true"></div>' +
-      '<div class="project-orbit-ring orbit-two" aria-hidden="true"></div>' +
-      '<div class="project-orbit-ring orbit-three" aria-hidden="true"></div>' +
-      '<div class="project-data-sphere" aria-label="' + esc(orbit.projects) + '">' +
-        '<div class="sphere-scanline" aria-hidden="true"></div>' +
-        '<div class="sphere-core">' +
-          '<strong>' + esc(projectCount) + '</strong>' +
-          '<span class="sphere-label">' + esc(orbit.projects) + '</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="project-orbit-field">' + cards + '</div>' +
-    '</div>';
+  target.innerHTML = '<div class="project-showcase">' + cards + '</div>';
   revealElements(target);
+}
+
+function renderHomeOutput(state, lang) {
+  const target = document.querySelector('[data-notes]');
+  if (!target || !state?.report) return false;
+  const report = state.report;
+  const index = state.index || {};
+  const stats = report.stats || {};
+  const archiveCount = Array.isArray(index.reports) ? index.reports.length : 1;
+  const reportDate = report.report_date || index.latest_date || '';
+  const copy = COPY[lang].output;
+  const href = 'projects/intelhub.html' + (validReportDate(reportDate) ? '?date=' + encodeURIComponent(reportDate) : '');
+
+  setMetric('report_count', archiveCount);
+  if (reportDate) setMetric('last_public_update', reportDate);
+
+  target.innerHTML =
+    '<a class="output-feature fade-up is-visible" href="' + esc(href) + '" aria-label="' + esc(copy.open + ': ' + copy.title) + '">' +
+      '<div class="output-feature-copy">' +
+        '<span class="output-kicker">' + esc(copy.kicker) + ' · ' + esc(formatReportDate(reportDate, lang)) + '</span>' +
+        '<h3>' + esc(copy.title) + '</h3>' +
+        '<p>' + esc(copy.description) + '</p>' +
+        '<strong class="output-open">' + esc(copy.open) + ' <span aria-hidden="true">→</span></strong>' +
+      '</div>' +
+      '<div class="output-stats" aria-label="' + esc(copy.kicker) + '">' +
+        '<div><strong>' + esc(archiveCount) + '</strong><span>' + esc(copy.archive) + '</span></div>' +
+        '<div><strong>' + esc(stats.collected ?? '-') + '</strong><span>' + esc(copy.collected) + '</span></div>' +
+        '<div><strong>' + esc(stats.report_items ?? '-') + '</strong><span>' + esc(copy.selected) + '</span></div>' +
+        '<div><strong>' + esc(stats.source_count ?? '-') + '</strong><span>' + esc(copy.sources) + '</span></div>' +
+      '</div>' +
+    '</a>';
+  revealElements(target);
+  return true;
 }
 
 function renderNotes(notes, lang) {
@@ -406,6 +428,11 @@ function renderNotes(notes, lang) {
   if (!target) return;
 
   if (!Array.isArray(notes) || notes.length === 0) {
+    if (homeOutputData && renderHomeOutput(homeOutputData, lang)) return;
+    if (homeOutputData === null && document.body.dataset.page === 'home') {
+      target.innerHTML = '<div class="notes-empty output-loading"><p>' + esc(COPY[lang].output.loading) + '</p></div>';
+      return;
+    }
     target.innerHTML = '<div class="notes-empty">' +
       '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>' +
       '<p style="font-size:15px;margin:0 0 6px;">' + esc(COPY[lang].notes.empty) + '</p>' +
@@ -869,6 +896,15 @@ async function fetchJson(url) {
   return resp.json();
 }
 
+async function loadHomeOutput() {
+  if ((document.body.dataset.page || '') !== 'home') return null;
+  const results = await Promise.all([
+    fetchJson('data/intelhub_daily_report.json'),
+    fetchJson('data/intelhub_daily_index.json'),
+  ]);
+  return { report:results[0], index:results[1] };
+}
+
 async function loadIntelHubReport() {
   if (!document.querySelector('[data-intelhub-report]')) return null;
   return loadIntelHubReportState(requestedReportDate());
@@ -878,7 +914,10 @@ async function loadIntelHubReport() {
 
 function initLoader() {
   const loader = document.getElementById('siteLoader');
-  if (!loader) return;
+  if (!loader) {
+    document.body.classList.add('is-ready');
+    return;
+  }
 
   if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
     loader.remove();
@@ -1144,6 +1183,15 @@ loadSnapshot().then(function(snap) {
   applyLanguage(getLanguage());
 }).catch(function() {
   setMetric('resource_console_status', COPY[getLanguage()].metrics.snapshotMissing);
+});
+
+loadHomeOutput().then(function(state) {
+  if (!state) return;
+  homeOutputData = state;
+  if (snapshotData) renderNotes(snapshotData.public_notes || [], getLanguage());
+}).catch(function() {
+  homeOutputData = false;
+  if (snapshotData) renderNotes(snapshotData.public_notes || [], getLanguage());
 });
 
 loadIntelHubReport().then(function(state) {

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
   <title>Adgai - AI 系统与知识自动化</title>
   <link rel="canonical" href="https://adgai115.github.io/adgai-site-public/">
@@ -20,17 +21,7 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body data-page="home">
-
-  <!-- Loader -->
-  <div class="site-loader" id="siteLoader">
-    <div class="loader-inner">
-      <svg class="loader-logo" viewBox="0 0 120 120" aria-hidden="true">
-        <path class="logo-stroke" d="M25 32 L60 88 L95 32 M42 62 L78 62"/>
-      </svg>
-      <div class="loader-title">Adgai</div>
-      <div class="loader-bar"></div>
-    </div>
-  </div>
+  <a class="skip-link" href="#main-content" data-i18n="nav.skip">跳到主要内容</a>
 
   <!-- Canvas Background -->
   <canvas id="bgCanvas"></canvas>
@@ -47,7 +38,7 @@
       <div class="header-inner">
         <a class="brand" href="./">Adgai</a>
         <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" aria-controls="primaryNav" aria-expanded="false">
-        <label for="menu-toggle" class="menu-toggle-label" aria-label="菜单">
+        <label for="menu-toggle" class="menu-toggle-label" aria-label="菜单" data-i18n-aria-label="nav.menu">
           <span></span><span></span><span></span>
         </label>
         <nav id="primaryNav" aria-label="Primary">
@@ -63,7 +54,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
 
       <!-- Hero -->
       <section class="hero" id="top">
@@ -83,21 +74,20 @@
         <div class="hero-copy">
           <p class="hero-eyebrow" data-i18n="home.heroEyebrow">本地优先的 AI 系统</p>
           <h1 data-i18n-html="home.heroTitle">
-            把私人工作<br>
-            沉淀成公开成果的<br>
-            个人 <span class="gradient">AI</span><br>
-            基础设施
+            让本地 <span class="gradient">AI</span> 系统<br>
+            持续产出<br>
+            公开成果
           </h1>
           <p class="hero-lead" data-i18n="home.heroLead">
-            这里展示经过筛选的项目、文章和工作原则。实时资源后台保持私有；公开站只读取脱敏后的发布数据。
+            我构建 AI 资源编排、信息采集和知识发布系统。运行留在本地，经过审核的成果持续发布到这里。
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects" data-i18n="home.viewProjects">查看项目</a>
-            <a class="btn btn-outline" href="#about" data-i18n="home.learnMore">了解更多</a>
+            <a class="btn btn-outline" href="projects/intelhub.html" data-i18n="home.latestReport">最新日报</a>
           </div>
           <div class="hero-metrics">
             <div class="hero-met"><strong data-metric="project_count">-</strong><span data-i18n="metrics.projects">活跃项目</span></div>
-            <div class="hero-met"><strong data-metric="public_note_count">-</strong><span data-i18n="metrics.notes">公开文章</span></div>
+            <div class="hero-met"><strong data-metric="report_count">-</strong><span data-i18n="metrics.reports">日报归档</span></div>
             <div class="hero-met"><strong data-metric="last_public_update">-</strong><span data-i18n="metrics.updated">最新更新</span></div>
           </div>
         </div>
@@ -105,6 +95,13 @@
 
       <!-- Projects -->
       <section id="projects" class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow"><em>//</em> <span data-i18n="projects.eyebrow">正在构建</span></p>
+            <h2 data-i18n="projects.title">核心系统</h2>
+            <p class="section-intro" data-i18n="projects.intro">从资源调度、信息筛选到知识发布，每个项目都服务于同一条本地优先工作流。</p>
+          </div>
+        </div>
         <div class="project-grid" data-projects>
           <article class="project-card"><div class="card-head"><h3 data-i18n="projects.loading">加载中...</h3></div></article>
         </div>
@@ -114,8 +111,8 @@
       <section id="notes" class="section">
         <div class="section-head">
           <div>
-            <p class="section-eyebrow"><em>//</em> <span data-i18n="notes.eyebrow">写作</span></p>
-            <h2 data-i18n="notes.title">公开文章</h2>
+            <p class="section-eyebrow"><em>//</em> <span data-i18n="notes.eyebrow">持续发布</span></p>
+            <h2 data-i18n="notes.title">最新公开输出</h2>
           </div>
         </div>
         <div class="notes-list" data-notes>
