@@ -31,7 +31,11 @@ function publicUrl(value) {
   try {
     const url = new URL(value);
     if (!['http:', 'https:'].includes(url.protocol)) return '';
-    if (/^(localhost|127\.0\.0\.1)$/i.test(url.hostname)) return '';
+    const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, '');
+    if (host === 'localhost' || host.endsWith('.local') || host === '::1') return '';
+    if (/^(?:0|10|127|169\.254|192\.168)\./.test(host)) return '';
+    if (/^172\.(?:1[6-9]|2\d|3[01])\./.test(host)) return '';
+    if (/^(?:fc|fd|fe[89ab])[0-9a-f:]*$/i.test(host)) return '';
     return url.href;
   } catch {
     return '';

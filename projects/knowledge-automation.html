@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; worker-src 'none'">
   <meta name="description" content="知识自动化 — 通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。">
+  <meta name="author" content="Adgai">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>知识自动化 - Adgai</title>
   <link rel="canonical" href="https://adgai115.github.io/adgai-site-public/projects/knowledge-automation.html">
-  <meta name="theme-color" content="#020A0C">
+  <link rel="alternate" hreflang="zh-CN" href="https://adgai115.github.io/adgai-site-public/projects/knowledge-automation.html?lang=zh-CN">
+  <link rel="alternate" hreflang="en" href="https://adgai115.github.io/adgai-site-public/projects/knowledge-automation.html?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://adgai115.github.io/adgai-site-public/projects/knowledge-automation.html">
+  <meta name="theme-color" content="#F2F0E8">
   <meta property="og:title" content="知识自动化 - Adgai">
   <meta property="og:description" content="通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。">
   <meta property="og:url" content="https://adgai115.github.io/adgai-site-public/projects/knowledge-automation.html">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="https://adgai115.github.io/adgai-site-public/assets/resource-workbench.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="知识自动化 - Adgai">
@@ -18,62 +25,99 @@
   <meta name="twitter:image" content="https://adgai115.github.io/adgai-site-public/assets/resource-workbench.png">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/project-copy.js" defer></script>
   <script src="../assets/site.js" defer></script>
 </head>
 <body data-page="project-knowledge-automation">
-  <header class="site-header">
-    <div class="header-inner">
-    <a class="brand" href="../">Adgai</a>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" aria-controls="primaryNav" aria-expanded="false">
-    <label for="menu-toggle" class="menu-toggle-label" aria-label="菜单">
-      <span></span><span></span><span></span>
-    </label>
-    <nav id="primaryNav" aria-label="Primary"><a href="../" data-i18n="nav.home">首页</a></nav>
-    <div class="language-toggle" aria-label="Language">
-      <button type="button" data-lang-option="zh-CN">中</button>
-      <button type="button" data-lang-option="en">EN</button>
-    </div>
-    </div>
-  </header>
-  <main class="article">
-    <p class="eyebrow" data-i18n="projectPages.knowledge.eyebrow">项目</p>
-    <h1 data-i18n="projectPages.knowledge.title">知识自动化</h1>
-    <p class="lead" data-i18n="projectPages.knowledge.lead">通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。</p>
-    <section>
-      <h2 data-i18n="projectPages.knowledge.disciplineTitle">发布纪律</h2>
-      <p data-i18n="projectPages.knowledge.disciplineText">私人笔记需要可见性标签、审核标记、白名单导出和扫描，才能成为公开成果。</p>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="../">Adgai</a>
+  <a class="skip-link" href="#main-content" data-i18n="nav.skip">跳到主要内容</a>
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../" aria-label="Adgai 首页" data-i18n-aria-label="nav.homeLabel">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span class="brand-copy"><strong>Adgai</strong><small>AI systems builder</small></span>
+        </a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" aria-controls="primaryNav" aria-expanded="false">
+        <label for="menu-toggle" class="menu-toggle-label" aria-label="菜单" data-i18n-aria-label="nav.menu"><span></span><span></span></label>
+        <nav id="primaryNav" aria-label="主导航" data-i18n-aria-label="nav.primary">
+          <a href="../" data-i18n="nav.home">首页</a>
+          <a href="../#projects" data-i18n="nav.projects">项目</a>
+          <a href="intelhub.html" data-i18n="nav.output">日报</a>
+          <a href="../#about" data-i18n="nav.about">关于</a>
+        </nav>
+        <div class="header-actions">
+          <div class="language-toggle" aria-label="Language">
+            <button type="button" data-lang-option="zh-CN">中</button>
+            <button type="button" data-lang-option="en">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="article case-article" id="main-content">
+      <p class="eyebrow" data-i18n="projectPages.knowledge.eyebrow">项目 / 发布系统</p>
+      <h1 data-i18n="projectPages.knowledge.title">知识自动化</h1>
+      <p class="lead" data-i18n="projectPages.knowledge.lead">通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。</p>
+
+      <div class="case-meta" aria-label="项目摘要" data-i18n-aria-label="projectPages.summary">
+        <div><span>TYPE</span><strong data-i18n="projectPages.knowledge.metaType">发布流水线</strong></div>
+        <div><span>FOCUS</span><strong data-i18n="projectPages.knowledge.metaFocus">知识沉淀</strong></div>
+        <div><span>STATE</span><strong data-i18n="projectPages.knowledge.metaState">持续建设</strong></div>
+      </div>
+
+      <section class="case-section">
+        <div class="case-heading"><span>01 / PROBLEM</span><h2 data-i18n="projectPages.knowledge.contextTitle">私人笔记不等于公开内容</h2></div>
+        <div class="case-copy">
+          <p data-i18n="projectPages.knowledge.contextText">原始笔记往往包含上下文捷径、内部引用和不适合公开的细节。自动化的目标不是一键搬运，而是建立一条可以审阅、可以停止、可以追溯的晋升路径。</p>
+          <div class="case-facts">
+            <article><strong data-i18n="projectPages.knowledge.factOneTitle">默认私有</strong><p data-i18n="projectPages.knowledge.factOneText">没有明确公开标记的内容不会进入发布候选。</p></article>
+            <article><strong data-i18n="projectPages.knowledge.factTwoTitle">人工确认</strong><p data-i18n="projectPages.knowledge.factTwoText">自动化负责整理，人负责判断是否值得且适合公开。</p></article>
+            <article><strong data-i18n="projectPages.knowledge.factThreeTitle">可追溯发布</strong><p data-i18n="projectPages.knowledge.factThreeText">输出保留来源、审核和发布时间等必要上下文。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-heading"><span>02 / GATES</span><h2 data-i18n="projectPages.knowledge.flowTitle">四道发布门禁</h2></div>
+        <ol class="case-flow">
+          <li><span>01</span><strong data-i18n="projectPages.knowledge.flowOneTitle">标记</strong><p data-i18n="projectPages.knowledge.flowOneText">显式声明可见性和内容用途。</p></li>
+          <li><span>02</span><strong data-i18n="projectPages.knowledge.flowTwoTitle">审核</strong><p data-i18n="projectPages.knowledge.flowTwoText">确认事实、语境和公开价值。</p></li>
+          <li><span>03</span><strong data-i18n="projectPages.knowledge.flowThreeTitle">脱敏</strong><p data-i18n="projectPages.knowledge.flowThreeText">只导出允许字段并移除私有标识。</p></li>
+          <li><span>04</span><strong data-i18n="projectPages.knowledge.flowFourTitle">检查</strong><p data-i18n="projectPages.knowledge.flowFourText">发布前验证路径、链接、元数据和敏感模式。</p></li>
+        </ol>
+      </section>
+
+      <section class="case-section case-boundary">
+        <div class="case-heading"><span>03 / DISCIPLINE</span><h2 data-i18n="projectPages.knowledge.disciplineTitle">发布纪律</h2></div>
+        <div class="boundary-panel">
+          <p data-i18n="projectPages.knowledge.disciplineText">私人笔记需要可见性标签、审核标记、白名单导出和扫描，才能成为公开成果。</p>
+          <ul>
+            <li data-i18n="projectPages.knowledge.boundaryOne">自动化没有越过人工审核的权限</li>
+            <li data-i18n="projectPages.knowledge.boundaryTwo">公开站不读取私人知识库</li>
+            <li data-i18n="projectPages.knowledge.boundaryThree">任何检查失败都会中止发布</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="case-next">
+        <div><span data-i18n="projectPages.nextLabel">下一个系统</span><h2>AI Resource Console</h2><p data-i18n="projectPages.knowledge.nextText">回到上游，看看模型、工具和任务如何被统一编排。</p></div>
+        <a class="btn btn-primary" href="resource-console.html"><span data-i18n="projectPages.openResource">查看资源工作台</span><i aria-hidden="true">→</i></a>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">A</span><span class="brand-copy"><strong>Adgai</strong><small>AI systems builder</small></span></a>
         <p data-i18n="footer.tagline">把私人工作沉淀成公开成果的个人 AI 基础设施。</p>
       </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.nav">导航</h4>
-        <a href="../#projects" data-i18n="nav.projects">项目</a>
-        <a href="../#notes" data-i18n="nav.notes">文章</a>
-        <a href="../#now" data-i18n="nav.now">近况</a>
-        <a href="../#about" data-i18n="nav.about">关于</a>
+      <div class="footer-grid">
+        <div class="footer-col"><h2 data-i18n="footer.nav">导航</h2><a href="../#projects" data-i18n="nav.projects">项目</a><a href="../#notes" data-i18n="nav.notes">输出</a><a href="../#now" data-i18n="nav.now">方法</a><a href="../#about" data-i18n="nav.about">关于</a></div>
+        <div class="footer-col"><h2 data-i18n="footer.resources">系统</h2><a href="resource-console.html" data-i18n="footer.resourceConsole">AI 资源工作台</a><a href="intelhub.html">IntelHub</a><a href="knowledge-automation.html" data-i18n="footer.knowledgeAuto">知识自动化</a></div>
+        <div class="footer-col"><h2 data-i18n="footer.connect">连接</h2><a href="https://github.com/Adgai115" target="_blank" rel="noopener noreferrer">GitHub</a><a href="mailto:adgai0918@gmail.com">Email</a></div>
       </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.resources">资源</h4>
-        <a href="https://github.com/Adgai115" target="_blank" rel="noopener">GitHub</a>
-        <a href="resource-console.html" data-i18n="footer.resourceConsole">资源后台</a>
-        <a href="intelhub.html">IntelHub</a>
-        <a href="knowledge-automation.html" data-i18n="footer.knowledgeAuto">知识自动化</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.connect">连接</h4>
-        <a href="mailto:adgai0918@gmail.com">Email</a>
-        <a href="../#about" data-i18n="footer.sitemap">站点地图</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Adgai</span>
-      <span data-i18n="footer.note">公开站由脱敏数据生成。</span>
-    </div>
-  </footer>
+      <div class="footer-bottom"><span>&copy; 2026 Adgai</span><span data-i18n="footer.note">公开站由脱敏数据生成。</span></div>
+    </footer>
+  </div>
 </body>
 </html>

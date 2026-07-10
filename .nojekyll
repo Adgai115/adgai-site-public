@@ -1,0 +1,1 @@
+# Static site; skip Jekyll processing so .well-known remains publishable.

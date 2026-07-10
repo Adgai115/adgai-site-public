@@ -4,9 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; worker-src 'none'">
   <meta name="description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
+  <meta name="author" content="Adgai">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Adgai - AI 系统与知识自动化</title>
   <link rel="canonical" href="https://adgai115.github.io/adgai-site-public/">
+  <link rel="alternate" hreflang="zh-CN" href="https://adgai115.github.io/adgai-site-public/?lang=zh-CN">
+  <link rel="alternate" hreflang="en" href="https://adgai115.github.io/adgai-site-public/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://adgai115.github.io/adgai-site-public/">
+  <link rel="me" href="https://github.com/Adgai115">
   <meta name="theme-color" content="#F2F0E8">
   <meta property="og:title" content="Adgai - AI 系统与知识自动化">
   <meta property="og:description" content="Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。">
@@ -22,11 +30,12 @@
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main-content" data-i18n="nav.skip">跳到主要内容</a>
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
   <div class="page">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="./" aria-label="Adgai 首页">
+        <a class="brand" href="./" aria-label="Adgai 首页" data-i18n-aria-label="nav.homeLabel">
           <span class="brand-mark" aria-hidden="true">A</span>
           <span class="brand-copy"><strong>Adgai</strong><small>AI systems builder</small></span>
         </a>
@@ -36,7 +45,7 @@
           <span></span><span></span>
         </label>
 
-        <nav id="primaryNav" aria-label="Primary">
+        <nav id="primaryNav" aria-label="主导航" data-i18n-aria-label="nav.primary">
           <a href="#projects" data-i18n="nav.projects">项目</a>
           <a href="#notes" data-i18n="nav.notes">输出</a>
           <a href="#now" data-i18n="nav.now">方法</a>
@@ -44,7 +53,7 @@
         </nav>
 
         <div class="header-actions">
-          <a class="availability" href="#now"><i aria-hidden="true"></i><span data-i18n="home.status">系统持续运行中</span></a>
+          <a class="availability" href="#now"><i aria-hidden="true"></i><span data-i18n="home.status">公开成果持续更新</span></a>
           <div class="lang-toggle" aria-label="Language">
             <button type="button" data-lang-option="zh-CN">中</button>
             <button type="button" data-lang-option="en">EN</button>
@@ -64,16 +73,16 @@
               <a class="btn btn-primary" href="#projects"><span data-i18n="home.viewProjects">查看系统</span><i aria-hidden="true">↘</i></a>
               <a class="btn btn-text" href="projects/intelhub.html"><span data-i18n="home.latestReport">阅读最新日报</span><i aria-hidden="true">→</i></a>
             </div>
-            <div class="hero-notes" aria-label="Working principles">
+            <div class="hero-notes" aria-label="工作原则" data-i18n-aria-label="home.principlesAria">
               <span><b>01</b><em data-i18n="home.principleLocal">运行默认留在本地</em></span>
               <span><b>02</b><em data-i18n="home.principlePublic">成果经过审核再公开</em></span>
             </div>
           </div>
 
-          <aside class="system-panel" aria-label="Public system overview">
+          <aside class="system-panel" aria-label="公开系统概览" data-i18n-aria-label="home.systemAria">
             <div class="system-panel-head">
               <div><span data-i18n="home.systemLabel">公开系统切片</span><strong>ADGAI / PUBLIC</strong></div>
-              <span class="live-chip"><i aria-hidden="true"></i>LIVE</span>
+              <span class="live-chip"><i aria-hidden="true"></i>PUBLIC</span>
             </div>
             <div class="system-flow">
               <div class="flow-node">
@@ -192,7 +201,7 @@
             <p>这里展示的不是实时后台，而是经过筛选、脱敏和审核后的公开成果。</p>
           </div>
           <div class="contact-list">
-            <a href="https://github.com/Adgai115" target="_blank" rel="noopener"><span>GitHub</span><i aria-hidden="true">↗</i></a>
+            <a href="https://github.com/Adgai115" target="_blank" rel="noopener noreferrer"><span>GitHub</span><i aria-hidden="true">↗</i></a>
             <a href="mailto:adgai0918@gmail.com"><span>Email</span><i aria-hidden="true">↗</i></a>
           </div>
         </div>
@@ -205,14 +214,14 @@
         <p data-i18n="footer.tagline">把私人工作沉淀成公开成果的个人 AI 基础设施。</p>
       </div>
       <div class="footer-grid">
-        <div class="footer-col"><h4 data-i18n="footer.nav">导航</h4><a href="#projects" data-i18n="nav.projects">项目</a><a href="#notes" data-i18n="nav.notes">输出</a><a href="#now" data-i18n="nav.now">方法</a><a href="#about" data-i18n="nav.about">关于</a></div>
-        <div class="footer-col"><h4 data-i18n="footer.resources">系统</h4><a href="projects/resource-console.html" data-i18n="footer.resourceConsole">AI 资源工作台</a><a href="projects/intelhub.html">IntelHub</a><a href="projects/knowledge-automation.html" data-i18n="footer.knowledgeAuto">知识自动化</a></div>
-        <div class="footer-col"><h4 data-i18n="footer.connect">连接</h4><a href="https://github.com/Adgai115" target="_blank" rel="noopener">GitHub</a><a href="mailto:adgai0918@gmail.com">Email</a></div>
+        <div class="footer-col"><h2 data-i18n="footer.nav">导航</h2><a href="#projects" data-i18n="nav.projects">项目</a><a href="#notes" data-i18n="nav.notes">输出</a><a href="#now" data-i18n="nav.now">方法</a><a href="#about" data-i18n="nav.about">关于</a></div>
+        <div class="footer-col"><h2 data-i18n="footer.resources">系统</h2><a href="projects/resource-console.html" data-i18n="footer.resourceConsole">AI 资源工作台</a><a href="projects/intelhub.html">IntelHub</a><a href="projects/knowledge-automation.html" data-i18n="footer.knowledgeAuto">知识自动化</a></div>
+        <div class="footer-col"><h2 data-i18n="footer.connect">连接</h2><a href="https://github.com/Adgai115" target="_blank" rel="noopener noreferrer">GitHub</a><a href="mailto:adgai0918@gmail.com">Email</a></div>
       </div>
       <div class="footer-bottom"><span>&copy; 2026 Adgai</span><span data-i18n="footer.note">公开站由脱敏数据生成。</span></div>
     </footer>
   </div>
 
-  <script src="assets/site.js"></script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

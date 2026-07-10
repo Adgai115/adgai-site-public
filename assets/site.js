@@ -7,6 +7,11 @@
 
 const LANGUAGES = ['zh-CN', 'en'];
 const DEFAULT_LANGUAGE = 'zh-CN';
+const FALLBACK_PROJECTS = [
+  { slug:'openclaw-resource-console', status:'private alpha', public_url:'projects/resource-console.html' },
+  { slug:'intelhub', status:'active', public_url:'projects/intelhub.html' },
+  { slug:'knowledge-automation', status:'building', public_url:'projects/knowledge-automation.html' },
+];
 
 const COPY = {
   'zh-CN': {
@@ -17,9 +22,10 @@ const COPY = {
       'project-knowledge-automation': '知识自动化 - Adgai',
     },
     description: 'Adgai 构建本地优先的 AI 系统、资源编排工具和知识自动化工作流。',
-    nav: { projects:'项目', notes:'输出', now:'方法', about:'关于', home:'首页', menu:'菜单', skip:'跳到主要内容' },
+    nav: { projects:'项目', notes:'输出', output:'日报', now:'方法', about:'关于', home:'首页', homeLabel:'Adgai 首页', menu:'菜单', primary:'主导航', skip:'跳到主要内容' },
     home: {
-      status:'系统持续运行中',
+      status:'公开成果持续更新',
+      principlesAria:'工作原则', systemAria:'公开系统概览',
       heroEyebrow:'本地优先的 AI 系统构建者',
       heroTitle:'把复杂的<br><span class="hero-highlight">AI 系统</span><br><span class="hero-line">做成长期资产。</span>',
       heroLead:'我设计资源编排、信息采集与知识发布系统，让私人工作在本地安全运行，并持续沉淀为可复用、可公开的成果。',
@@ -67,7 +73,7 @@ const COPY = {
     },
     projectPages: {
       resource: {
-        eyebrow:'项目', title:'AI 资源工作台',
+        eyebrow:'项目 / 系统设计', title:'AI 资源工作台',
         lead:'面向 AI 模型、工具、计划任务和知识产出的本地优先运行工作台。公开版本只描述方法，不暴露私有资源状态。',
         principlesTitle:'原则', principlesText:'运行数据保留在本地，只导出审核后的摘要，并显式展示采集的新鲜度。',
         boundaryTitle:'公开边界', boundaryText:'这个项目页不会展示实时进程数、私有路径、日志或原始自动化输出。',
@@ -99,7 +105,7 @@ const COPY = {
         sectionTrends:'趋势',
       },
       knowledge: {
-        eyebrow:'项目', title:'知识自动化',
+        eyebrow:'项目 / 发布系统', title:'知识自动化',
         lead:'通过明确发布门禁，把审核后的私人笔记提升为公开页面的发布流水线。',
         disciplineTitle:'发布纪律', disciplineText:'私人笔记需要可见性标签、审核标记、白名单导出和扫描，才能成为公开成果。',
       },
@@ -131,9 +137,10 @@ const COPY = {
       'project-knowledge-automation': 'Knowledge Automation - Adgai',
     },
     description: 'Adgai builds local-first AI systems, resource orchestration tools, and knowledge automation workflows.',
-    nav: { projects:'Projects', notes:'Output', now:'Method', about:'About', home:'Home', menu:'Menu', skip:'Skip to main content' },
+    nav: { projects:'Projects', notes:'Output', output:'Daily', now:'Method', about:'About', home:'Home', homeLabel:'Adgai home', menu:'Menu', primary:'Primary navigation', skip:'Skip to main content' },
     home: {
-      status:'Systems running continuously',
+      status:'Public artifacts keep evolving',
+      principlesAria:'Working principles', systemAria:'Public system overview',
       heroEyebrow:'Local-first AI systems builder',
       heroTitle:'Turn complex<br><span class="hero-highlight">AI systems</span><br><span class="hero-line">into durable assets.</span>',
       heroLead:'I design resource orchestration, information collection, and knowledge publishing systems—keeping private work safely local while turning it into reusable public outcomes.',
@@ -181,7 +188,7 @@ const COPY = {
     },
     projectPages: {
       resource: {
-        eyebrow:'Project', title:'AI Resource Console',
+        eyebrow:'Project / System design', title:'AI Resource Console',
         lead:'A local-first operations surface for AI models, tools, scheduled tasks, and knowledge output. The public version describes the methodology without exposing private resource state.',
         principlesTitle:'Principles', principlesText:'Operational data stays local. Only reviewed summaries are exported, with collection freshness displayed explicitly.',
         boundaryTitle:'Public Boundary', boundaryText:'This project page does not display live process counts, private paths, logs, or raw automation output.',
@@ -213,7 +220,7 @@ const COPY = {
         sectionTrends:'Trends',
       },
       knowledge: {
-        eyebrow:'Project', title:'Knowledge Automation',
+        eyebrow:'Project / Publishing system', title:'Knowledge Automation',
         lead:'A publishing pipeline that promotes reviewed private notes into public pages through explicit publishing gates.',
         disciplineTitle:'Publishing Discipline', disciplineText:'Private notes require visibility tags, review flags, allowlist export, and scanning before becoming public artifacts.',
       },
@@ -239,6 +246,19 @@ const COPY = {
   },
 };
 
+const projectDetailCopy = globalThis.ADGAI_PROJECT_COPY;
+if (projectDetailCopy) {
+  LANGUAGES.forEach(function(lang) {
+    const base = COPY[lang].projectPages;
+    const extra = projectDetailCopy[lang];
+    if (!extra) return;
+    COPY[lang].projectPages = Object.assign({}, base, extra, {
+      resource:Object.assign({}, base.resource, extra.resource),
+      knowledge:Object.assign({}, base.knowledge, extra.knowledge),
+    });
+  });
+}
+
 let snapshotData = null;
 let homeOutputData = null;
 let intelHubReportData = null;
@@ -249,10 +269,31 @@ let revealObserver = null;
 
 function getNested(o, k) { return k.split('.').reduce((c,p)=>c?.[p], o); }
 function esc(v) { return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
+function storageGet(storage, key) {
+  try { return storage.getItem(key); } catch { return null; }
+}
+function storageSet(storage, key, value) {
+  try { storage.setItem(key, value); } catch {}
+}
 function safeUrl(v) {
   if (typeof v !== 'string') return '';
   if (v.startsWith('/projects/')) return v.slice(1);
   return v.startsWith('projects/') ? v : '';
+}
+
+function safeExternalUrl(v) {
+  if (typeof v !== 'string') return '';
+  try {
+    const url = new URL(v);
+    const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, '');
+    const privateHost = host === 'localhost' || host.endsWith('.local') || host === '::1' ||
+      /^(?:0|10|127|169\.254|192\.168)\./.test(host) ||
+      /^172\.(?:1[6-9]|2\d|3[01])\./.test(host) ||
+      /^(?:fc|fd|fe[89ab])[0-9a-f:]*$/i.test(host);
+    return !privateHost && (url.protocol === 'https:' || url.protocol === 'http:') ? url.href : '';
+  } catch {
+    return '';
+  }
 }
 
 function pageDescription(c, page) {
@@ -270,13 +311,14 @@ function setMeta(selector, value) {
 function getLanguage() {
   const p = new URLSearchParams(location.search);
   const req = p.get('lang');
-  if (LANGUAGES.includes(req)) { localStorage.setItem('adgai-lang', req); return req; }
-  const s = localStorage.getItem('adgai-lang');
+  if (LANGUAGES.includes(req)) { storageSet(localStorage, 'adgai-lang', req); return req; }
+  const s = storageGet(localStorage, 'adgai-lang');
   return LANGUAGES.includes(s) ? s : DEFAULT_LANGUAGE;
 }
 
 function setLanguage(lang) {
-  localStorage.setItem('adgai-lang', lang);
+  if (!LANGUAGES.includes(lang)) return;
+  storageSet(localStorage, 'adgai-lang', lang);
   applyLanguage(lang);
 }
 
@@ -680,6 +722,7 @@ function renderIntelHubReport(report, lang, index, selectedDate) {
 
   if (!visibleSections.length) {
     target.innerHTML = '<div class="notes-empty">' + esc(copy.reportEmpty) + '</div>';
+    target.setAttribute('aria-busy', 'false');
     return;
   }
 
@@ -723,8 +766,9 @@ function renderIntelHubReport(report, lang, index, selectedDate) {
       const topicHtml = topics.length
         ? '<div class="report-item-topics">' + topics.map(function(topic) { return '<span>' + esc(topic) + '</span>'; }).join('') + '</div>'
         : '';
-      const link = item.url
-        ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(copy.reportOpen) + '</a>'
+      const itemUrl = safeExternalUrl(item.url);
+      const link = itemUrl
+        ? '<a href="' + esc(itemUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(copy.reportOpen) + '</a>'
         : '';
       return '<article class="intelhub-report-item fade-up">' +
         '<div class="report-item-index">' + esc(String(itemIndex).padStart(2, '0')) + '</div>' +
@@ -765,6 +809,7 @@ function renderIntelHubReport(report, lang, index, selectedDate) {
       '</article>' +
       '<aside class="daily-report-sidebar">' + dateRail + sectionNav + '</aside>' +
     '</div>';
+  target.setAttribute('aria-busy', 'false');
   revealElements(target);
   syncDailyReportAnchor();
 }
@@ -895,229 +940,34 @@ function applyLanguage(lang) {
 
 async function loadSnapshot() {
   const base = (document.body.dataset.page || '') === 'home' ? '' : '../';
-  const resp = await fetch(base + 'data/public_snapshot.json', { cache:'no-store' });
+  const resp = await fetch(base + 'data/public_snapshot.json', { cache:'no-cache' });
   if (!resp.ok) throw new Error('snapshot ' + resp.status);
   return resp.json();
 }
 
 async function fetchJson(url) {
-  const resp = await fetch(url, { cache:'no-store' });
+  const resp = await fetch(url, { cache:'no-cache' });
   if (!resp.ok) throw new Error(url + ' ' + resp.status);
   return resp.json();
 }
 
 async function loadHomeOutput() {
   if ((document.body.dataset.page || '') !== 'home') return null;
-  const results = await Promise.all([
+  const results = await Promise.allSettled([
     fetchJson('data/intelhub_daily_report.json'),
     fetchJson('data/intelhub_daily_index.json'),
   ]);
-  return { report:results[0], index:results[1] };
+  if (results[0].status !== 'fulfilled') throw results[0].reason;
+  const report = results[0].value;
+  const index = results[1].status === 'fulfilled'
+    ? results[1].value
+    : { latest_date:report.report_date, reports:[{ date:report.report_date, path:'data/intelhub_daily_report.json' }] };
+  return { report, index };
 }
 
 async function loadIntelHubReport() {
   if (!document.querySelector('[data-intelhub-report]')) return null;
   return loadIntelHubReportState(requestedReportDate());
-}
-
-// ── Loader ─────────────────────────────────
-
-function initLoader() {
-  const loader = document.getElementById('siteLoader');
-  if (!loader) {
-    document.body.classList.add('is-ready');
-    return;
-  }
-
-  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
-    loader.remove();
-    document.body.classList.add('is-ready');
-    return;
-  }
-
-  const hasSeen = sessionStorage.getItem('hasSeenLoader');
-  if (hasSeen) {
-    loader.remove();
-    document.body.classList.add('is-ready');
-    return;
-  }
-
-  sessionStorage.setItem('hasSeenLoader', 'true');
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.body.classList.add('is-ready');
-      loader.classList.add('is-hidden');
-      setTimeout(function() { loader.remove(); }, 800);
-    }, 900);
-  });
-}
-
-// ── Canvas Background ──────────────────────
-
-function initBackground() {
-  const canvas = document.getElementById('bgCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let width = 0, height = 0, raf = 0;
-  let particles = [];
-  let rainDrops = [];
-  let lightStreaks = [];
-  const pointer = { x:0, y:0, active:false };
-  let lastFrameTime = 0;
-
-  function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const mobile = window.innerWidth < 768;
-    const count = mobile ? 30 : Math.min(100, Math.floor((width * height) / 18000));
-    particles = Array.from({length:count}, function(_, i) { return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - .5) * .18,
-      vy: (Math.random() - .5) * .18,
-      r: Math.random() * 1.4 + .3,
-      phase: Math.random() * Math.PI * 2,
-      band: i % 4,
-    };});
-
-    // Data rain: falling 0/1 flowing from hero downward
-    var rainCount = mobile ? 25 : Math.min(80, Math.floor(width / 14));
-    rainDrops = Array.from({length:rainCount}, function() { return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      speed: Math.random() * 1.5 + .6,
-      size: Math.random() * 7 + 11,
-      opacity: Math.random() * .32 + .16,
-      char: Math.random() > .5 ? '0' : '1',
-      flicker: Math.random() * Math.PI * 2,
-    };});
-
-    // Light streaks: fast vertical lines
-    var streakCount = mobile ? 15 : Math.min(50, Math.floor(width / 22));
-    lightStreaks = Array.from({length:streakCount}, function() { return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      speed: Math.random() * 3 + 2.5,
-      len: Math.random() * 55 + 35,
-      opacity: Math.random() * .25 + .10,
-      width: Math.random() * 1.6 + .6,
-    };});
-  }
-
-  function drawGrid(t) {
-    ctx.save();
-    ctx.globalAlpha = .15;
-    ctx.strokeStyle = 'rgba(65,163,167,.20)';
-    ctx.lineWidth = 1;
-    var gap = 64;
-    var offset = (t * .005) % gap;
-    for (var x = -gap + offset; x < width + gap; x += gap) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
-    }
-    for (var y = -gap + offset; y < height + gap; y += gap) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function draw(t) {
-    if (window.innerWidth < 768 && t - lastFrameTime < 50) { raf = requestAnimationFrame(draw); return; }
-    lastFrameTime = t;
-    ctx.clearRect(0, 0, width, height);
-    drawGrid(t);
-
-    var h = height * .42;
-    var grad = ctx.createRadialGradient(width * .5, h, 10, width * .5, h, width * .65);
-    grad.addColorStop(0, 'rgba(65,163,167,.20)');
-    grad.addColorStop(.38, 'rgba(65,163,167,.055)');
-    grad.addColorStop(1, 'rgba(12,230,162,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, width, height);
-
-    particles.forEach(function(p, i) {
-      p.x += p.vx + Math.sin(t * .0003 + p.phase) * .035;
-      p.y += p.vy + Math.cos(t * .00026 + p.phase) * .03;
-      if (p.x < -20) p.x = width + 20;
-      if (p.x > width + 20) p.x = -20;
-      if (p.y < -20) p.y = height + 20;
-      if (p.y > height + 20) p.y = -20;
-
-      var glow = .3 + Math.sin(t * .0018 + p.phase) * .24;
-      ctx.beginPath();
-      ctx.fillStyle = 'rgba(77,240,176,' + (.24 + glow * .36) + ')';
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-
-      for (var j = i + 1; j < particles.length; j++) {
-        var q = particles[j];
-        var dx = p.x - q.x, dy = p.y - q.y;
-        var d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 140 && p.band === q.band) {
-          ctx.beginPath();
-          ctx.strokeStyle = 'rgba(77,240,176,' + ((1 - d / 140) * .12) + ')';
-          ctx.lineWidth = 1;
-          ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-          ctx.stroke();
-        }
-      }
-    });
-
-    if (pointer.active) {
-      var pg = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 280);
-      pg.addColorStop(0, 'rgba(65,163,167,.18)');
-      pg.addColorStop(.45, 'rgba(65,163,167,.06)');
-      pg.addColorStop(1, 'rgba(65,163,167,0)');
-      ctx.fillStyle = pg;
-      ctx.fillRect(0, 0, width, height);
-    }
-
-    // Draw data rain (falling 0/1)
-    rainDrops.forEach(function(r) {
-      r.y += r.speed;
-      if (r.y > height + 20) { r.y = -20; r.x = Math.random() * width; r.char = Math.random() > .5 ? '0' : '1'; }
-      var flick = .6 + Math.sin(t * .004 + r.flicker) * .4;
-      var alpha = r.opacity * flick;
-      if (alpha < .08) return;
-      ctx.font = r.size + 'px Consolas,monospace';
-      ctx.fillStyle = 'rgba(108,203,207,' + alpha + ')';
-      ctx.fillText(r.char, r.x, r.y);
-    });
-
-    // Draw light streaks (fast vertical lines)
-    lightStreaks.forEach(function(s) {
-      s.y += s.speed;
-      if (s.y > height + 60) { s.y = -60; s.x = Math.random() * width; }
-      var grad = ctx.createLinearGradient(s.x, s.y - s.len, s.x, s.y);
-      grad.addColorStop(0, 'rgba(108,203,207,0)');
-      grad.addColorStop(.5, 'rgba(108,203,207,' + (s.opacity * .9) + ')');
-      grad.addColorStop(1, 'rgba(155,235,239,' + s.opacity + ')');
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = s.width;
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y - s.len);
-      ctx.lineTo(s.x, s.y);
-      ctx.stroke();
-    });
-
-    raf = requestAnimationFrame(draw);
-  }
-
-  function onMove(e) { pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true; }
-  function onLeave() { pointer.active = false; }
-
-  resize();
-  raf = requestAnimationFrame(draw);
-  window.addEventListener('resize', resize);
-  window.addEventListener('pointermove', onMove);
-  window.addEventListener('pointerleave', onLeave);
 }
 
 // ── Scroll-triggered animations ────────────
@@ -1151,6 +1001,57 @@ function initScrollReveal() {
   revealElements(document);
 }
 
+function initScrollProgress() {
+  const bar = document.querySelector('.scroll-progress i');
+  if (!bar) return;
+  let scheduled = false;
+  const update = function() {
+    const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const progress = Math.min(Math.max(window.scrollY / max, 0), 1);
+    bar.style.transform = 'scaleX(' + progress + ')';
+    scheduled = false;
+  };
+  const requestUpdate = function() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', requestUpdate, { passive:true });
+  window.addEventListener('resize', requestUpdate, { passive:true });
+  update();
+}
+
+function initSectionNavigation() {
+  if ((document.body.dataset.page || '') !== 'home') return;
+  const links = Array.from(document.querySelectorAll('.site-header nav a[href^="#"]'));
+  const entries = links.map(function(link) {
+    return { link, section:document.querySelector(link.getAttribute('href')) };
+  }).filter(function(entry) { return entry.section; });
+  if (!entries.length) return;
+
+  let scheduled = false;
+  const update = function() {
+    const marker = window.scrollY + Math.min(window.innerHeight * .35, 320);
+    let active = null;
+    entries.forEach(function(entry) {
+      if (entry.section.offsetTop <= marker) active = entry;
+    });
+    entries.forEach(function(entry) {
+      if (entry === active) entry.link.setAttribute('aria-current', 'location');
+      else entry.link.removeAttribute('aria-current');
+    });
+    scheduled = false;
+  };
+  const requestUpdate = function() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', requestUpdate, { passive:true });
+  window.addEventListener('resize', requestUpdate, { passive:true });
+  update();
+}
+
 // ── Init ───────────────────────────────────
 
 document.querySelectorAll('[data-lang-option]').forEach(function(btn) {
@@ -1160,40 +1061,59 @@ document.querySelectorAll('[data-lang-option]').forEach(function(btn) {
 var menuToggle = document.getElementById('menu-toggle');
 var primaryNav = document.getElementById('primaryNav');
 if (menuToggle) {
+  var closeMenu = function() {
+    if (!menuToggle.checked) return;
+    menuToggle.checked = false;
+    syncMenuState();
+  };
   var syncMenuState = function() {
     menuToggle.setAttribute('aria-expanded', menuToggle.checked ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', menuToggle.checked);
   };
   menuToggle.addEventListener('change', syncMenuState);
   if (primaryNav) {
     primaryNav.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
-        menuToggle.checked = false;
-        syncMenuState();
+        closeMenu();
       });
     });
   }
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && menuToggle.checked) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+  document.addEventListener('pointerdown', function(event) {
+    if (menuToggle.checked && !event.target.closest('.site-header')) closeMenu();
+  });
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 820) closeMenu();
+  }, { passive:true });
   syncMenuState();
 }
 
 var lang = getLanguage();
 applyLanguage(lang);
 
-initLoader();
-initBackground();
 initScrollReveal();
+initScrollProgress();
+initSectionNavigation();
 
-// Hero video stays muted; unexpected audio on a personal site is a poor default.
-var heroVideo = document.getElementById('heroVideo');
-if (heroVideo) {
-  heroVideo.play().catch(function(){});
+if ((document.body.dataset.page || '') === 'home') {
+  loadSnapshot().then(function(snap) {
+    snapshotData = snap;
+    applyLanguage(getLanguage());
+  }).catch(function() {
+    snapshotData = {
+      public_metrics:{ project_count:FALLBACK_PROJECTS.length, resource_console_status:'local-only', last_public_update:'-' },
+      featured_projects:FALLBACK_PROJECTS,
+      public_notes:[],
+    };
+    applyLanguage(getLanguage());
+    setMetric('resource_console_status', COPY[getLanguage()].metrics.snapshotMissing);
+  });
 }
-
-loadSnapshot().then(function(snap) {
-  snapshotData = snap;
-  applyLanguage(getLanguage());
-}).catch(function() {
-  setMetric('resource_console_status', COPY[getLanguage()].metrics.snapshotMissing);
-});
 
 loadHomeOutput().then(function(state) {
   if (!state) return;

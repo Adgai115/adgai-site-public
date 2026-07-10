@@ -1,0 +1,4 @@
+Contact: mailto:adgai0918@gmail.com
+Canonical: https://adgai115.github.io/adgai-site-public/.well-known/security.txt
+Preferred-Languages: zh, en
+Expires: 2027-07-10T00:00:00Z
